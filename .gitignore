@@ -1,0 +1,7 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/Chips-challenge-monogame/bin/Debug/net6.0-windows
+/Chips-challenge-monogame/obj/Debug/net6.0-windows
+/.vs/Chips-challenge-monogame/DesignTimeBuild
