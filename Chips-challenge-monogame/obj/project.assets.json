@@ -7530,9 +7530,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\roanh\\source\\repos\\Chips-challenge-monogame\\Chips-challenge-monogame\\Chips-challenge-monogame.csproj",
-      "projectName": "Chips-challenge-monogame",
-      "projectPath": "C:\\Users\\roanh\\source\\repos\\Chips-challenge-monogame\\Chips-challenge-monogame\\Chips-challenge-monogame.csproj",
+      "projectUniqueName": "C:\\Users\\roanh\\source\\repos\\Chips-challenge-monogame\\Chips-challenge-monogame\\CHIPS_CHALLENGE.csproj",
+      "projectName": "CHIPS_CHALLENGE",
+      "projectPath": "C:\\Users\\roanh\\source\\repos\\Chips-challenge-monogame\\Chips-challenge-monogame\\CHIPS_CHALLENGE.csproj",
       "packagesPath": "C:\\Users\\roanh\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\roanh\\source\\repos\\Chips-challenge-monogame\\Chips-challenge-monogame\\obj\\",
       "projectStyle": "PackageReference",

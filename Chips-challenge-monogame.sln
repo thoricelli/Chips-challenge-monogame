@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.7.34031.279
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Chips-challenge-monogame", "Chips-challenge-monogame\Chips-challenge-monogame.csproj", "{A449DA6E-60D3-461F-A515-50E111F59AE8}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CHIPS_CHALLENGE", "Chips-challenge-monogame\CHIPS_CHALLENGE.csproj", "{A449DA6E-60D3-461F-A515-50E111F59AE8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
