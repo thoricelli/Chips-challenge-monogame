@@ -4,12 +4,12 @@ using Microsoft.Xna.Framework.Input;
 
 namespace Chips_challenge_monogame
 {
-    public class Game1 : Game
+    public class CHIP : Game
     {
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
 
-        public Game1()
+        public CHIP()
         {
             _graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";

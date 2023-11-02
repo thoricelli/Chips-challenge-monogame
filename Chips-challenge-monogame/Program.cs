@@ -1,3 +1,3 @@
 ﻿
-using var game = new Chips_challenge_monogame.Game1();
+using var game = new Chips_challenge_monogame.CHIP();
 game.Run();
