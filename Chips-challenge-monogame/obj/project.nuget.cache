@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "WuhKCy+xO6/0zuHZnA8Pc2UnsKlbDmm/vOdh0XvqDOzqyokusohZ/2BAAQtaceMYsoCpnoPqcmE2ssneW+8PVw==",
+  "dgSpecHash": "NCirYCRx4zmsK/RQAuQyK1KtRAVvPHIrE2EeVh/vQRqTJ9Bxpuk9y6FzqBvN7alED5oKvUVTIVtoFfZB/ho9sQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\roanh\\source\\repos\\Chips-challenge-monogame\\Chips-challenge-monogame\\CHIPS_CHALLENGE.csproj",
+  "projectFilePath": "C:\\Users\\roanh\\Source\\Repos\\Chips-challenge-monogame\\Chips-challenge-monogame\\CHIPS_CHALLENGE.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\roanh\\.nuget\\packages\\libuv\\1.9.1\\libuv.1.9.1.nupkg.sha512",
     "C:\\Users\\roanh\\.nuget\\packages\\microsoft.codeanalysis.analyzers\\1.1.0\\microsoft.codeanalysis.analyzers.1.1.0.nupkg.sha512",
