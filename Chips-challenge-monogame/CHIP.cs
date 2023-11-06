@@ -1,4 +1,6 @@
-﻿using CHIPS_CHALLENGE.Classes.Base;
+﻿using CHIPS_CHALLENGE.Classes;
+using CHIPS_CHALLENGE.Classes.Sprites;
+using CHIPS_CHALLENGE.Classes.Items;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -17,10 +19,13 @@ namespace CHIPS_CHALLENGE
             IsMouseVisible = true;
         }
 
+        ChipGame ChipGame;
+
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
-
+            ChipGame = new ChipGame();
+            //LOAD MAP.
             base.Initialize();
         }
         private Sprite sprite;
@@ -49,7 +54,23 @@ namespace CHIPS_CHALLENGE
 
             // TODO: Add your drawing code here
             _spriteBatch.Begin();
-            _spriteBatch.Draw(sprite.SpriteSheet.spriteSheet, new Vector2(0, 0), sprite.SpriteRectangle, Color.White);
+            foreach (Layer layer in ChipGame.Layers)
+            {
+                for (int i = 0; i < layer.objects.Length; i++)
+                {
+                    ChipObject item = layer.objects[i];
+
+                    //Calculate X & Y from i, H and V size;
+                    //Special case for entities.
+
+                    _spriteBatch.Draw(
+                        item.Sprite.SpriteSheet.spriteSheet, 
+                        new Vector2(0, 0), 
+                        item.Sprite.SpriteRectangle, 
+                        Color.White
+                    );
+                }
+            }
             _spriteBatch.End();
 
             base.Draw(gameTime);

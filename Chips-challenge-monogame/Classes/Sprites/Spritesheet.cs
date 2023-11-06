@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CHIPS_CHALLENGE.Classes.Base
+namespace CHIPS_CHALLENGE.Classes.Sprites
 {
     public class Spritesheet
     {
