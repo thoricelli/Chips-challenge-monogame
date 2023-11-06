@@ -6,10 +6,11 @@ using System.Threading.Tasks;
 
 namespace CHIPS_CHALLENGE.Classes.Loader.ChipFile
 {
+    [Serializable]
     public class Base
     {
         public long MagicNo;
         public short NumberOfLevels;
-        public List<Level> levels;
+        public Level LoadedLevel;
     }
 }

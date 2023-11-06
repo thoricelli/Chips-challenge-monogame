@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\roanh\\Source\\Repos\\Chips-challenge-monogame\\Chips-challenge-monogame\\CHIPS_CHALLENGE.csproj": {}
+    "C:\\Users\\roanh\\source\\repos\\Chips-challenge-monogame\\Chips-challenge-monogame\\CHIPS_CHALLENGE.csproj": {}
   },
   "projects": {
-    "C:\\Users\\roanh\\Source\\Repos\\Chips-challenge-monogame\\Chips-challenge-monogame\\CHIPS_CHALLENGE.csproj": {
+    "C:\\Users\\roanh\\source\\repos\\Chips-challenge-monogame\\Chips-challenge-monogame\\CHIPS_CHALLENGE.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\roanh\\Source\\Repos\\Chips-challenge-monogame\\Chips-challenge-monogame\\CHIPS_CHALLENGE.csproj",
+        "projectUniqueName": "C:\\Users\\roanh\\source\\repos\\Chips-challenge-monogame\\Chips-challenge-monogame\\CHIPS_CHALLENGE.csproj",
         "projectName": "CHIPS_CHALLENGE",
-        "projectPath": "C:\\Users\\roanh\\Source\\Repos\\Chips-challenge-monogame\\Chips-challenge-monogame\\CHIPS_CHALLENGE.csproj",
+        "projectPath": "C:\\Users\\roanh\\source\\repos\\Chips-challenge-monogame\\Chips-challenge-monogame\\CHIPS_CHALLENGE.csproj",
         "packagesPath": "C:\\Users\\roanh\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\roanh\\Source\\Repos\\Chips-challenge-monogame\\Chips-challenge-monogame\\obj\\",
+        "outputPath": "C:\\Users\\roanh\\source\\repos\\Chips-challenge-monogame\\Chips-challenge-monogame\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

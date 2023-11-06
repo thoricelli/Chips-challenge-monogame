@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CHIPS_CHALLENGE.Classes.Loader.ChipFile;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -7,10 +8,15 @@ using System.Threading.Tasks;
 
 namespace CHIPS_CHALLENGE.Classes.Loader
 {
-    public class ChipFileLoader
+    public static class ChipFileLoader
     {
-        //public File ChipDat;
+       public static Base LoadLevelFromFile(string filepath, int level)
+       {
+            Base chipBase = new Base();
 
 
+
+            return chipBase;
+       }
     }
 }
