@@ -11,8 +11,8 @@ namespace CHIPS_CHALLENGE.Classes.Items
     {
         /*
          REFER to https://www.seasip.info/ccfile.html
-         Objects have a beginning and end code, 
-         sprite no can be specified when different state in beginning.
+         Objects have a beginning and end code,
+         since originally every sprite has their own number...
          */
         public int ObjectBaseCode;
         public int ObjectEndCode;
