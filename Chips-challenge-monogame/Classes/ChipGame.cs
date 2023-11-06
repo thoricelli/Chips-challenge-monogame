@@ -21,5 +21,14 @@ namespace CHIPS_CHALLENGE.Classes
         };
 
         public Player Player { get; set; }
+
+        public void LoadLevel()
+        {
+            //Use loader to load next level.
+        }
+        public void RestartLevel()
+        {
+
+        }
     }
 }
