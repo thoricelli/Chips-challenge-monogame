@@ -73,14 +73,16 @@ namespace CHIPS_CHALLENGE.Classes.Sprites
 
         private void UpdateSprite()
         {
-            int X = 
-                _spriteSheet.TileOffsetH + (_spriteSheet.TileOffsetH * SpriteIndex)
-                + _spriteSheet.TileWidth * SpriteIndex;
-            int Y =
-                _spriteSheet.TileOffsetV;
+            int spriteIndexX = (SpriteIndex % _spriteSheet.HorizontalTiles);
+            int spriteIndexY = (SpriteIndex / _spriteSheet.HorizontalTiles);
 
-            //WHAT HAPPENS IF THE SPRITE IS BELOW?
-            //Y LOGIC NEEDS TO BE ACCOUNTED FOR.
+            int X = 
+                _spriteSheet.TileOffsetH + (_spriteSheet.TileOffsetH * spriteIndexX)
+                + _spriteSheet.TileWidth * spriteIndexX;
+            int Y =
+                _spriteSheet.TileOffsetV + (_spriteSheet.TileOffsetV * spriteIndexY)
+                + _spriteSheet.TileHeight * spriteIndexY;
+
             _spriteRectangle = new Rectangle(X, Y, _spriteSheet.TileWidth, _spriteSheet.TileHeight);
         }
         #endregion

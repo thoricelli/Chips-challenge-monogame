@@ -33,8 +33,11 @@ namespace CHIPS_CHALLENGE
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            Spritesheet spritesheet = new Spritesheet(Content.Load<Texture2D>("ChipTest"), 32, 32, 2, 2);
-            sprite = new Sprite(spritesheet, 4);
+            //Spritesheet spritesheet = new Spritesheet(Content.Load<Texture2D>("ChipTest"), 32, 32, 2, 2, 4);
+            //sprite = new Sprite(spritesheet, 4);
+
+            Spritesheet spritesheet = new Spritesheet(Content.Load<Texture2D>("ChipTiles"), 32, 32, 2, 2, 8);
+            sprite = new Sprite(spritesheet, 152);
             // TODO: use this.Content to load your game content here
         }
 
@@ -52,7 +55,6 @@ namespace CHIPS_CHALLENGE
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
-            // TODO: Add your drawing code here
             _spriteBatch.Begin();
             foreach (Layer layer in ChipGame.Layers)
             {
@@ -71,7 +73,6 @@ namespace CHIPS_CHALLENGE
                     );
                 }
             }
-            _spriteBatch.End();
 
             base.Draw(gameTime);
         }
