@@ -4,6 +4,7 @@ using CHIPS_CHALLENGE.Classes.Items;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using CHIPS_CHALLENGE.Classes.Loader;
 
 namespace CHIPS_CHALLENGE
 {
@@ -25,6 +26,7 @@ namespace CHIPS_CHALLENGE
         {
             // TODO: Add your initialization logic here
             ChipGame = new ChipGame();
+            ChipFileLoader.LoadLevelFromFile("C:\\Users\\roanh\\Desktop\\CHIPS.DAT", 0);
             //LOAD MAP.
             base.Initialize();
         }
