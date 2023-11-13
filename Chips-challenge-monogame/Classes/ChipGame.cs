@@ -4,23 +4,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using CHIPS_CHALLENGE.Classes.Entities;
+using CHIPS_CHALLENGE.Classes.Loader.ChipFile;
 using CHIPS_CHALLENGE.Classes.Sprites;
 
 namespace CHIPS_CHALLENGE.Classes
 {
     public class ChipGame
     {
-        public short CurrentLevel { get; set; }
-        public short Timer { get; set; }
-        public short ChipsNeeded { get; set; }
+        public ChipFileInformation chipInfo;
 
-        public List<Layer> Layers { get; set; } = new List<Layer>()
-        {
-            new Layer(32, 32),
-            new Layer(32, 32)
-        };
-
-        public Player Player { get; set; }
+        public List<Player> Players { get; set; } //Multiplayer is a TODO.
 
         public void LoadLevel()
         {

@@ -58,7 +58,7 @@ namespace CHIPS_CHALLENGE
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
             _spriteBatch.Begin();
-            foreach (Layer layer in ChipGame.Layers)
+            foreach (Layer layer in ChipGame.chipInfo.layers)
             {
                 for (int i = 0; i < layer.objects.Length; i++)
                 {

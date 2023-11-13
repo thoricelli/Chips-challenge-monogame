@@ -17,8 +17,11 @@ namespace CHIPS_CHALLENGE.Classes.Loader
 {
     public static class ChipFileLoader
     {
-        public static Base LoadLevelFromFile(string filepath, int level)
+        //REFER TO https://www.seasip.info/ccfile.html
+        public static ChipFileInformation LoadLevelFromFile(string filepath, int level)
         {
+            ChipFileInformation chipInfo = new ChipFileInformation();
+
             BinaryFormatter formatter = new BinaryFormatter();
 
             FileStream fs = File.Open(filepath, FileMode.Open);
@@ -38,12 +41,12 @@ namespace CHIPS_CHALLENGE.Classes.Loader
 
             //Now we need to parse the fields.
 
-             return chipBase;
+            return chipInfo;
         }
 
         private static byte[] LoadLayer(FileStream fs)
         {
-            Layer layer = FromFileStream<Layer>(fs);
+            LayerStruct layer = FromFileStream<LayerStruct>(fs);
             byte[] objects = new byte[layer.Bytes];
 
             fs.Read(objects);
