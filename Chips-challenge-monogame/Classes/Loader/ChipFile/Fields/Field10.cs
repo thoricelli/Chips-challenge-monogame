@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -10,8 +11,10 @@ namespace CHIPS_CHALLENGE.Classes.Loader.ChipFile.Fields
     /*
      Each Monster placed on the map must be listed in this field in order for movement to occur. If not listed, it will simply remain in its starting position. 
      */
-    public class Field10
+    [Serializable]
+    [StructLayout(LayoutKind.Sequential, Pack = 1)]
+    public class Field10 : Field
     {
-        public List<Monster> monsters;
+        public Monster[] monsters;
     }
 }

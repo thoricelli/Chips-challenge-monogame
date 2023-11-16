@@ -1,4 +1,6 @@
 ﻿using CHIPS_CHALLENGE.Classes.Loader.ChipFile;
+using CHIPS_CHALLENGE.Classes.Loader.ChipFile.Fields;
+using CHIPS_CHALLENGE.Classes.Loader.ChipFile.Fields.Enums;
 using Microsoft.Xna.Framework.Graphics.PackedVector;
 using SharpDX.MediaFoundation;
 using System;
@@ -40,8 +42,55 @@ namespace CHIPS_CHALLENGE.Classes.Loader
             byte[] layer2 = LoadLayer(fs);
 
             //Now we need to parse the fields.
+            byte[] sizeByte = new byte[2];
+            fs.Read(sizeByte, sizeByte.Length, 0);
+
+            int endAddress = (int)fs.Position + BitConverter.ToUInt16(sizeByte, 0);
+
+            fs.Seek(0x2, SeekOrigin.Current); //Size till end, WE DO NEED THIS...
+
+            do
+            {
+                int fieldNo = 0;
+                Field field = ReadField(fs, ref fieldNo);
+                chipInfo.fields[fieldNo] = field;
+            } while (fs.Position > endAddress);
 
             return chipInfo;
+        }
+
+        private static Field ReadField(FileStream fs, ref int fieldNo)
+        {
+            /* Read the first number as an INT, field number.
+               Probably the best way to solve this is, not have fields but variables
+               inside of the fileinfo class.
+               Maybe just give the gameinfo as an argument, and let this function fill it up.
+               annoying!
+            */
+            fieldNo = fs.ReadByte();
+            switch ((FieldEnum)fieldNo)
+            {
+                case FieldEnum.LEVEL_TIME:
+                    return FromFileStream<Field1>(fs);
+                case FieldEnum.CHIP_COUNT:
+                    return FromFileStream<Field2>(fs);
+                case FieldEnum.MAP_TITLE:
+                    return FromFileStream<Field3>(fs);
+                case FieldEnum.TRAP_CONTROLS:
+                    return FromFileStream<Field4>(fs);
+                case FieldEnum.CLONING_CONTROLS:
+                    return FromFileStream<Field5>(fs);
+                case FieldEnum.MAP_PASSWORD:
+                    return FromFileStream<Field6>(fs);
+                case FieldEnum.MAP_HINT:
+                    return FromFileStream<Field7>(fs);
+                case FieldEnum.MAP_PASSWORD_NO_ENCODE:
+                    return FromFileStream<Field8>(fs);
+                case FieldEnum.MOVEMENT:
+                    return FromFileStream<Field10>(fs);
+                default:
+                    return FromFileStream<Field>(fs);
+            }
         }
 
         private static byte[] LoadLayer(FileStream fs)

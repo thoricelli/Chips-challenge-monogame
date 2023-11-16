@@ -14,6 +14,6 @@ namespace CHIPS_CHALLENGE.Classes.Loader.ChipFile
 
         public List<Layer> layers;
 
-        private Field[] fields = new Field[10]; //We have 10 fields max, only accessible with functions.
+        public Field[] fields = new Field[11]; //We have 11 fields max, only accessible with functions.
     }
 }

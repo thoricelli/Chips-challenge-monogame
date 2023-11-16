@@ -8,8 +8,7 @@ namespace CHIPS_CHALLENGE.Classes.Loader.ChipFile
 {
     public class Field
     {
-        public short Bytes;
         public byte Type;
-        public byte AdditionalBytes;
+        public byte Bytes;
     }
 }
