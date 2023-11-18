@@ -11,6 +11,7 @@ namespace CHIPS_CHALLENGE.Classes.Loader.ChipFile
     {
         //This shouldn't be here, those are the structures used for file reading
         //We want a clear class with info, nothing extra that is just used for file reading.
+        //Plus, this class isn't supposed to be here, move it somewhere else.
         public Base baseInfo;
         public Level currentLevel;
 
