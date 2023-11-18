@@ -1,4 +1,5 @@
-﻿using CHIPS_CHALLENGE.Classes.Items;
+﻿using CHIPS_CHALLENGE.Classes.Entities;
+using CHIPS_CHALLENGE.Classes.Items;
 using CHIPS_CHALLENGE.Classes.Sprites;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -24,7 +25,14 @@ namespace CHIPS_CHALLENGE.Classes.Drawing
             //Draw all layers with objects on them
             DrawLayers();
             //Draw players
+            DrawPlayers();
             //Draw enemies
+        }
+
+        //Be able to ZOOM out or into the level
+        public void Zoom(int zoomAmount = 1)
+        {
+
         }
 
         #region DRAWING
@@ -47,6 +55,24 @@ namespace CHIPS_CHALLENGE.Classes.Drawing
                             item.Sprite.SpriteRectangle,
                             Color.White
                         );
+                }
+            }
+        }
+
+        private void DrawPlayers()
+        {
+            foreach (Player player in chipGame.Players)
+            {
+                switch (player.State)
+                {
+                    case Entities.Enums.State.Alive:
+                        spriteBatch.Draw(
+                            player.Sprite.SpriteSheet.spriteSheet,
+                            player.Position + new Vector2(CameraX, CameraY),
+                            player.Sprite.SpriteRectangle,
+                            Color.White
+                        );
+                        break;
                 }
             }
         }

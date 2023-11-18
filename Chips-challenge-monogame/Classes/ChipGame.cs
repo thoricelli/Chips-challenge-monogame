@@ -13,7 +13,7 @@ namespace CHIPS_CHALLENGE.Classes
     {
         public ChipFileInformation chipInfo;
 
-        public List<Player> Players { get; set; } //Multiplayer is a TODO.
+        public List<Player> Players { get; set; } = new List<Player>(); //Multiplayer is a TODO.
 
         public void LoadLevel()
         {

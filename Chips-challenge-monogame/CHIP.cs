@@ -7,6 +7,7 @@ using Microsoft.Xna.Framework.Input;
 using CHIPS_CHALLENGE.Classes.Loader;
 using System.Collections.Generic;
 using CHIPS_CHALLENGE.Classes.Drawing;
+using CHIPS_CHALLENGE.Classes.Entities;
 
 namespace CHIPS_CHALLENGE
 {
@@ -35,6 +36,8 @@ namespace CHIPS_CHALLENGE
         private Sprite sprite;
         public static Spritesheet spritesheet; //Temporarily public, because we're using this as a default
 
+        private Player thisPlayer;
+
         protected override void LoadContent()
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
@@ -46,25 +49,39 @@ namespace CHIPS_CHALLENGE
             ChipGame.chipInfo = ChipFileLoader.LoadLevelFromFile("C:\\Users\\roanh\\Desktop\\CHIPS.DAT", 0);
 
             chipDrawer = new ChipDrawer(ChipGame, _spriteBatch);
+
+            //TESTPLAYER
+            thisPlayer = new Player();
+            ChipGame.Players.Add(thisPlayer);
         }
 
         protected override void Update(GameTime gameTime)
         {
-            if (Keyboard.GetState().IsKeyDown(Keys.Up))
+            /*if (Keyboard.GetState().IsKeyDown(Keys.Up))
                 chipDrawer.CameraY++;
             if (Keyboard.GetState().IsKeyDown(Keys.Down))
                 chipDrawer.CameraY--;
             if (Keyboard.GetState().IsKeyDown(Keys.Left))
                 chipDrawer.CameraX++;
             if (Keyboard.GetState().IsKeyDown(Keys.Right))
-                chipDrawer.CameraX--;
+                chipDrawer.CameraX--;*/
 
-                /*if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
-                    sprite.NextSprite();*/
+            if (Keyboard.GetState().IsKeyDown(Keys.Up))
+                thisPlayer.Position.Y--;
+            if (Keyboard.GetState().IsKeyDown(Keys.Down))
+                thisPlayer.Position.Y++;
+            if (Keyboard.GetState().IsKeyDown(Keys.Left))
+                thisPlayer.Position.X--;
+            if (Keyboard.GetState().IsKeyDown(Keys.Right))
+                thisPlayer.Position.X++;
 
-                // TODO: Add your update logic here
 
-                base.Update(gameTime);
+            /*if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
+                sprite.NextSprite();*/
+
+            // TODO: Add your update logic here
+
+            base.Update(gameTime);
         }
 
         protected override void Draw(GameTime gameTime)
