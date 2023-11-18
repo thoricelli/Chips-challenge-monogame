@@ -140,9 +140,9 @@ namespace CHIPS_CHALLENGE.Classes.Loader
                     byte copies = objects[i + 1];
                     byte object_code = objects[i + 2];
 
-                    for (int j = index; j < copies; j++) //TOO LAZY TO USE ANYTHING ELSE :)
+                    for (int j = index; j < index+copies; j++) //TOO LAZY TO USE ANYTHING ELSE :)
                     {
-                        result[index + j] = object_code;
+                        result[j] = object_code;
                     }
 
                     index += copies;
