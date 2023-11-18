@@ -6,6 +6,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using CHIPS_CHALLENGE.Classes.Loader;
 using System.Collections.Generic;
+using CHIPS_CHALLENGE.Classes.Drawing;
 
 namespace CHIPS_CHALLENGE
 {
@@ -20,17 +21,20 @@ namespace CHIPS_CHALLENGE
             Content.RootDirectory = "Content";
             IsMouseVisible = true;
         }
-
-        ChipGame ChipGame;
-
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
-            //LOAD MAP.
             base.Initialize();
         }
+
+        //Chip game related info & drawer
+        private ChipGame ChipGame;
+        private ChipDrawer chipDrawer;
+
+        //Sprite basis
         private Sprite sprite;
-        public static Spritesheet spritesheet;
+        public static Spritesheet spritesheet; //Temporarily public, because we're using this as a default
+
         protected override void LoadContent()
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
@@ -40,21 +44,20 @@ namespace CHIPS_CHALLENGE
 
             ChipGame = new ChipGame();
             ChipGame.chipInfo = ChipFileLoader.LoadLevelFromFile("C:\\Users\\roanh\\Desktop\\CHIPS.DAT", 0);
-        }
 
-        int cameraX = 0;
-        int cameraY = 0;
+            chipDrawer = new ChipDrawer(ChipGame, _spriteBatch);
+        }
 
         protected override void Update(GameTime gameTime)
         {
             if (Keyboard.GetState().IsKeyDown(Keys.Up))
-                cameraY--;
+                chipDrawer.CameraY++;
             if (Keyboard.GetState().IsKeyDown(Keys.Down))
-                cameraY++;
+                chipDrawer.CameraY--;
             if (Keyboard.GetState().IsKeyDown(Keys.Left))
-                cameraX--;
+                chipDrawer.CameraX++;
             if (Keyboard.GetState().IsKeyDown(Keys.Right))
-                cameraX++;
+                chipDrawer.CameraX--;
 
                 /*if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                     sprite.NextSprite();*/
@@ -69,31 +72,7 @@ namespace CHIPS_CHALLENGE
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
             _spriteBatch.Begin();
-            for (int layerIndex = ChipGame.chipInfo.layers.Count-1; layerIndex >= 0; layerIndex--)
-            {
-                Layer layer = ChipGame.chipInfo.layers[layerIndex];
-                for (int i = 0; i < layer.objects.Length; i++)
-                {
-                    ChipObject item = layer.objects[i];
-
-                    //Calculate X & Y from i, H and V size;
-                    //Special case for entities.
-
-                    //This should be in a seperate draw class... -> REFACTOR!
-                    //Because we need the camera added to this too, chips position too, etc...
-                    //For now this is a bit more of a test.
-                    Vector2 position = new Vector2();
-                    position.X = (i % layer.HorizontalSize) * item.Sprite.SpriteRectangle.Width + cameraX;
-                    position.Y = (i / layer.VerticalSize) * item.Sprite.SpriteRectangle.Height + cameraY;
-
-                    _spriteBatch.Draw(
-                            item.Sprite.SpriteSheet.spriteSheet,
-                            position,
-                            item.Sprite.SpriteRectangle,
-                            Color.White
-                        );
-                }
-            }
+            chipDrawer.Draw();
             _spriteBatch.End();
             base.Draw(gameTime);
 
