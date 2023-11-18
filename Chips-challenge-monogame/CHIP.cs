@@ -35,7 +35,7 @@ namespace CHIPS_CHALLENGE
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            spritesheet = new Spritesheet(Content.Load<Texture2D>("ChipTiles"), 32, 32, 0, 0, 7);
+            spritesheet = new Spritesheet(Content.Load<Texture2D>("ChipTiles"), 32, 32, 0, 0, 16);
             sprite = new Sprite(spritesheet, 152);
 
             ChipGame = new ChipGame();
@@ -69,8 +69,9 @@ namespace CHIPS_CHALLENGE
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
             _spriteBatch.Begin();
-            foreach (Layer layer in ChipGame.chipInfo.layers)
+            for (int layerIndex = ChipGame.chipInfo.layers.Count-1; layerIndex >= 0; layerIndex--)
             {
+                Layer layer = ChipGame.chipInfo.layers[layerIndex];
                 for (int i = 0; i < layer.objects.Length; i++)
                 {
                     ChipObject item = layer.objects[i];
@@ -86,15 +87,16 @@ namespace CHIPS_CHALLENGE
                     position.Y = (i / layer.VerticalSize) * item.Sprite.SpriteRectangle.Height + cameraY;
 
                     _spriteBatch.Draw(
-                        item.Sprite.SpriteSheet.spriteSheet,
-                        position, 
-                        item.Sprite.SpriteRectangle, 
-                        Color.White
-                    );
+                            item.Sprite.SpriteSheet.spriteSheet,
+                            position,
+                            item.Sprite.SpriteRectangle,
+                            Color.White
+                        );
                 }
             }
             _spriteBatch.End();
             base.Draw(gameTime);
+
         }
     }
 }

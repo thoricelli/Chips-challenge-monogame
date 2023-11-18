@@ -75,8 +75,8 @@ namespace CHIPS_CHALLENGE.Classes.Sprites
 
         private void UpdateSprite()
         {
-            int spriteIndexY = (SpriteIndex % _spriteSheet.HorizontalTiles);
             int spriteIndexX = (SpriteIndex / _spriteSheet.HorizontalTiles);
+            int spriteIndexY = (SpriteIndex % _spriteSheet.HorizontalTiles);
 
             int X = 
                 _spriteSheet.TileOffsetH + (_spriteSheet.TileOffsetH * spriteIndexX)
