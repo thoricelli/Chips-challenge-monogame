@@ -5,6 +5,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using CHIPS_CHALLENGE.Classes.Loader;
+using System.Collections.Generic;
 
 namespace CHIPS_CHALLENGE
 {
@@ -25,32 +26,42 @@ namespace CHIPS_CHALLENGE
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
-            ChipGame = new ChipGame();
-            ChipFileLoader.LoadLevelFromFile("C:\\Users\\roanh\\Desktop\\CHIPS.DAT", 0);
             //LOAD MAP.
             base.Initialize();
         }
         private Sprite sprite;
+        public static Spritesheet spritesheet;
         protected override void LoadContent()
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            //Spritesheet spritesheet = new Spritesheet(Content.Load<Texture2D>("ChipTest"), 32, 32, 2, 2, 4);
-            //sprite = new Sprite(spritesheet, 4);
-
-            Spritesheet spritesheet = new Spritesheet(Content.Load<Texture2D>("ChipTiles"), 32, 32, 2, 2, 8);
+            spritesheet = new Spritesheet(Content.Load<Texture2D>("ChipTiles"), 32, 32, 0, 0, 7);
             sprite = new Sprite(spritesheet, 152);
-            // TODO: use this.Content to load your game content here
+
+            ChipGame = new ChipGame();
+            ChipGame.chipInfo = ChipFileLoader.LoadLevelFromFile("C:\\Users\\roanh\\Desktop\\CHIPS.DAT", 0);
         }
+
+        int cameraX = 0;
+        int cameraY = 0;
 
         protected override void Update(GameTime gameTime)
         {
-            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
-                sprite.NextSprite();
+            if (Keyboard.GetState().IsKeyDown(Keys.Up))
+                cameraY--;
+            if (Keyboard.GetState().IsKeyDown(Keys.Down))
+                cameraY++;
+            if (Keyboard.GetState().IsKeyDown(Keys.Left))
+                cameraX--;
+            if (Keyboard.GetState().IsKeyDown(Keys.Right))
+                cameraX++;
 
-            // TODO: Add your update logic here
+                /*if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
+                    sprite.NextSprite();*/
 
-            base.Update(gameTime);
+                // TODO: Add your update logic here
+
+                base.Update(gameTime);
         }
 
         protected override void Draw(GameTime gameTime)
@@ -67,15 +78,22 @@ namespace CHIPS_CHALLENGE
                     //Calculate X & Y from i, H and V size;
                     //Special case for entities.
 
+                    //This should be in a seperate draw class... -> REFACTOR!
+                    //Because we need the camera added to this too, chips position too, etc...
+                    //For now this is a bit more of a test.
+                    Vector2 position = new Vector2();
+                    position.X = (i % layer.HorizontalSize) * item.Sprite.SpriteRectangle.Width + cameraX;
+                    position.Y = (i / layer.VerticalSize) * item.Sprite.SpriteRectangle.Height + cameraY;
+
                     _spriteBatch.Draw(
-                        item.Sprite.SpriteSheet.spriteSheet, 
-                        new Vector2(0, 0), 
+                        item.Sprite.SpriteSheet.spriteSheet,
+                        position, 
                         item.Sprite.SpriteRectangle, 
                         Color.White
                     );
                 }
             }
-
+            _spriteBatch.End();
             base.Draw(gameTime);
         }
     }

@@ -12,6 +12,8 @@ namespace CHIPS_CHALLENGE.Classes.Sprites
      * Sprites, can have a spritesheet, 
      * it is up to the sprite itself to choose which sprite in the spritesheet it is.
      * A sprite, can also just be a singular image.
+     * 
+     * Note: Having to add spritesheets everytime is annoying... -> Factory pattern??
      */
     public class Sprite
     {
@@ -38,7 +40,7 @@ namespace CHIPS_CHALLENGE.Classes.Sprites
 
         private int _totalSprites;
 
-        public Sprite(Spritesheet spriteSheet, int totalSprites, int spriteIndex = 0)
+        public Sprite(Spritesheet spriteSheet, int totalSprites = 1, int spriteIndex = 0)
         {
             _spriteSheet = spriteSheet;
             _totalSprites = totalSprites - 1;
@@ -73,8 +75,8 @@ namespace CHIPS_CHALLENGE.Classes.Sprites
 
         private void UpdateSprite()
         {
-            int spriteIndexX = (SpriteIndex % _spriteSheet.HorizontalTiles);
-            int spriteIndexY = (SpriteIndex / _spriteSheet.HorizontalTiles);
+            int spriteIndexY = (SpriteIndex % _spriteSheet.HorizontalTiles);
+            int spriteIndexX = (SpriteIndex / _spriteSheet.HorizontalTiles);
 
             int X = 
                 _spriteSheet.TileOffsetH + (_spriteSheet.TileOffsetH * spriteIndexX)

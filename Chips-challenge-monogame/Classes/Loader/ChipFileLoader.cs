@@ -1,6 +1,9 @@
-﻿using CHIPS_CHALLENGE.Classes.Loader.ChipFile;
+﻿using CHIPS_CHALLENGE.Classes.Items;
+using CHIPS_CHALLENGE.Classes.Loader.ChipFile;
 using CHIPS_CHALLENGE.Classes.Loader.ChipFile.Fields;
 using CHIPS_CHALLENGE.Classes.Loader.ChipFile.Fields.Enums;
+using CHIPS_CHALLENGE.Classes.Sprites;
+using CHIPS_CHALLENGE.Classes.Sprites.Enums;
 using Microsoft.Xna.Framework.Graphics.PackedVector;
 using SharpDX.MediaFoundation;
 using System;
@@ -41,6 +44,13 @@ namespace CHIPS_CHALLENGE.Classes.Loader
             byte[] layer1 = LoadLayer(fs);
             byte[] layer2 = LoadLayer(fs);
 
+            List<byte[]> layers = new List<byte[]>() { layer1, layer2 };
+
+            foreach (byte[] layer in layers)
+            {
+                chipInfo.layers.Add(layer.ToLayer());
+            }
+
             //Now we need to parse the fields.
             byte[] sizeByte = new byte[2];
             fs.Read(sizeByte, sizeByte.Length, 0);
@@ -49,14 +59,24 @@ namespace CHIPS_CHALLENGE.Classes.Loader
 
             fs.Seek(0x2, SeekOrigin.Current); //Size till end, WE DO NEED THIS...
 
-            do
+            /*do
             {
                 int fieldNo = 0;
                 Field field = ReadField(fs, ref fieldNo);
                 chipInfo.fields[fieldNo] = field;
-            } while (fs.Position > endAddress);
+            } while (fs.Position > endAddress);*/
 
             return chipInfo;
+        }
+
+        private static Layer ToLayer(this byte[] layer)
+        {
+            Layer layerObj = new Layer(32, 32); //TODO: REPLACE!
+            for (int i = 0; i < layer.Length; i++)
+            {
+                layerObj.objects[i] = new ChipObject((Objects)layer[i]);
+            }
+            return layerObj;
         }
 
         private static Field ReadField(FileStream fs, ref int fieldNo)
@@ -134,7 +154,7 @@ namespace CHIPS_CHALLENGE.Classes.Loader
                 }
             }
             return result;
-        }
+        } //Put into own class!!
 
         //Thank god for stackoverflow.
         private static T FromFileStream<T>(FileStream fs, int offset = 0)

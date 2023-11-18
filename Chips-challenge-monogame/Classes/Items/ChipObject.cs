@@ -1,4 +1,5 @@
 ﻿using CHIPS_CHALLENGE.Classes.Sprites;
+using CHIPS_CHALLENGE.Classes.Sprites.Enums;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,19 +12,21 @@ namespace CHIPS_CHALLENGE.Classes.Items
     {
         /*
          REFER to https://www.seasip.info/ccfile.html
-         Objects have a beginning and end code,
-         since originally every sprite has their own number...
          */
-        public int ObjectBaseCode;
-        public int ObjectEndCode;
+        public Objects code;
         
         public Sprite Sprite;
 
-        public ChipObject(int objectBaseCode, int objectEndCode, Sprite sprite)
+        public ChipObject(Objects code, Sprite sprite)
         {
-            ObjectBaseCode = objectBaseCode;
-            ObjectEndCode = objectEndCode;
+            this.code = code;
             Sprite = sprite;
+        }
+
+        public ChipObject(Objects code)
+        {
+            this.code = code;
+            Sprite = new Sprite(CHIP.spritesheet, 1, (int)code); //REPLACE THIS LATER!
         }
     }
 }
