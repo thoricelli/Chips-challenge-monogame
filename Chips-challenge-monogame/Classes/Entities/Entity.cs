@@ -15,8 +15,8 @@ namespace CHIPS_CHALLENGE.Classes.Entities
         public Vector2 Position;
         public Vector2 Velocity;
         public State State { get; set; }
-        public int Health { get; set; }
-        public int Speed { get; set; } = 5;
+        public float Health { get; set; }
+        public float Speed { get; set; } = 2;
 
         public Sprite Sprite { get; set; }
 
@@ -41,10 +41,5 @@ namespace CHIPS_CHALLENGE.Classes.Entities
             Position += Velocity * Speed;
             Velocity = Vector2.Zero;
         }
-
-        /*
-         TODO: Add functions for movement
-         Movement is VEEERY stiff, and SLOW...
-         */
     }
 }
