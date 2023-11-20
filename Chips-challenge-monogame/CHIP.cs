@@ -38,6 +38,8 @@ namespace CHIPS_CHALLENGE
 
         private Player thisPlayer;
 
+        int curLevel = 0;
+
         protected override void LoadContent()
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
@@ -46,7 +48,7 @@ namespace CHIPS_CHALLENGE
             sprite = new Sprite(spritesheet, 152);
 
             ChipGame = new ChipGame();
-            ChipGame.chipInfo = ChipFileLoader.LoadLevelFromFile("C:\\Users\\roanh\\Desktop\\CHIPS.DAT", 10);
+            ChipGame.chipInfo = ChipFileLoader.LoadLevelFromFile(".\\Content\\CHIPS.DAT", curLevel);
 
             chipDrawer = new ChipDrawer(ChipGame, _spriteBatch);
 
@@ -54,26 +56,44 @@ namespace CHIPS_CHALLENGE
             thisPlayer = new Player();
             ChipGame.Players.Add(thisPlayer);
         }
-
+        bool upprev = true;
+        bool upnext = true;//TEMP
         protected override void Update(GameTime gameTime)
         {
-            /*if (Keyboard.GetState().IsKeyDown(Keys.Up))
+            if (Keyboard.GetState().IsKeyDown(Keys.Up))
                 chipDrawer.CameraY++;
             if (Keyboard.GetState().IsKeyDown(Keys.Down))
                 chipDrawer.CameraY--;
             if (Keyboard.GetState().IsKeyDown(Keys.Left))
                 chipDrawer.CameraX++;
             if (Keyboard.GetState().IsKeyDown(Keys.Right))
-                chipDrawer.CameraX--;*/
+                chipDrawer.CameraX--;
 
-            if (Keyboard.GetState().IsKeyDown(Keys.Up))
+            /*if (Keyboard.GetState().IsKeyDown(Keys.Up))
                 thisPlayer.Position.Y--;
             if (Keyboard.GetState().IsKeyDown(Keys.Down))
                 thisPlayer.Position.Y++;
             if (Keyboard.GetState().IsKeyDown(Keys.Left))
                 thisPlayer.Position.X--;
             if (Keyboard.GetState().IsKeyDown(Keys.Right))
-                thisPlayer.Position.X++;
+                thisPlayer.Position.X++;*/
+            if (Keyboard.GetState().IsKeyDown(Keys.F1) && upprev)
+            {
+                upprev = false;
+                curLevel--;
+                ChipGame.chipInfo = ChipFileLoader.LoadLevelFromFile(".\\Content\\CHIPS.DAT", curLevel);
+            }
+            if (Keyboard.GetState().IsKeyDown(Keys.F2) && upnext)
+            {
+                upnext = false;
+                curLevel++;
+                ChipGame.chipInfo = ChipFileLoader.LoadLevelFromFile(".\\Content\\CHIPS.DAT", curLevel);
+            }
+
+            if (Keyboard.GetState().IsKeyUp(Keys.F1))
+                upprev = true;
+            if (Keyboard.GetState().IsKeyUp(Keys.F2))
+                upnext = true;
 
 
             /*if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))

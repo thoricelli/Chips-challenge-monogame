@@ -13,6 +13,9 @@
 
 #---------------------------------- Content ---------------------------------#
 
+#begin CHIPS.DAT
+/copy:CHIPS.DAT
+
 #begin ChipTiles.png
 /importer:TextureImporter
 /processor:TextureProcessor

@@ -40,9 +40,9 @@ namespace CHIPS_CHALLENGE.Classes.Loader
             do
             {
                 loadedLevel = FromFileStream<Level>(fs);
-                fs.Seek(loadedLevel.Bytes - 0x6, SeekOrigin.Current);
+                if (loadedLevel.LevelNumber != level)
+                    fs.Seek(loadedLevel.Bytes - 0x6, SeekOrigin.Current);
             } while (loadedLevel.LevelNumber != level);
-
             //OK, we found our level!
 
             fs.Seek(0x2, SeekOrigin.Current); //Field 1, we skip this.
@@ -73,6 +73,8 @@ namespace CHIPS_CHALLENGE.Classes.Loader
                 Field field = ReadField(fs, ref fieldNo);
                 chipInfo.fields[fieldNo] = field;
             } while (fs.Position > endAddress);*/
+
+            fs.Close();
 
             return chipInfo;
         }
