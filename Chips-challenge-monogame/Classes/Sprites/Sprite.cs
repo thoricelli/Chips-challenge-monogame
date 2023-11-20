@@ -88,6 +88,10 @@ namespace CHIPS_CHALLENGE.Classes.Sprites
 
             _spriteRectangle = new Rectangle(X, Y, _spriteSheet.TileWidth, _spriteSheet.TileHeight);
         }
+        public void PlayAnimation(Animation animation) //String instead?
+        {
+
+        }
         #endregion
     }
 }

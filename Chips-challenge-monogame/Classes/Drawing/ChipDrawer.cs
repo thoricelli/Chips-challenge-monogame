@@ -3,6 +3,7 @@ using CHIPS_CHALLENGE.Classes.Items;
 using CHIPS_CHALLENGE.Classes.Sprites;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System;
 
 namespace CHIPS_CHALLENGE.Classes.Drawing
 {
@@ -10,6 +11,8 @@ namespace CHIPS_CHALLENGE.Classes.Drawing
     {
         public int CameraX { get; set; }
         public int CameraY { get; set; }
+
+        public float ZoomModifier { get; set; } = 0.5F;
 
         private ChipGame chipGame;
         private SpriteBatch spriteBatch;
@@ -30,9 +33,9 @@ namespace CHIPS_CHALLENGE.Classes.Drawing
         }
 
         //Be able to ZOOM out or into the level
-        public void Zoom(int zoomAmount = 1)
+        public void Zoom(float zoomAmount = 1)
         {
-
+            ZoomModifier += zoomAmount;
         }
 
         #region DRAWING
@@ -46,14 +49,22 @@ namespace CHIPS_CHALLENGE.Classes.Drawing
                     ChipObject item = layer.objects[i];
 
                     Vector2 position = new Vector2();
-                    position.X = (i % layer.HorizontalSize) * item.Sprite.SpriteRectangle.Width + CameraX;
-                    position.Y = (i / layer.VerticalSize) * item.Sprite.SpriteRectangle.Height + CameraY;
+                    position.X = (i % layer.HorizontalSize)
+                                 * item.Sprite.SpriteRectangle.Width;
+
+                    position.Y = (i / layer.VerticalSize)
+                                 * item.Sprite.SpriteRectangle.Height;
 
                     spriteBatch.Draw(
                             item.Sprite.SpriteSheet.spriteSheet,
-                            position,
+                            CalculateModifiers(position),
                             item.Sprite.SpriteRectangle,
-                            Color.White
+                            Color.White,
+                            0,
+                            Vector2.Zero,
+                            ZoomModifier,
+                            SpriteEffects.None,
+                            0
                         );
                 }
             }
@@ -68,13 +79,24 @@ namespace CHIPS_CHALLENGE.Classes.Drawing
                     case Entities.Enums.State.Alive:
                         spriteBatch.Draw(
                             player.Sprite.SpriteSheet.spriteSheet,
-                            player.Position + new Vector2(CameraX, CameraY),
+                            CalculateModifiers(player.Position),
                             player.Sprite.SpriteRectangle,
-                            Color.White
+                            Color.White,
+                            0,
+                            Vector2.Zero,
+                            ZoomModifier,
+                            SpriteEffects.None,
+                            0
                         );
                         break;
                 }
             }
+        }
+
+        //TODO, other class??
+        private Vector2 CalculateModifiers(Vector2 vector) //Is this not by reference?
+        {
+            return new Vector2((vector.X + CameraX) * ZoomModifier, (vector.Y + CameraY) * ZoomModifier);
         }
         #endregion
     }

@@ -84,6 +84,7 @@ namespace CHIPS_CHALLENGE.Classes.Loader
             Layer layerObj = new Layer(32, 32); //TODO: REPLACE!
             for (int i = 0; i < layer.Length; i++)
             {
+                //TODO, switch for type. For now chipobj wont be abstract.
                 layerObj.objects[i] = new ChipObject((Objects)layer[i]);
             }
             return layerObj;

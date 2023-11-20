@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace CHIPS_CHALLENGE.Classes.Items
 {
-    public class ChipObject
+    public /*abstract*/ class ChipObject
     {
         /*
          REFER to https://www.seasip.info/ccfile.html
@@ -28,5 +28,8 @@ namespace CHIPS_CHALLENGE.Classes.Items
             this.code = code;
             Sprite = new Sprite(CHIP.spritesheet, 1, (int)code); //REPLACE THIS LATER!
         }
+
+        //public abstract void Touched(Entity entity); //When touched by an entity
+        //
     }
 }

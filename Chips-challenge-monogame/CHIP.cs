@@ -25,6 +25,15 @@ namespace CHIPS_CHALLENGE
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
+            if (GraphicsDevice == null)
+            {
+                _graphics.ApplyChanges();
+            }
+
+            _graphics.PreferredBackBufferWidth = 1280;
+            _graphics.PreferredBackBufferHeight = 720;
+            _graphics.ApplyChanges();
+
             base.Initialize();
         }
 
@@ -56,27 +65,22 @@ namespace CHIPS_CHALLENGE
             thisPlayer = new Player();
             ChipGame.Players.Add(thisPlayer);
         }
+        //TEMPORARY!
         bool upprev = true;
         bool upnext = true;//TEMP
+        int previousScrollWheelValue = 0;
         protected override void Update(GameTime gameTime)
         {
+            //MOVE THIS TO INPUT CLASS LATER!
             if (Keyboard.GetState().IsKeyDown(Keys.Up))
-                chipDrawer.CameraY++;
+                thisPlayer.Move(new Vector2(0, -1));
             if (Keyboard.GetState().IsKeyDown(Keys.Down))
-                chipDrawer.CameraY--;
+                thisPlayer.Move(new Vector2(0, 1));
             if (Keyboard.GetState().IsKeyDown(Keys.Left))
-                chipDrawer.CameraX++;
+                thisPlayer.Move(new Vector2(-1, 0));
             if (Keyboard.GetState().IsKeyDown(Keys.Right))
-                chipDrawer.CameraX--;
+                thisPlayer.Move(new Vector2(1, 0));
 
-            /*if (Keyboard.GetState().IsKeyDown(Keys.Up))
-                thisPlayer.Position.Y--;
-            if (Keyboard.GetState().IsKeyDown(Keys.Down))
-                thisPlayer.Position.Y++;
-            if (Keyboard.GetState().IsKeyDown(Keys.Left))
-                thisPlayer.Position.X--;
-            if (Keyboard.GetState().IsKeyDown(Keys.Right))
-                thisPlayer.Position.X++;*/
             if (Keyboard.GetState().IsKeyDown(Keys.F1) && upprev)
             {
                 upprev = false;
@@ -95,6 +99,12 @@ namespace CHIPS_CHALLENGE
             if (Keyboard.GetState().IsKeyUp(Keys.F2))
                 upnext = true;
 
+            chipDrawer.Zoom(
+                (float)(Mouse.GetState().ScrollWheelValue - previousScrollWheelValue)
+                /1000);
+
+            previousScrollWheelValue = Mouse.GetState().ScrollWheelValue;
+
 
             /*if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 sprite.NextSprite();*/
@@ -108,7 +118,7 @@ namespace CHIPS_CHALLENGE
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
-            _spriteBatch.Begin();
+            _spriteBatch.Begin(SpriteSortMode.Deferred, null, SamplerState.PointClamp, null, null);
             chipDrawer.Draw();
             _spriteBatch.End();
             base.Draw(gameTime);

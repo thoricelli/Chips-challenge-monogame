@@ -8,6 +8,9 @@ namespace CHIPS_CHALLENGE.Classes.Sprites
 {
     public class Animation
     {
-        public string Name;
+        public string Name { get; set; }
+        //Indexes of the sprites that need playing.
+        //HM, is there another way of doing this?
+        public List<int> SpriteIndexes { get; set; }
     }
 }
