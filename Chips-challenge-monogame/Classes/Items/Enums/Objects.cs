@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CHIPS_CHALLENGE.Classes.Sprites.Enums
+namespace CHIPS_CHALLENGE.Classes.Items.Enums
 {
     public enum Objects
     {

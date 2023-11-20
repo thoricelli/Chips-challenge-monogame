@@ -40,6 +40,13 @@ namespace CHIPS_CHALLENGE.Classes.Entities
 
             Position += Velocity * Speed;
             Velocity = Vector2.Zero;
+            //CheckCollision
+            //For the touched events, and if chip touches a wall.
         }
+
+        /*Every entity will have a top, down, left, right sprite
+          Animated will be later.
+          So, why not define them here, have them programmed by the entity
+          class! */
     }
 }

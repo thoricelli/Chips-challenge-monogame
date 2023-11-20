@@ -1,9 +1,9 @@
 ﻿using CHIPS_CHALLENGE.Classes.Items;
+using CHIPS_CHALLENGE.Classes.Items.Enums;
 using CHIPS_CHALLENGE.Classes.Loader.ChipFile;
 using CHIPS_CHALLENGE.Classes.Loader.ChipFile.Fields;
 using CHIPS_CHALLENGE.Classes.Loader.ChipFile.Fields.Enums;
 using CHIPS_CHALLENGE.Classes.Sprites;
-using CHIPS_CHALLENGE.Classes.Sprites.Enums;
 using Microsoft.Xna.Framework.Graphics.PackedVector;
 using SharpDX.MediaFoundation;
 using System;

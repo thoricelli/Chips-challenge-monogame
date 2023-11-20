@@ -12,7 +12,7 @@ namespace CHIPS_CHALLENGE.Classes.Drawing
         public int CameraX { get; set; }
         public int CameraY { get; set; }
 
-        public float ZoomModifier { get; set; } = 0.5F;
+        public float ZoomModifier { get; set; } = 1;
 
         private ChipGame chipGame;
         private SpriteBatch spriteBatch;

@@ -1,5 +1,5 @@
-﻿using CHIPS_CHALLENGE.Classes.Sprites;
-using CHIPS_CHALLENGE.Classes.Sprites.Enums;
+﻿using CHIPS_CHALLENGE.Classes.Items.Enums;
+using CHIPS_CHALLENGE.Classes.Sprites;
 using System;
 using System.Collections.Generic;
 using System.Linq;
