@@ -46,7 +46,7 @@ namespace CHIPS_CHALLENGE
             sprite = new Sprite(spritesheet, 152);
 
             ChipGame = new ChipGame();
-            ChipGame.chipInfo = ChipFileLoader.LoadLevelFromFile("C:\\Users\\roanh\\Desktop\\CHIPS.DAT", 0);
+            ChipGame.chipInfo = ChipFileLoader.LoadLevelFromFile("C:\\Users\\roanh\\Desktop\\CHIPS.DAT", 10);
 
             chipDrawer = new ChipDrawer(ChipGame, _spriteBatch);
 

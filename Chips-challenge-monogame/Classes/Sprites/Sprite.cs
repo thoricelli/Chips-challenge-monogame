@@ -14,6 +14,7 @@ namespace CHIPS_CHALLENGE.Classes.Sprites
      * A sprite, can also just be a singular image.
      * 
      * Note: Having to add spritesheets everytime is annoying... -> Factory pattern??
+     * Another note: Animations are TODO, plus adding a way to specify multiple sprites over the spritesheet!
      */
     public class Sprite
     {

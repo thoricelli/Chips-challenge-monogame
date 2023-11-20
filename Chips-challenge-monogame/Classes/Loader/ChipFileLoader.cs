@@ -35,14 +35,22 @@ namespace CHIPS_CHALLENGE.Classes.Loader
             Base chipBase = FromFileStream<Base>(fs);
 
             //We can get the bytes for the level from here, and seek the filestream.
-            Level loadedLevel = FromFileStream<Level>(fs);
-            
+            Level loadedLevel;
+
+            do
+            {
+                loadedLevel = FromFileStream<Level>(fs);
+                fs.Seek(loadedLevel.Bytes - 0x6, SeekOrigin.Current);
+            } while (loadedLevel.LevelNumber != level);
+
+            //OK, we found our level!
+
             fs.Seek(0x2, SeekOrigin.Current); //Field 1, we skip this.
             
             //Implement level loading logic.
             //Hardcoded layers for now.
-            byte[] layer1 = LoadLayer(fs);
-            byte[] layer2 = LoadLayer(fs);
+            byte[] layer1 = DecompressLayer(fs);
+            byte[] layer2 = DecompressLayer(fs);
 
             List<byte[]> layers = new List<byte[]>() { layer1, layer2 };
 
@@ -113,48 +121,14 @@ namespace CHIPS_CHALLENGE.Classes.Loader
             }
         }
 
-        private static byte[] LoadLayer(FileStream fs)
+        private static byte[] DecompressLayer(FileStream fs)
         {
             LayerStruct layer = FromFileStream<LayerStruct>(fs);
             byte[] objects = new byte[layer.Bytes];
 
             fs.Read(objects);
-            return RLEDecompress(objects);
+            return RLE.RLEDecompress(objects);
         }
-
-        private static byte[] RLEDecompress(this byte[] objects)
-        {
-            byte[] result = new byte[1024]; //32*32 is the full map size, hm, hardcoded not a good idea?
-            int index = 0;
-            /*
-             #FF means RLE.
-             #FF, #copies, #byte-code
-             */
-            for (int i = 0; i < objects.Length; i++)
-            {
-                byte obj = objects[i];
-
-                //We check if we meet an #FF
-                if (obj == 0xFF)
-                {
-                    byte copies = objects[i + 1];
-                    byte object_code = objects[i + 2];
-
-                    for (int j = index; j < index+copies; j++) //TOO LAZY TO USE ANYTHING ELSE :)
-                    {
-                        result[j] = object_code;
-                    }
-
-                    index += copies;
-                    i += 2; //Skip 2 bytes.
-                } else
-                {
-                    result[index] = obj;
-                    index++;
-                }
-            }
-            return result;
-        } //Put into own class!!
 
         //Thank god for stackoverflow.
         private static T FromFileStream<T>(FileStream fs, int offset = 0)

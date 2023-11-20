@@ -11,9 +11,9 @@ namespace CHIPS_CHALLENGE.Classes.Loader.ChipFile
     [StructLayout(LayoutKind.Sequential, Pack = 1)]
     public struct Level
     {
-        public short Bytes;
-        public short LevelNumber;
-        public short Time;
-        public short ChipsToPickUp;
+        public ushort Bytes;
+        public ushort LevelNumber;
+        public ushort Time;
+        public ushort ChipsToPickUp;
     }
 }

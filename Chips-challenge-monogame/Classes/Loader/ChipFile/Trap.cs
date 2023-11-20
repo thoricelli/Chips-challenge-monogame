@@ -11,10 +11,10 @@ namespace CHIPS_CHALLENGE.Classes.Loader.ChipFile
     [StructLayout(LayoutKind.Sequential, Pack = 1)]
     public class Trap
     {
-        public short ButtonX;
-        public short ButtonY;
-        public short TrapX;
-        public short TrapY;
-        public short UNUSED;
+        public ushort ButtonX;
+        public ushort ButtonY;
+        public ushort TrapX;
+        public ushort TrapY;
+        public ushort UNUSED;
     }
 }

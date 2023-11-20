@@ -11,6 +11,6 @@ namespace CHIPS_CHALLENGE.Classes.Loader.ChipFile
     [StructLayout(LayoutKind.Sequential, Pack = 1)]
     public struct LayerStruct
     {
-        public short Bytes;
+        public ushort Bytes;
     }
 }

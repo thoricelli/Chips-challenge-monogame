@@ -12,7 +12,7 @@ namespace CHIPS_CHALLENGE.Classes.Loader.ChipFile
     [StructLayout(LayoutKind.Sequential, Pack = 1)]
     public struct Base
     {
-        public int MagicNo;
-        public short NumberOfLevels;
+        public uint MagicNo;
+        public ushort NumberOfLevels;
     }
 }
