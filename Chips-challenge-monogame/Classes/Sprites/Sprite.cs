@@ -92,6 +92,10 @@ namespace CHIPS_CHALLENGE.Classes.Sprites
         {
 
         }
+        public void AnimationRenderStep()
+        {
+            //Go to the next frame of the animation
+        }
         #endregion
     }
 }

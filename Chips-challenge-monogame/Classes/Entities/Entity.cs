@@ -16,7 +16,6 @@ namespace CHIPS_CHALLENGE.Classes.Entities
         public Vector2 Velocity;
         public State State { get; set; }
         public float Health { get; set; }
-        public float Speed { get; set; } = 2;
 
         public Sprite Sprite { get; set; }
 
@@ -29,8 +28,12 @@ namespace CHIPS_CHALLENGE.Classes.Entities
         public void Kill() {
             Health = 0;
             State = State.Dead;
-            //Remove from entities list.
+            //Don't draw
         }
+        /// <summary>
+        /// Moves the entity N tile.
+        /// </summary>
+        /// <param name="velocity"></param>
         public void Move(Vector2 velocity)
         {
             Velocity += velocity;
@@ -38,10 +41,11 @@ namespace CHIPS_CHALLENGE.Classes.Entities
             if (Velocity != Vector2.Zero)
                 Velocity.Normalize();
 
-            Position += Velocity * Speed;
+            Position += (Velocity * 32);
             Velocity = Vector2.Zero;
-            //CheckCollision
-            //For the touched events, and if chip touches a wall.
+            //CheckCollision -> Ask the game if where this entity wants to move, is possible
+            //If NOT, then position wont be changed.
+            //Then we look for the touched events, checkcollision should give back the item its colliding with :)
         }
 
         /*Every entity will have a top, down, left, right sprite
