@@ -14,12 +14,10 @@ namespace CHIPS_CHALLENGE.Classes.Drawing
 
         public float ZoomModifier { get; set; } = 1;
 
-        private ChipGame chipGame;
         private SpriteBatch spriteBatch;
 
-        public ChipDrawer(ChipGame chipGame, SpriteBatch spriteBatch)
+        public ChipDrawer(SpriteBatch spriteBatch)
         {
-            this.chipGame = chipGame;
             this.spriteBatch = spriteBatch;
         }
 
@@ -41,9 +39,9 @@ namespace CHIPS_CHALLENGE.Classes.Drawing
         #region DRAWING
         private void DrawLayers()
         {
-            for (int layerIndex = chipGame.chipInfo.layers.Count - 1; layerIndex >= 0; layerIndex--)
+            for (int layerIndex = ChipGame.chipInfo.layers.Count - 1; layerIndex >= 0; layerIndex--)
             {
-                Layer layer = chipGame.chipInfo.layers[layerIndex];
+                Layer layer = ChipGame.chipInfo.layers[layerIndex];
                 for (int i = 0; i < layer.objects.Length; i++)
                 {
                     ChipObject item = layer.objects[i];
@@ -72,7 +70,7 @@ namespace CHIPS_CHALLENGE.Classes.Drawing
 
         private void DrawPlayers()
         {
-            foreach (Player player in chipGame.Players)
+            foreach (Player player in ChipGame.Players)
             {
                 switch (player.State)
                 {

@@ -38,7 +38,6 @@ namespace CHIPS_CHALLENGE
         }
 
         //Chip game related info & drawer
-        private ChipGame ChipGame;
         private ChipDrawer chipDrawer;
 
         //Sprite basis
@@ -56,10 +55,9 @@ namespace CHIPS_CHALLENGE
             spritesheet = new Spritesheet(Content.Load<Texture2D>("ChipTiles"), 32, 32, 0, 0, 16);
             sprite = new Sprite(spritesheet, 152);
 
-            ChipGame = new ChipGame();
             ChipGame.chipInfo = ChipFileLoader.LoadLevelFromFile(".\\Content\\CHIPS.DAT", curLevel);
 
-            chipDrawer = new ChipDrawer(ChipGame, _spriteBatch);
+            chipDrawer = new ChipDrawer(_spriteBatch);
 
             //TESTPLAYER
             thisPlayer = new Player();
