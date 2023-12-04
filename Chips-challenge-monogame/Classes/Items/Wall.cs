@@ -12,5 +12,7 @@ namespace CHIPS_CHALLENGE.Classes.Items
         public Wall() : base(Objects.WALL)
         {
         }
+        
+        public override 
     }
 }

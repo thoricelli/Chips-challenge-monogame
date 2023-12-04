@@ -49,8 +49,7 @@ namespace CHIPS_CHALLENGE.Classes.Entities
 
             foreach (ChipObject item in touchedObjects)
             {
-                //item.Touched(this); //Activate touched event on thingamebob
-                if (item.code == Items.Enums.Objects.WALL)
+                if (!item.Touched(this) && move)
                     move = false;
             }
 
