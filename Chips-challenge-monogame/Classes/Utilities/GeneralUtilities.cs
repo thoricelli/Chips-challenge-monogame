@@ -11,9 +11,11 @@ namespace CHIPS_CHALLENGE.Classes.Utilities
 {
     public static class GeneralUtilities
     {
-        public static Vector2 ConvertFromIndexToVector(int index)
+        //another TODO! :D
+        /*public static Vector2 ConvertFromIndexToVector(int index)
         {
-
-        }
+            //(i % layer.HorizontalSize)
+            //*item.Sprite.SpriteRectangle.Width;
+        }*/
     }
 }
