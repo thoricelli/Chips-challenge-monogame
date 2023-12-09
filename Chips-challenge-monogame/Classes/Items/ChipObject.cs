@@ -34,7 +34,7 @@ namespace CHIPS_CHALLENGE.Classes.Items
         /// </summary>
         /// <param name="entity"></param>
         /// <returns>If the player can move through it</returns>
-        public bool Touched(Entity entity) {
+        public virtual bool Touched(Entity entity) {
             return true;
         }
     }

@@ -1,4 +1,5 @@
-﻿using CHIPS_CHALLENGE.Classes.Items.Enums;
+﻿using CHIPS_CHALLENGE.Classes.Entities;
+using CHIPS_CHALLENGE.Classes.Items.Enums;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,7 +13,10 @@ namespace CHIPS_CHALLENGE.Classes.Items
         public Wall() : base(Objects.WALL)
         {
         }
-        
-        public override 
+
+        public override bool Touched(Entity entity)
+        {
+            return false;
+        } 
     }
 }
