@@ -55,6 +55,11 @@ namespace CHIPS_CHALLENGE.Classes
             }
         }
 
+        //What I need from this is: index or position vector goes in,
+        //and all the players will have their position changed to that spawn location.
         public static void SetSpawnLocation()
+        {
+
+        }
     }
 }
