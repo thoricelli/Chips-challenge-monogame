@@ -85,9 +85,22 @@ namespace CHIPS_CHALLENGE.Classes.Loader
             for (int i = 0; i < layer.Length; i++)
             {
                 //TODO, switch for type. For now chipobj wont be abstract.
-                layerObj.objects[i] = new ChipObject((Objects)layer[i]);
+                layerObj.objects[i] = CreateObjectFromCode((Objects)layer[i]);
             }
             return layerObj;
+        }
+
+        private static ChipObject CreateObjectFromCode(Objects code)
+        {
+            switch (code)
+            {
+                case Objects.WALL:
+                    return new Wall();
+                break;
+                default:
+                    return new ChipObject(code);
+                break;
+            }
         }
 
         private static Field ReadField(FileStream fs, ref int fieldNo)
