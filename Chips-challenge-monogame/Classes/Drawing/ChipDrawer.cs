@@ -46,6 +46,9 @@ namespace CHIPS_CHALLENGE.Classes.Drawing
                 {
                     ChipObject item = layer.objects[i];
 
+                    if (item.changeInto.HasValue)
+                        item = ChipGame.CreateObjectFromCode(item.changeInto.Value);
+
                     Vector2 position = new Vector2();
                     position.X = (i % layer.HorizontalSize)
                                  * item.Sprite.SpriteRectangle.Width;

@@ -8,6 +8,7 @@ using CHIPS_CHALLENGE.Classes.Entities;
 using CHIPS_CHALLENGE.Classes.Items;
 using CHIPS_CHALLENGE.Classes.Loader.ChipFile;
 using CHIPS_CHALLENGE.Classes.Sprites;
+using CHIPS_CHALLENGE.Classes.Items.Enums;
 
 namespace CHIPS_CHALLENGE.Classes
 {
@@ -35,5 +36,25 @@ namespace CHIPS_CHALLENGE.Classes
             }
             return chipObjects;
         }
+        public static void ChipPickedUp()
+        {
+            chipInfo.currentLevel.ChipsToPickUp--;
+        }
+
+        //Should I move this somewhere else maybe...?
+        public static ChipObject CreateObjectFromCode(Objects code)
+        {
+            switch (code)
+            {
+                case Objects.WALL:
+                    return new Wall();
+                    break;
+                default:
+                    return new ChipObject(code);
+                    break;
+            }
+        }
+
+        public static void SetSpawnLocation()
     }
 }

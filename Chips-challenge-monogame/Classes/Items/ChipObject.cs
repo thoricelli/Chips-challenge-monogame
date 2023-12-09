@@ -18,6 +18,10 @@ namespace CHIPS_CHALLENGE.Classes.Items
         
         public Sprite Sprite;
 
+        //This field, allows the class to mutate itself on the next draw
+        //If a Chip gets picked up and needs to change to a tile, then it'll use this.
+        public Objects? changeInto = null;
+
         public ChipObject(Objects code, Sprite sprite)
         {
             this.code = code;

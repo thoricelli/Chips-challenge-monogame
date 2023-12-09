@@ -85,22 +85,24 @@ namespace CHIPS_CHALLENGE.Classes.Loader
             for (int i = 0; i < layer.Length; i++)
             {
                 //TODO, switch for type. For now chipobj wont be abstract.
-                layerObj.objects[i] = CreateObjectFromCode((Objects)layer[i]);
+                layer[i] = SetupForCode(layer[i], i);
+                layerObj.objects[i] = ChipGame.CreateObjectFromCode((Objects)layer[i]);
             }
             return layerObj;
         }
 
-        private static ChipObject CreateObjectFromCode(Objects code)
+        //Depending on the code found, the game might want to do a setup first.
+        private static byte SetupForCode(byte code, int index)
         {
-            switch (code)
+            Objects codeObject = (Objects)code;
+            //Do any mutations or setup here, I should probably refactor this and move this to another class.
+            switch (codeObject)
             {
-                case Objects.WALL:
-                    return new Wall();
-                break;
-                default:
-                    return new ChipObject(code);
-                break;
+                case Objects.HERO_SOUTH:
+
+                    break;
             }
+            return code;
         }
 
         private static Field ReadField(FileStream fs, ref int fieldNo)
