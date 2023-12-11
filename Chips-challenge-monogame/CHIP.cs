@@ -140,7 +140,7 @@ namespace CHIPS_CHALLENGE
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
-            _spriteBatch.Begin(SpriteSortMode.Deferred, null, SamplerState.PointClamp, null, null);
+            _spriteBatch.Begin(SpriteSortMode.Deferred, null, SamplerState.PointWrap, null, null);
             chipDrawer.Draw();
             _spriteBatch.End();
             base.Draw(gameTime);
