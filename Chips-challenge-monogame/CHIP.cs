@@ -8,6 +8,7 @@ using CHIPS_CHALLENGE.Classes.Loader;
 using System.Collections.Generic;
 using CHIPS_CHALLENGE.Classes.Drawing;
 using CHIPS_CHALLENGE.Classes.Entities;
+using Myra.Graphics2D.UI;
 
 namespace CHIPS_CHALLENGE
 {
@@ -33,6 +34,10 @@ namespace CHIPS_CHALLENGE
             _graphics.PreferredBackBufferWidth = 1280;
             _graphics.PreferredBackBufferHeight = 720;
             _graphics.ApplyChanges();
+
+            Label label = new Label();
+
+            label.Text = "TESTING!";
 
             base.Initialize();
         }
