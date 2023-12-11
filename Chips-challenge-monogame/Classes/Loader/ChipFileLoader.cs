@@ -99,7 +99,7 @@ namespace CHIPS_CHALLENGE.Classes.Loader
             switch (codeObject)
             {
                 case Objects.HERO_SOUTH:
-
+                    ChipGame.SetSpawnLocation(index);
                     break;
             }
             return code;

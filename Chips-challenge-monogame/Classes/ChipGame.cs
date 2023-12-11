@@ -9,6 +9,7 @@ using CHIPS_CHALLENGE.Classes.Items;
 using CHIPS_CHALLENGE.Classes.Loader.ChipFile;
 using CHIPS_CHALLENGE.Classes.Sprites;
 using CHIPS_CHALLENGE.Classes.Items.Enums;
+using CHIPS_CHALLENGE.Classes.Utilities;
 
 namespace CHIPS_CHALLENGE.Classes
 {
@@ -44,10 +45,14 @@ namespace CHIPS_CHALLENGE.Classes
         //Should I move this somewhere else maybe...?
         public static ChipObject CreateObjectFromCode(Objects code)
         {
+            //Replace with an array maybe? Idk.
             switch (code)
             {
                 case Objects.WALL:
                     return new Wall();
+                    break;
+                case Objects.COMPUTER_CHIP:
+                    return new Chip();
                     break;
                 default:
                     return new ChipObject(code);
@@ -57,9 +62,13 @@ namespace CHIPS_CHALLENGE.Classes
 
         //What I need from this is: index or position vector goes in,
         //and all the players will have their position changed to that spawn location.
-        public static void SetSpawnLocation()
+        public static void SetSpawnLocation(int index)
         {
-
+            Vector2 position = GeneralUtilities.ConvertFromIndexToVector(index);
+            foreach (Player player in Players)
+            {
+                player.Position = position;
+            }
         }
     }
 }
