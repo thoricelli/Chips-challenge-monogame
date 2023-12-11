@@ -10,6 +10,7 @@ using CHIPS_CHALLENGE.Classes.Loader.ChipFile;
 using CHIPS_CHALLENGE.Classes.Sprites;
 using CHIPS_CHALLENGE.Classes.Items.Enums;
 using CHIPS_CHALLENGE.Classes.Utilities;
+using CHIPS_CHALLENGE.Classes.Loader;
 
 namespace CHIPS_CHALLENGE.Classes
 {
@@ -22,6 +23,7 @@ namespace CHIPS_CHALLENGE.Classes
         public static void LoadLevel()
         {
             //Use loader to load next level.
+            //ChipFileLoader.LoadLevelFromFile(
         }
         public static void RestartLevel()
         {
@@ -40,24 +42,6 @@ namespace CHIPS_CHALLENGE.Classes
         public static void ChipPickedUp()
         {
             chipInfo.currentLevel.ChipsToPickUp--;
-        }
-
-        //Should I move this somewhere else maybe...?
-        public static ChipObject CreateObjectFromCode(Objects code)
-        {
-            //Replace with an array maybe? Idk.
-            switch (code)
-            {
-                case Objects.WALL:
-                    return new Wall();
-                    break;
-                case Objects.COMPUTER_CHIP:
-                    return new Chip();
-                    break;
-                default:
-                    return new ChipObject(code);
-                    break;
-            }
         }
 
         //What I need from this is: index or position vector goes in,

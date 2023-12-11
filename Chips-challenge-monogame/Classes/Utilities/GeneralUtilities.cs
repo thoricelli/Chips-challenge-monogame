@@ -12,7 +12,6 @@ namespace CHIPS_CHALLENGE.Classes.Utilities
 {
     public static class GeneralUtilities
     {
-        //another TODO! :D
         public static Vector2 ConvertFromIndexToVector(int index)
         {
 

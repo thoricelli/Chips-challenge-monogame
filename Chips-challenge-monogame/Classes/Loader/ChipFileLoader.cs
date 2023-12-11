@@ -86,7 +86,7 @@ namespace CHIPS_CHALLENGE.Classes.Loader
             {
                 //TODO, switch for type. For now chipobj wont be abstract.
                 layer[i] = SetupForCode(layer[i], i);
-                layerObj.objects[i] = ChipGame.CreateObjectFromCode((Objects)layer[i]);
+                layerObj.objects[i] = ItemFactory.CreateObjectFromCode((Objects)layer[i]);
             }
             return layerObj;
         }
