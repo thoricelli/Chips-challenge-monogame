@@ -57,27 +57,51 @@ namespace CHIPS_CHALLENGE
 
             ChipGame.chipInfo = ChipFileLoader.LoadLevelFromFile(".\\Content\\CHIPS.DAT", curLevel);
 
-            chipDrawer = new ChipDrawer(_spriteBatch);
+            chipDrawer = new ChipDrawer(_spriteBatch, _graphics.GraphicsDevice);
 
             //TESTPLAYER
             thisPlayer = new Player();
             ChipGame.Players.Add(thisPlayer);
+            chipDrawer.ChangeSubject(thisPlayer);
         }
         //TEMPORARY!
         bool upprev = true;
         bool upnext = true;//TEMP
+        bool upkey = true;
         int previousScrollWheelValue = 0;
         protected override void Update(GameTime gameTime)
         {
             //MOVE THIS TO INPUT CLASS LATER!
-            if (Keyboard.GetState().IsKeyDown(Keys.Up))
-                thisPlayer.Move(new Vector2(0, -1));
-            if (Keyboard.GetState().IsKeyDown(Keys.Down))
-                thisPlayer.Move(new Vector2(0, 1));
-            if (Keyboard.GetState().IsKeyDown(Keys.Left))
-                thisPlayer.Move(new Vector2(-1, 0));
-            if (Keyboard.GetState().IsKeyDown(Keys.Right))
-                thisPlayer.Move(new Vector2(1, 0));
+            if (upkey)
+            {
+                if (Keyboard.GetState().IsKeyDown(Keys.Up))
+                {
+                    thisPlayer.Move(new Vector2(0, -1));
+                    upkey = false;
+                }
+                if (Keyboard.GetState().IsKeyDown(Keys.Down))
+                {
+                    thisPlayer.Move(new Vector2(0, 1));
+                    upkey = false;
+                }
+                if (Keyboard.GetState().IsKeyDown(Keys.Left))
+                {
+                    thisPlayer.Move(new Vector2(-1, 0));
+                    upkey = false;
+                }
+                if (Keyboard.GetState().IsKeyDown(Keys.Right))
+                {
+                    thisPlayer.Move(new Vector2(1, 0));
+                    upkey = false;
+                }
+            }
+
+            if (
+                Keyboard.GetState().IsKeyUp(Keys.Up) 
+                && Keyboard.GetState().IsKeyUp(Keys.Down) 
+                && Keyboard.GetState().IsKeyUp(Keys.Left) 
+                && Keyboard.GetState().IsKeyUp(Keys.Right))
+                upkey = true;
 
             if (Keyboard.GetState().IsKeyDown(Keys.F1) && upprev)
             {

@@ -1,6 +1,7 @@
 ﻿using CHIPS_CHALLENGE.Classes.Entities;
 using CHIPS_CHALLENGE.Classes.Items;
 using CHIPS_CHALLENGE.Classes.Sprites;
+using CHIPS_CHALLENGE.Classes.Utilities;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -9,20 +10,28 @@ namespace CHIPS_CHALLENGE.Classes.Drawing
 {
     public class ChipDrawer
     {
+        //Vector2 is giving me a headache...
         public int CameraX { get; set; }
         public int CameraY { get; set; }
-
+        public int CameraXOffset { get; set; }
+        public int CameraYOffset { get; set; }
+        public Entity Target { get { return _target; } }
         public float ZoomModifier { get; set; } = 1;
 
         private SpriteBatch spriteBatch;
+        private GraphicsDevice graphics;
+        private Entity _target;
 
-        public ChipDrawer(SpriteBatch spriteBatch)
+        public ChipDrawer(SpriteBatch spriteBatch, GraphicsDevice graphics)
         {
             this.spriteBatch = spriteBatch;
+            this.graphics = graphics;
         }
 
         public void Draw()
         {
+            //Update the camera to target
+            UpdateCamera();
             //Draw all layers with objects on them
             DrawLayers();
             //Draw players
@@ -35,8 +44,22 @@ namespace CHIPS_CHALLENGE.Classes.Drawing
         {
             ZoomModifier += zoomAmount;
         }
+        public void ChangeSubject(Entity entity)
+        {
+            _target = entity;
+        }
 
         #region DRAWING
+        private void UpdateCamera()
+        {
+            if (_target != null)
+            {
+                CameraX = -(int)_target.Position.X;
+                CameraXOffset = (graphics.Viewport.Width / 2);
+                CameraY = -(int)_target.Position.Y;
+                CameraYOffset = (graphics.Viewport.Height / 2);
+            }
+        }
         private void DrawLayers()
         {
             for (int layerIndex = ChipGame.chipInfo.layers.Count - 1; layerIndex >= 0; layerIndex--)
@@ -47,14 +70,9 @@ namespace CHIPS_CHALLENGE.Classes.Drawing
                     ChipObject item = layer.objects[i];
 
                     if (item.changeInto.HasValue)
-                        item = ChipGame.CreateObjectFromCode(item.changeInto.Value);
+                        item = ItemFactory.CreateObjectFromCode(item.changeInto.Value);
 
-                    Vector2 position = new Vector2();
-                    position.X = (i % layer.HorizontalSize)
-                                 * item.Sprite.SpriteRectangle.Width;
-
-                    position.Y = (i / layer.VerticalSize)
-                                 * item.Sprite.SpriteRectangle.Height;
+                    Vector2 position = GeneralUtilities.ConvertFromIndexToVector(i);
 
                     spriteBatch.Draw(
                             item.Sprite.SpriteSheet.spriteSheet,
@@ -97,7 +115,10 @@ namespace CHIPS_CHALLENGE.Classes.Drawing
         //TODO, other class??
         private Vector2 CalculateModifiers(Vector2 vector) //Is this not by reference?
         {
-            return new Vector2((vector.X + CameraX) * ZoomModifier, (vector.Y + CameraY) * ZoomModifier);
+            return new Vector2(
+                ((vector.X + CameraX) * ZoomModifier) + CameraXOffset, 
+                ((vector.Y + CameraY) * ZoomModifier) + CameraYOffset
+            );
         }
         #endregion
     }
