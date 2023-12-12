@@ -24,10 +24,10 @@ namespace CHIPS_CHALLENGE
             Content.RootDirectory = "Content";
             IsMouseVisible = true;
         }
+        Desktop _desktop;
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
-            MyraEnvironment.Game = this;
 
             if (GraphicsDevice == null)
             {
@@ -38,11 +38,18 @@ namespace CHIPS_CHALLENGE
             _graphics.PreferredBackBufferHeight = 720;
             _graphics.ApplyChanges();
 
-            Label label = new Label();
-
-            label.Text = "TESTING!";
-
             base.Initialize();
+
+            MyraEnvironment.Game = this;
+
+            _desktop = new Desktop();
+
+            Label label = new Label()
+            {
+                Text = "Test"
+            };
+
+            _desktop.Root = label;
         }
 
         //Chip game related info & drawer
@@ -149,7 +156,11 @@ namespace CHIPS_CHALLENGE
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
             _spriteBatch.Begin(SpriteSortMode.Deferred, null, SamplerState.PointWrap, null, null);
+            
             chipDrawer.Draw();
+            //Render MRYA UI.
+            _desktop.Render();
+
             _spriteBatch.End();
             base.Draw(gameTime);
 
