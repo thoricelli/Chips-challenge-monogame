@@ -17,13 +17,12 @@ namespace CHIPS_CHALLENGE.Classes.Items
             {
                 case Objects.WALL:
                     return new Wall();
-                    break;
                 case Objects.COMPUTER_CHIP:
                     return new Chip();
-                    break;
+                case Objects.WATER:
+                    return new Water();
                 default:
                     return new ChipObject(code);
-                    break;
             }
         }
     }
