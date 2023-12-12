@@ -21,6 +21,14 @@ namespace CHIPS_CHALLENGE.Classes.Items
                     return new Chip();
                 case Objects.WATER:
                     return new Water();
+                case Objects.FIRE:
+                    return new Fire();
+                case Objects.INVISIBLE_WALL:
+                    return new InvisibleWall();
+                case Objects.THIN_NORTH:
+                    return new ThinNorth();
+                case Objects.THIN_WEST:
+                    return new ThinWest();
                 default:
                     return new ChipObject(code);
             }
