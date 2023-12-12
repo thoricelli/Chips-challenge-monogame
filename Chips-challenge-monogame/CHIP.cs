@@ -156,12 +156,11 @@ namespace CHIPS_CHALLENGE
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
             _spriteBatch.Begin(SpriteSortMode.Deferred, null, SamplerState.PointWrap, null, null);
-            
             chipDrawer.Draw();
+            _spriteBatch.End();
+
             //Render MRYA UI.
             _desktop.Render();
-
-            _spriteBatch.End();
             base.Draw(gameTime);
 
         }
