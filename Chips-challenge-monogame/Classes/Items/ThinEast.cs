@@ -10,7 +10,7 @@ namespace CHIPS_CHALLENGE.Classes.Items
 {
     public class ThinEast : ChipObject
     {
-        public ThinEast() : base(Objects.THIN_SOUTH)
+        public ThinEast() : base(Objects.THIN_EAST)
         {
         }
         public override bool MovingAway(Entity entity)

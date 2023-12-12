@@ -17,8 +17,11 @@ namespace CHIPS_CHALLENGE.Classes
     public static class ChipGame
     {
         public static ChipFileInformation chipInfo;
+        private static Vector2 _spawnLocation;
 
-        public static List<Player> Players { get; set; } = new List<Player>(); //Multiplayer is a TODO.
+        public static List<Player> Players { get { return _players; } }
+
+        private static List<Player> _players = new List<Player>(); //Multiplayer is a TODO.
 
         public static void LoadLevel()
         {
@@ -49,10 +52,17 @@ namespace CHIPS_CHALLENGE.Classes
         public static void SetSpawnLocation(int index)
         {
             Vector2 position = GeneralUtilities.ConvertFromIndexToVector(index);
+            _spawnLocation = position;
             foreach (Player player in Players)
             {
                 player.Position = position;
             }
+        }
+
+        public static void AddPlayer(Player player)
+        {
+            player.Position = _spawnLocation;
+            _players.Add(player);
         }
     }
 }

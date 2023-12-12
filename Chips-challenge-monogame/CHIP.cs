@@ -77,7 +77,7 @@ namespace CHIPS_CHALLENGE
 
             //TESTPLAYER
             thisPlayer = new Player();
-            ChipGame.Players.Add(thisPlayer);
+            ChipGame.AddPlayer(thisPlayer);
             chipDrawer.ChangeSubject(thisPlayer);
         }
         //TEMPORARY!
