@@ -64,7 +64,7 @@ namespace CHIPS_CHALLENGE.Classes.Entities
 
             foreach (ChipObject item in touchedObjects)
             {
-                if (!item.MovingAway(this))
+                if (!item.MovingFrom(this))
                     return false;
             }
             return true;
@@ -75,7 +75,7 @@ namespace CHIPS_CHALLENGE.Classes.Entities
 
             foreach (ChipObject item in touchedObjects)
             {
-                if (!item.Touched(this))
+                if (!item.MovingTo(this))
                     return false;
             }
             return true;

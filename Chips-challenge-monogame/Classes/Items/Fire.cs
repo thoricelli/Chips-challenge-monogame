@@ -15,7 +15,7 @@ namespace CHIPS_CHALLENGE.Classes.Items
 
         }
 
-        public override bool Touched(Entity entity)
+        public override bool MovingTo(Entity entity)
         {
             entity.Kill();
             return true;

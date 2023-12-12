@@ -13,7 +13,7 @@ namespace CHIPS_CHALLENGE.Classes.Items
         public ThinEast() : base(Objects.THIN_EAST)
         {
         }
-        public override bool MovingAway(Entity entity)
+        public override bool MovingFrom(Entity entity)
         {
             if (entity.Velocity.X > 0)
                 return false;

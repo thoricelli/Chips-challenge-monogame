@@ -38,7 +38,7 @@ namespace CHIPS_CHALLENGE.Classes.Items
         /// </summary>
         /// <param name="entity"></param>
         /// <returns>If the entity can move through it</returns>
-        public virtual bool Touched(Entity entity) {
+        public virtual bool MovingTo(Entity entity) {
             return true;
         }
         /// <summary>
@@ -46,7 +46,7 @@ namespace CHIPS_CHALLENGE.Classes.Items
         /// </summary>
         /// <param name="entity"></param>
         /// <returns>If the entity can move from the current tile</returns>
-        public virtual bool MovingAway(Entity entity)
+        public virtual bool MovingFrom(Entity entity)
         {
             return true;
         }
