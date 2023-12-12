@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using CHIPS_CHALLENGE.Classes.Drawing;
 using CHIPS_CHALLENGE.Classes.Entities;
 using Myra.Graphics2D.UI;
+using Myra;
 
 namespace CHIPS_CHALLENGE
 {
@@ -26,6 +27,8 @@ namespace CHIPS_CHALLENGE
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
+            MyraEnvironment.Game = this;
+
             if (GraphicsDevice == null)
             {
                 _graphics.ApplyChanges();
