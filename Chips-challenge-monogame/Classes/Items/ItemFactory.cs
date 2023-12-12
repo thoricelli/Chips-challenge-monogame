@@ -29,6 +29,10 @@ namespace CHIPS_CHALLENGE.Classes.Items
                     return new ThinNorth();
                 case Objects.THIN_WEST:
                     return new ThinWest();
+                case Objects.THIN_SOUTH:
+                    return new ThinSouth();
+                case Objects.THIN_EAST:
+                    return new ThinEast();
                 default:
                     return new ChipObject(code);
             }

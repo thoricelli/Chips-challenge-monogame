@@ -8,14 +8,14 @@ using System.Threading.Tasks;
 
 namespace CHIPS_CHALLENGE.Classes.Items
 {
-    public class ThinNorth : ChipObject
+    public class ThinEast : ChipObject
     {
-        public ThinNorth() : base(Objects.THIN_NORTH)
+        public ThinEast() : base(Objects.THIN_SOUTH)
         {
         }
         public override bool MovingAway(Entity entity)
         {
-            if (entity.Velocity.Y < 0)
+            if (entity.Velocity.X > 0)
                 return false;
             return true;
         }

@@ -25,6 +25,7 @@ namespace CHIPS_CHALLENGE
             IsMouseVisible = true;
         }
         Desktop _desktop;
+        Label label;
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
@@ -44,7 +45,7 @@ namespace CHIPS_CHALLENGE
 
             _desktop = new Desktop();
 
-            Label label = new Label()
+            label = new Label()
             {
                 Text = "Test"
             };
@@ -61,7 +62,7 @@ namespace CHIPS_CHALLENGE
 
         private Player thisPlayer;
 
-        int curLevel = 0;
+        int curLevel = 32;
 
         protected override void LoadContent()
         {
@@ -147,6 +148,8 @@ namespace CHIPS_CHALLENGE
                 sprite.NextSprite();*/
 
             // TODO: Add your update logic here
+
+            label.Text = ChipGame.chipInfo.currentLevel.LevelNumber.ToString();
 
             base.Update(gameTime);
         }

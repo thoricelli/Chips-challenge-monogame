@@ -43,6 +43,7 @@ namespace CHIPS_CHALLENGE.Classes.Loader
                 if (loadedLevel.LevelNumber != level)
                     fs.Seek(loadedLevel.Bytes - 0x6, SeekOrigin.Current);
             } while (loadedLevel.LevelNumber != level);
+            chipInfo.currentLevel = loadedLevel;
             //OK, we found our level!
 
             fs.Seek(0x2, SeekOrigin.Current); //Field 1, we skip this.

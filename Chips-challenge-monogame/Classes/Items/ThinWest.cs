@@ -13,9 +13,9 @@ namespace CHIPS_CHALLENGE.Classes.Items
         public ThinWest() : base(Objects.THIN_WEST)
         {
         }
-        public override bool Touched(Entity entity)
+        public override bool MovingAway(Entity entity)
         {
-            if (entity.Velocity.Y < 0)
+            if (entity.Velocity.X < 0)
                 return false;
             return true;
         }

@@ -34,11 +34,20 @@ namespace CHIPS_CHALLENGE.Classes.Items
             Sprite = new Sprite(CHIP.spritesheet, 1, (int)code); //REPLACE THIS LATER!
         }
         /// <summary>
-        /// Should fire when the entity is touched by a player
+        /// Should fire when the object is touched by a entity
         /// </summary>
         /// <param name="entity"></param>
-        /// <returns>If the player can move through it</returns>
+        /// <returns>If the entity can move through it</returns>
         public virtual bool Touched(Entity entity) {
+            return true;
+        }
+        /// <summary>
+        /// Should fire when an entity moves to another tile.
+        /// </summary>
+        /// <param name="entity"></param>
+        /// <returns>If the entity can move from the current tile</returns>
+        public virtual bool MovingAway(Entity entity)
+        {
             return true;
         }
     }
