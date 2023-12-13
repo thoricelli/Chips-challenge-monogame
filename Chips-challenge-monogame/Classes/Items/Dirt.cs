@@ -17,7 +17,7 @@ namespace CHIPS_CHALLENGE.Classes.Items
         public override bool MovingTo(Entity entity)
         {
             ChangeObjectInto(Objects.EMPTY);
-            return false;
+            return true;
         } 
     }
 }
