@@ -17,7 +17,7 @@ namespace CHIPS_CHALLENGE.Classes.Drawing
         public int CameraXOffset { get; set; }
         public int CameraYOffset { get; set; }
         public Entity Target { get { return _target; } }
-        public float ZoomModifier { get; set; } = 1;
+        public float ZoomModifier { get; set; } = 2;
 
         private SpriteBatch spriteBatch;
         private GraphicsDevice graphics;

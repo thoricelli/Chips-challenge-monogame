@@ -18,6 +18,16 @@ namespace CHIPS_CHALLENGE.Classes.Items
         {
             this.GoToDirection(entity.Velocity);
             return true; //Depending on if it's moved or not.....
-        } 
+        }
+
+        public override Objects? TileMove(Objects obj)
+        {
+            switch (obj)
+            {
+                case Objects.WATER:
+                    return Objects.DIRT;
+            }
+            return base.TileMove(obj);
+        }
     }
 }

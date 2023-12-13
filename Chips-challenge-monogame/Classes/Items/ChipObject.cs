@@ -37,23 +37,37 @@ namespace CHIPS_CHALLENGE.Classes.Items
             Sprite = new Sprite(CHIP.spritesheet, 1, (int)code); //REPLACE THIS LATER!
         }
         /// <summary>
-        /// Should fire when the object is touched by a entity
+        /// Fired when the object is touched by a entity
         /// </summary>
-        /// <param name="entity"></param>
+        /// <param name="entity">Entity that is going to move to this tile</param>
         /// <returns>If the entity can move through it</returns>
         public virtual bool MovingTo(Entity entity) {
             return true;
         }
         /// <summary>
-        /// Should fire when an entity moves to another tile.
+        /// Fired when an entity moves to another tile.
         /// </summary>
-        /// <param name="entity"></param>
+        /// <param name="entity">Entity that moves from this tile</param>
         /// <returns>If the entity can move from the current tile</returns>
         public virtual bool MovingFrom(Entity entity)
         {
             return true;
         }
-
+        /// <summary>
+        /// Fired when a tile wants to move position.
+        /// </summary>
+        /// <param name="obj">The object it's moving to</param>
+        /// <returns>Returns the item that it has to turn into. Null if you can't move.</returns>
+        public virtual Objects? TileMove(Objects obj)
+        {
+            switch (obj)
+            {
+                case Objects.EMPTY:
+                    return code;
+                default:
+                    return null;
+            }
+        }
         public virtual void ChangeInto(Objects obj)
         {
             this.changeInto = obj;
