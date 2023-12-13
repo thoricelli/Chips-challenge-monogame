@@ -35,6 +35,8 @@ namespace CHIPS_CHALLENGE.Classes.Items
                     return new ThinEast();
                 case Objects.BLOCK:
                     return new Block();
+                case Objects.DIRT:
+                    return new Dirt();
                 default:
                     return new ChipObject(code);
             }

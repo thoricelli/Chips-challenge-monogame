@@ -41,7 +41,7 @@ namespace CHIPS_CHALLENGE.Classes
             {
                 ChipObject item = layer.objects[i];
                 if (item.ChangeInto.HasValue)
-                    item = ItemFactory.CreateObjectFromCode(item.ChangeInto.Value);
+                    layer.objects[i] = ItemFactory.CreateObjectFromCode(item.ChangeInto.Value);
                 if (item.GoToDirection.HasValue)
                 {
                     //Check if we can move to something (will HAVE to be an empty tile)

@@ -16,7 +16,7 @@ namespace CHIPS_CHALLENGE.Classes.Items
 
         public override bool MovingTo(Entity entity)
         {
-            ChangeObjectInto(Objects.WALL);
+            ChangeObjectInto(Objects.EMPTY);
             return false;
         } 
     }
