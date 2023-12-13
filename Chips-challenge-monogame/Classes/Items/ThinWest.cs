@@ -13,6 +13,12 @@ namespace CHIPS_CHALLENGE.Classes.Items
         public ThinWest() : base(Objects.THIN_WEST)
         {
         }
+        public override bool MovingTo(Entity entity)
+        {
+            if (entity.Velocity.X > 0)
+                return false;
+            return true;
+        }
         public override bool MovingFrom(Entity entity)
         {
             if (entity.Velocity.X < 0)

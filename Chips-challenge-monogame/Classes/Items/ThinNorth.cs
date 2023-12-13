@@ -13,6 +13,12 @@ namespace CHIPS_CHALLENGE.Classes.Items
         public ThinNorth() : base(Objects.THIN_NORTH)
         {
         }
+        public override bool MovingTo(Entity entity)
+        {
+            if (entity.Velocity.Y > 0)
+                return false;
+            return true;
+        }
         public override bool MovingFrom(Entity entity)
         {
             if (entity.Velocity.Y < 0)
