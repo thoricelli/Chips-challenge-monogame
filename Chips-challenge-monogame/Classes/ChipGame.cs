@@ -12,12 +12,14 @@ using CHIPS_CHALLENGE.Classes.Items.Enums;
 using CHIPS_CHALLENGE.Classes.Utilities;
 using CHIPS_CHALLENGE.Classes.Loader;
 using CHIPS_CHALLENGE.Classes.Entities.Enums;
+using CHIPS_CHALLENGE.Classes.Game;
 
 namespace CHIPS_CHALLENGE.Classes
 {
     public static class ChipGame
     {
         public static ChipFileInformation chipInfo;
+        public static Keys Keys = new Keys();
         private static Vector2 _spawnLocation;
         private static ChipFileLoader chipFileLoader = new ChipFileLoader(".\\Content\\CHIPS.DAT");
 

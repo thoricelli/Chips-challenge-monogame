@@ -42,6 +42,14 @@ namespace CHIPS_CHALLENGE.Classes.Items
                 //SKIPPED A FEW OBJECTS :)
                 case Objects.EXIT:
                     return new Exit();
+                case Objects.BLUE_DOOR:
+                    return new BlueDoor();
+                case Objects.RED_DOOR:
+                    return new RedDoor();
+                case Objects.GREEN_DOOR:
+                    return new GreenDoor();
+                case Objects.YELLOW_DOOR:
+                    return new YellowDoor();
                 default:
                     return new ChipObject(code);
             }
