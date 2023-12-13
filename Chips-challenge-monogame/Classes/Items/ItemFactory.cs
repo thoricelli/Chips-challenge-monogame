@@ -37,6 +37,8 @@ namespace CHIPS_CHALLENGE.Classes.Items
                     return new Block();
                 case Objects.DIRT:
                     return new Dirt();
+                case Objects.ICE:
+                    return new Ice();
                 default:
                     return new ChipObject(code);
             }
