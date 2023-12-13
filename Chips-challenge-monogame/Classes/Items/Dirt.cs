@@ -8,17 +8,16 @@ using System.Threading.Tasks;
 
 namespace CHIPS_CHALLENGE.Classes.Items
 {
-    public class Chip : ChipObject
+    public class Dirt : ChipObject
     {
-        public Chip() : base(Objects.COMPUTER_CHIP)
+        public Dirt() : base(Objects.DIRT)
         {
         }
 
         public override bool MovingTo(Entity entity)
         {
-            this.ChangeObjectInto(Objects.EMPTY);
-            ChipGame.ChipPickedUp();
-            return true;
+            ChangeObjectInto(Objects.WALL);
+            return false;
         } 
     }
 }

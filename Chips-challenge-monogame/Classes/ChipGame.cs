@@ -40,12 +40,12 @@ namespace CHIPS_CHALLENGE.Classes
             foreach (Layer layer in chipInfo.layers)
             {
                 ChipObject item = layer.objects[i];
-                if (item.changeInto.HasValue)
-                    item = ItemFactory.CreateObjectFromCode(item.changeInto.Value);
-                if (item.goToDirection.HasValue)
+                if (item.ChangeInto.HasValue)
+                    item = ItemFactory.CreateObjectFromCode(item.ChangeInto.Value);
+                if (item.GoToDirection.HasValue)
                 {
                     //Check if we can move to something (will HAVE to be an empty tile)
-                    Vector2 pos = (position + new Vector2(item.goToDirection.Value.X, item.goToDirection.Value.Y * 32));
+                    Vector2 pos = (position + new Vector2(item.GoToDirection.Value.X, item.GoToDirection.Value.Y * 32));
                     int index = GeneralUtilities.ConvertFromVectorToIndex(pos);
 
                     Objects? transformInto = item.TileMove(layer.objects[index].code);
@@ -57,7 +57,7 @@ namespace CHIPS_CHALLENGE.Classes
                     {
                         status = Status.MoveBlocked;
                     }
-                    item.goToDirection = null;
+                    item.MoveObjectInDirection(null);
                 }
             }
             return status;

@@ -16,7 +16,7 @@ namespace CHIPS_CHALLENGE.Classes.Items
 
         public override bool MovingTo(Entity entity)
         {
-            this.GoToDirection(entity.Velocity);
+            this.MoveObjectInDirection(entity.Velocity);
             return true; //Depending on if it's moved or not.....
         }
 

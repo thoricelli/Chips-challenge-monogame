@@ -21,10 +21,13 @@ namespace CHIPS_CHALLENGE.Classes.Items
 
         //This field, allows the class to mutate itself on the next draw
         //If a Chip gets picked up and needs to change to a tile, then it'll use this.
-        public Objects? changeInto = null;
+        public Objects? ChangeInto { get { return changeInto; } }
         //This field will allow the entity to move itself to another tile
         //The value will be the direction it moves to on the next draw.
-        public Vector2? goToDirection = null; 
+        public Vector2? GoToDirection { get { return goToDirection; } }
+
+        private Objects? changeInto = null;
+        private Vector2? goToDirection = null;
         public ChipObject(Objects code, Sprite sprite)
         {
             this.code = code;
@@ -68,11 +71,11 @@ namespace CHIPS_CHALLENGE.Classes.Items
                     return null;
             }
         }
-        public virtual void ChangeInto(Objects obj)
+        public virtual void ChangeObjectInto(Objects obj)
         {
-            this.changeInto = obj;
+            changeInto = obj;
         }
-        public virtual void GoToDirection(Vector2 direction)
+        public virtual void MoveObjectInDirection(Vector2? direction)
         {
             goToDirection = direction;
         }
