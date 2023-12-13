@@ -39,6 +39,9 @@ namespace CHIPS_CHALLENGE.Classes.Items
                     return new Dirt();
                 case Objects.ICE:
                     return new Ice();
+                //SKIPPED A FEW OBJECTS :)
+                case Objects.EXIT:
+                    return new Exit();
                 default:
                     return new ChipObject(code);
             }
