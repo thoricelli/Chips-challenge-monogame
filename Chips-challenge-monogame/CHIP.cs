@@ -92,7 +92,7 @@ namespace CHIPS_CHALLENGE
             spritesheet = new Spritesheet(Content.Load<Texture2D>("ChipTiles"), 32, 32, 0, 0, 16);
             sprite = new Sprite(spritesheet, 152);
 
-            ChipGame.chipInfo = ChipFileLoader.LoadLevelFromFile(".\\Content\\CHIPS.DAT", curLevel);
+            ChipGame.LoadLevel(curLevel);
 
             chipDrawer = new ChipDrawer(_spriteBatch, _graphics.GraphicsDevice);
 
@@ -115,13 +115,13 @@ namespace CHIPS_CHALLENGE
             {
                 upprev = false;
                 curLevel--;
-                ChipGame.chipInfo = ChipFileLoader.LoadLevelFromFile(".\\Content\\CHIPS.DAT", curLevel);
+                ChipGame.LoadLevel(curLevel);
             }
             if (Keyboard.GetState().IsKeyDown(Keys.F2) && upnext)
             {
                 upnext = false;
                 curLevel++;
-                ChipGame.chipInfo = ChipFileLoader.LoadLevelFromFile(".\\Content\\CHIPS.DAT", curLevel);
+                ChipGame.LoadLevel(curLevel);
             }
 
             if (Keyboard.GetState().IsKeyUp(Keys.F1))

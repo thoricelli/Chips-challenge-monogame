@@ -19,19 +19,23 @@ namespace CHIPS_CHALLENGE.Classes
     {
         public static ChipFileInformation chipInfo;
         private static Vector2 _spawnLocation;
+        private static ChipFileLoader chipFileLoader;
 
         public static List<Player> Players { get { return _players; } }
 
         private static List<Player> _players = new List<Player>(); //Multiplayer is a TODO.
 
-        public static void LoadLevel()
+        public static void LoadLevel(int level)
         {
-            //Use loader to load next level.
-            //ChipFileLoader.LoadLevelFromFile(
+            chipFileLoader = new ChipFileLoader(".\\Content\\CHIPS.DAT");
+
+            chipInfo = chipFileLoader.LoadLevelFromFile(level);
         }
         public static void RestartLevel()
         {
+            chipFileLoader = new ChipFileLoader(".\\Content\\CHIPS.DAT");
 
+            chipInfo = chipFileLoader.LoadLevelFromFile(chipInfo.currentLevel.LevelNumber);
         }
         public static Status UpdateTile(Vector2 position)
         {

@@ -5,6 +5,7 @@ using CHIPS_CHALLENGE.Classes.Loader.ChipFile.Fields;
 using CHIPS_CHALLENGE.Classes.Loader.ChipFile.Fields.Enums;
 using CHIPS_CHALLENGE.Classes.Sprites;
 using Microsoft.Xna.Framework.Graphics.PackedVector;
+using Myra.Attributes;
 using SharpDX.MediaFoundation;
 using System;
 using System.Collections;
@@ -20,10 +21,17 @@ using System.Xml.Serialization;
 
 namespace CHIPS_CHALLENGE.Classes.Loader
 {
-    public static class ChipFileLoader
+    public class ChipFileLoader
     {
+        private string filepath;
+
+        public ChipFileLoader(string filepath)
+        {
+            this.filepath = filepath;
+        }
+
         //REFER TO https://www.seasip.info/ccfile.html
-        public static ChipFileInformation LoadLevelFromFile(string filepath, int level)
+        public ChipFileInformation LoadLevelFromFile(int level)
         {
             ChipFileInformation chipInfo = new ChipFileInformation();
 
@@ -57,7 +65,7 @@ namespace CHIPS_CHALLENGE.Classes.Loader
 
             foreach (byte[] layer in layers)
             {
-                chipInfo.layers.Add(layer.ToLayer());
+                chipInfo.layers.Add(ToLayer(layer));
             }
 
             //Now we need to parse the fields.
@@ -80,7 +88,7 @@ namespace CHIPS_CHALLENGE.Classes.Loader
             return chipInfo;
         }
 
-        private static Layer ToLayer(this byte[] layer)
+        private Layer ToLayer(byte[] layer)
         {
             Layer layerObj = new Layer(32, 32); //TODO: REPLACE!
             for (int i = 0; i < layer.Length; i++)
@@ -93,7 +101,7 @@ namespace CHIPS_CHALLENGE.Classes.Loader
         }
 
         //Depending on the code found, the game might want to do a setup first.
-        private static byte SetupForCode(byte code, int index)
+        private byte SetupForCode(byte code, int index)
         {
             Objects codeObject = (Objects)code;
             //Do any mutations or setup here, I should probably refactor this and move this to another class.
@@ -106,7 +114,7 @@ namespace CHIPS_CHALLENGE.Classes.Loader
             return code;
         }
 
-        private static Field ReadField(FileStream fs, ref int fieldNo)
+        private Field ReadField(FileStream fs, ref int fieldNo)
         {
             /* Read the first number as an INT, field number.
                Probably the best way to solve this is, not have fields but variables
@@ -140,7 +148,7 @@ namespace CHIPS_CHALLENGE.Classes.Loader
             }
         }
 
-        private static byte[] DecompressLayer(FileStream fs)
+        private byte[] DecompressLayer(FileStream fs)
         {
             LayerStruct layer = FromFileStream<LayerStruct>(fs);
             byte[] objects = new byte[layer.Bytes];
@@ -150,7 +158,7 @@ namespace CHIPS_CHALLENGE.Classes.Loader
         }
 
         //Thank god for stackoverflow.
-        private static T FromFileStream<T>(FileStream fs, int offset = 0)
+        private T FromFileStream<T>(FileStream fs, int offset = 0)
         {
             int sizeOfT = Marshal.SizeOf(typeof(T));
             byte[] data = new byte[sizeOfT];
