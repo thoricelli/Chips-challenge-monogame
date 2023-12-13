@@ -10,6 +10,7 @@ using CHIPS_CHALLENGE.Classes.Drawing;
 using CHIPS_CHALLENGE.Classes.Entities;
 using Myra.Graphics2D.UI;
 using Myra;
+using CHIPS_CHALLENGE.Classes.Utilities;
 
 namespace CHIPS_CHALLENGE
 {
@@ -26,6 +27,8 @@ namespace CHIPS_CHALLENGE
         }
         Desktop _desktop;
         Label label;
+        Label index;
+        Label positionString;
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
@@ -45,12 +48,28 @@ namespace CHIPS_CHALLENGE
 
             _desktop = new Desktop();
 
+            Panel _panel = new Panel();
+
             label = new Label()
             {
                 Text = "Test"
             };
 
-            _desktop.Root = label;
+            index = new Label()
+            {
+                Top = 20
+            };
+            positionString = new Label()
+            {
+                Top = 40
+            };
+
+            _panel.Widgets.Add(label);
+            _panel.Widgets.Add(index);
+            _panel.Widgets.Add(positionString);
+
+
+            _desktop.Root = _panel;
         }
 
         //Chip game related info & drawer
@@ -62,7 +81,7 @@ namespace CHIPS_CHALLENGE
 
         private Player thisPlayer;
 
-        int curLevel = 15;
+        int curLevel = 2;
 
         protected override void LoadContent()
         {
@@ -150,6 +169,8 @@ namespace CHIPS_CHALLENGE
             // TODO: Add your update logic here
 
             label.Text = ChipGame.chipInfo.currentLevel.LevelNumber.ToString();
+            index.Text = GeneralUtilities.ConvertFromVectorToIndex(thisPlayer.Position).ToString();
+            positionString.Text = $"X: {thisPlayer.Position.X} Y: {thisPlayer.Position.Y}";
 
             base.Update(gameTime);
         }

@@ -79,7 +79,7 @@ namespace CHIPS_CHALLENGE.Classes.Drawing
                     if (item.goToDirection.HasValue)
                     {
                         //Check if we can move to something (will HAVE to be an empty tile)
-                        Vector2 pos = (position + (Vector2)item.goToDirection);
+                        Vector2 pos = (position + new Vector2(item.goToDirection.Value.X, item.goToDirection.Value.Y*32));
                         int index = GeneralUtilities.ConvertFromVectorToIndex(pos);
                         if (layer.objects[index].code == Objects.EMPTY)
                         {
