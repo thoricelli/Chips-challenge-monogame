@@ -71,25 +71,6 @@ namespace CHIPS_CHALLENGE.Classes.Drawing
                     ChipObject item = layer.objects[i];
                     Vector2 position = GeneralUtilities.ConvertFromIndexToVector(i);
 
-                    //For now this a temporary way of doing this
-                    //Cause I can't come up with a proper way of doing this.
-                    //The drawer shouldn't even be responsible for this???
-                    if (item.changeInto.HasValue)
-                        item = ItemFactory.CreateObjectFromCode(item.changeInto.Value);
-                    if (item.goToDirection.HasValue)
-                    {
-                        //Check if we can move to something (will HAVE to be an empty tile)
-                        Vector2 pos = (position + new Vector2(item.goToDirection.Value.X, item.goToDirection.Value.Y*32));
-                        int index = GeneralUtilities.ConvertFromVectorToIndex(pos);
-                        if (layer.objects[index].code == Objects.EMPTY)
-                        {
-                            layer.objects[index] = ItemFactory.CreateObjectFromCode(item.code);
-                            layer.objects[i] = ItemFactory.CreateObjectFromCode(Objects.EMPTY);
-                            i = index;
-                        }
-                        item.goToDirection = null;
-                    }
-
                     spriteBatch.Draw(
                             item.Sprite.SpriteSheet.spriteSheet,
                             CalculateModifiers(position),

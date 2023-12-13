@@ -1,6 +1,7 @@
 ﻿using CHIPS_CHALLENGE.Classes.Entities.Enums;
 using CHIPS_CHALLENGE.Classes.Items;
 using CHIPS_CHALLENGE.Classes.Sprites;
+using CHIPS_CHALLENGE.Classes.Utilities;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
@@ -58,27 +59,37 @@ namespace CHIPS_CHALLENGE.Classes.Entities
             }
         }
 
+        private Status UpdateTile(Vector2 position)
+        {
+            return ChipGame.UpdateTile(position);
+        }
+
         private bool CheckMoveFromThisTile()
         {
+            bool move = true;
             List<ChipObject> touchedObjects = ChipGame.CheckCollision(Position);
 
             foreach (ChipObject item in touchedObjects)
             {
                 if (!item.MovingFrom(this))
-                    return false;
+                    move = false;
             }
-            return true;
+            UpdateTile(Position);
+            return move;
         }
         private bool CheckMoveToTile()
         {
+            bool move = true;
             List<ChipObject> touchedObjects = ChipGame.CheckCollision(Position + (Velocity * 32));
 
             foreach (ChipObject item in touchedObjects)
             {
                 if (!item.MovingTo(this))
-                    return false;
+                    move = false;
             }
-            return true;
+            if (UpdateTile(Position + (Velocity * 32)) == Status.MoveBlocked)
+                move = false;
+            return move;
         }
 
         /*Every entity will have a top, down, left, right sprite

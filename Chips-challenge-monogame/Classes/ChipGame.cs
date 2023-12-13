@@ -11,6 +11,7 @@ using CHIPS_CHALLENGE.Classes.Sprites;
 using CHIPS_CHALLENGE.Classes.Items.Enums;
 using CHIPS_CHALLENGE.Classes.Utilities;
 using CHIPS_CHALLENGE.Classes.Loader;
+using CHIPS_CHALLENGE.Classes.Entities.Enums;
 
 namespace CHIPS_CHALLENGE.Classes
 {
@@ -31,6 +32,33 @@ namespace CHIPS_CHALLENGE.Classes
         public static void RestartLevel()
         {
 
+        }
+        public static Status UpdateTile(Vector2 position)
+        {
+            Status status = Status.OK;
+            int i = GeneralUtilities.ConvertFromVectorToIndex(position);
+            foreach (Layer layer in chipInfo.layers)
+            {
+                ChipObject item = layer.objects[i];
+                if (item.changeInto.HasValue)
+                    item = ItemFactory.CreateObjectFromCode(item.changeInto.Value);
+                if (item.goToDirection.HasValue)
+                {
+                    //Check if we can move to something (will HAVE to be an empty tile)
+                    Vector2 pos = (position + new Vector2(item.goToDirection.Value.X, item.goToDirection.Value.Y * 32));
+                    int index = GeneralUtilities.ConvertFromVectorToIndex(pos);
+                    if (layer.objects[index].code == Objects.EMPTY)
+                    {
+                        layer.objects[index] = ItemFactory.CreateObjectFromCode(item.code);
+                        layer.objects[i] = ItemFactory.CreateObjectFromCode(Objects.EMPTY);
+                    } else
+                    {
+                        status = Status.MoveBlocked;
+                    }
+                    item.goToDirection = null;
+                }
+            }
+            return status;
         }
         public static List<ChipObject> CheckCollision(Vector2 position)
         {
