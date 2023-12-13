@@ -22,5 +22,10 @@ namespace CHIPS_CHALLENGE.Classes.Utilities
                 (index / 32/*layer.VerticalSize*/) * 32//layer.objects[0].Sprite.SpriteRectangle.Height
                 );
         }
+        public static int ConvertFromVectorToIndex(Vector2 position)
+        {
+
+            return (int)((position.X / 32) + (position.Y));
+        }
     }
 }

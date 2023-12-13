@@ -35,7 +35,7 @@ namespace CHIPS_CHALLENGE.Classes
         public static List<ChipObject> CheckCollision(Vector2 position)
         {
             List<ChipObject> chipObjects = new List<ChipObject>();
-            int index = (int)((position.X / 32) + (position.Y));
+            int index = GeneralUtilities.ConvertFromVectorToIndex(position);
             foreach (Layer layer in chipInfo.layers)
             {
                 chipObjects.Add(layer.objects[index]);

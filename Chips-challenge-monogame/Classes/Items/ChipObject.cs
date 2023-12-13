@@ -1,6 +1,7 @@
 ﻿using CHIPS_CHALLENGE.Classes.Entities;
 using CHIPS_CHALLENGE.Classes.Items.Enums;
 using CHIPS_CHALLENGE.Classes.Sprites;
+using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,7 +22,9 @@ namespace CHIPS_CHALLENGE.Classes.Items
         //This field, allows the class to mutate itself on the next draw
         //If a Chip gets picked up and needs to change to a tile, then it'll use this.
         public Objects? changeInto = null;
-
+        //This field will allow the entity to move itself to another tile
+        //The value will be the direction it moves to on the next draw.
+        public Vector2? goToDirection = null; 
         public ChipObject(Objects code, Sprite sprite)
         {
             this.code = code;
@@ -49,6 +52,15 @@ namespace CHIPS_CHALLENGE.Classes.Items
         public virtual bool MovingFrom(Entity entity)
         {
             return true;
+        }
+
+        public virtual void ChangeInto(Objects obj)
+        {
+            this.changeInto = obj;
+        }
+        public virtual void GoToDirection(Vector2 direction)
+        {
+            goToDirection = direction;
         }
     }
 }
