@@ -11,6 +11,7 @@ using CHIPS_CHALLENGE.Classes.Entities;
 using Myra.Graphics2D.UI;
 using Myra;
 using CHIPS_CHALLENGE.Classes.Utilities;
+using CHIPS_CHALLENGE.Classes.Input;
 
 namespace CHIPS_CHALLENGE
 {
@@ -80,6 +81,7 @@ namespace CHIPS_CHALLENGE
         public static Spritesheet spritesheet; //Temporarily public, because we're using this as a default
 
         private Player thisPlayer;
+        private PlayerInputHandler inputHandler;
 
         int curLevel = 2;
 
@@ -98,45 +100,17 @@ namespace CHIPS_CHALLENGE
             thisPlayer = new Player();
             ChipGame.AddPlayer(thisPlayer);
             chipDrawer.ChangeSubject(thisPlayer);
+
+            inputHandler = new PlayerInputHandler(thisPlayer);
         }
         //TEMPORARY!
-        bool upprev = true;
         bool upnext = true;//TEMP
         bool upkey = true;
         int previousScrollWheelValue = 0;
         protected override void Update(GameTime gameTime)
         {
             //MOVE THIS TO INPUT CLASS LATER!
-            if (upkey)
-            {
-                if (Keyboard.GetState().IsKeyDown(Keys.Up))
-                {
-                    thisPlayer.Move(new Vector2(0, -1));
-                    upkey = false;
-                }
-                if (Keyboard.GetState().IsKeyDown(Keys.Down))
-                {
-                    thisPlayer.Move(new Vector2(0, 1));
-                    upkey = false;
-                }
-                if (Keyboard.GetState().IsKeyDown(Keys.Left))
-                {
-                    thisPlayer.Move(new Vector2(-1, 0));
-                    upkey = false;
-                }
-                if (Keyboard.GetState().IsKeyDown(Keys.Right))
-                {
-                    thisPlayer.Move(new Vector2(1, 0));
-                    upkey = false;
-                }
-            }
-
-            if (
-                Keyboard.GetState().IsKeyUp(Keys.Up) 
-                && Keyboard.GetState().IsKeyUp(Keys.Down) 
-                && Keyboard.GetState().IsKeyUp(Keys.Left) 
-                && Keyboard.GetState().IsKeyUp(Keys.Right))
-                upkey = true;
+            
 
             if (Keyboard.GetState().IsKeyDown(Keys.F1) && upprev)
             {
