@@ -31,7 +31,7 @@ namespace CHIPS_CHALLENGE.Classes
         }
         public static void LoadNext()
         {
-            chipInfo = chipFileLoader.LoadLevelFromFile(chipInfo.currentLevel.LevelNumber++);
+            chipInfo = chipFileLoader.LoadLevelFromFile(chipInfo.currentLevel.LevelNumber+1);
         }
         public static void RestartLevel()
         {

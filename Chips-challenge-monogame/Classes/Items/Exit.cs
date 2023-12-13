@@ -17,7 +17,7 @@ namespace CHIPS_CHALLENGE.Classes.Items
         public override bool MovingTo(Entity entity)
         {
             ChipGame.LoadNext();
-            return base.MovingTo(entity);
+            return false;
         }
     }
 }
