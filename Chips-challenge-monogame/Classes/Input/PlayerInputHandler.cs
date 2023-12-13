@@ -1,4 +1,6 @@
 ﻿using CHIPS_CHALLENGE.Classes.Entities;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,35 +13,43 @@ namespace CHIPS_CHALLENGE.Classes.Input
     {
         public Player player;
 
-        private bool upprev = true;
+        private bool upkey = true;
+        private bool disableInput = false;
 
         public PlayerInputHandler(Player player)
         {
             this.player = player;
         }
-
+        public void DisableInput()
+        {
+            disableInput = false;
+        }
+        public void EnableInput()
+        {
+            disableInput = true;
+        }
         public void HandleInput()
         {
-            if (upkey)
+            if (upkey && !disableInput)
             {
                 if (Keyboard.GetState().IsKeyDown(Keys.Up))
                 {
-                    thisPlayer.Move(new Vector2(0, -1));
+                    player.Move(new Vector2(0, -1));
                     upkey = false;
                 }
                 if (Keyboard.GetState().IsKeyDown(Keys.Down))
                 {
-                    thisPlayer.Move(new Vector2(0, 1));
+                    player.Move(new Vector2(0, 1));
                     upkey = false;
                 }
                 if (Keyboard.GetState().IsKeyDown(Keys.Left))
                 {
-                    thisPlayer.Move(new Vector2(-1, 0));
+                    player.Move(new Vector2(-1, 0));
                     upkey = false;
                 }
                 if (Keyboard.GetState().IsKeyDown(Keys.Right))
                 {
-                    thisPlayer.Move(new Vector2(1, 0));
+                    player.Move(new Vector2(1, 0));
                     upkey = false;
                 }
             }

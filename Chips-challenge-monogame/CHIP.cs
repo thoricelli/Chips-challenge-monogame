@@ -105,12 +105,11 @@ namespace CHIPS_CHALLENGE
         }
         //TEMPORARY!
         bool upnext = true;//TEMP
-        bool upkey = true;
+        bool upprev = true;
         int previousScrollWheelValue = 0;
         protected override void Update(GameTime gameTime)
         {
-            //MOVE THIS TO INPUT CLASS LATER!
-            
+            inputHandler.HandleInput();
 
             if (Keyboard.GetState().IsKeyDown(Keys.F1) && upprev)
             {
