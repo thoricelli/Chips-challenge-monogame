@@ -82,7 +82,14 @@ namespace CHIPS_CHALLENGE.Classes
         {
             chipInfo.currentLevel.ChipsToPickUp--;
         }
-
+        public static void ResetAllItems()
+        {
+            Keys.Red = false;
+            Keys.Green = false;
+            Keys.Blue = false;
+            Keys.Yellow = false;
+            //Boots, etc too.
+        }
         //What I need from this is: index or position vector goes in,
         //and all the players will have their position changed to that spawn location.
         public static void SetSpawnLocation(int index)

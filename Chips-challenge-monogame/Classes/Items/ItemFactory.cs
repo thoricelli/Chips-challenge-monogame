@@ -50,6 +50,11 @@ namespace CHIPS_CHALLENGE.Classes.Items
                     return new GreenDoor();
                 case Objects.YELLOW_DOOR:
                     return new YellowDoor();
+                //Skipping some objects :D
+                case Objects.UNUSED:
+                    return new InvisibleWall();
+                case Objects.THIEF:
+                    return //
                 default:
                     return new ChipObject(code);
             }
