@@ -83,7 +83,7 @@ namespace CHIPS_CHALLENGE
         private Player thisPlayer;
         private PlayerInputHandler inputHandler;
 
-        int curLevel = 2;
+        int curLevel = 3;
 
         protected override void LoadContent()
         {
@@ -102,6 +102,7 @@ namespace CHIPS_CHALLENGE
             chipDrawer.ChangeSubject(thisPlayer);
 
             inputHandler = new PlayerInputHandler(thisPlayer);
+            ChipGame.thisPlayerInput = inputHandler; //TEMP
         }
         //TEMPORARY!
         bool upnext = true;//TEMP

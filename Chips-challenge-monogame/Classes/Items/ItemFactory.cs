@@ -54,7 +54,9 @@ namespace CHIPS_CHALLENGE.Classes.Items
                 case Objects.UNUSED:
                     return new InvisibleWall();
                 case Objects.THIEF:
-                    return //
+                    return new Thief();
+                case Objects.GATE:
+                    return new Gate();
                 default:
                     return new ChipObject(code);
             }

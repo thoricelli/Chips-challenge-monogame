@@ -57,6 +57,14 @@ namespace CHIPS_CHALLENGE.Classes.Items
             return true;
         }
         /// <summary>
+        /// Fired when an entity has succesfully moved to a tile.
+        /// </summary>
+        /// <param name="entity">Entity that moved onto this tile</param>
+        public virtual void HasMovedTo(Entity entity, Vector2 oldVelocity)
+        {
+
+        }
+        /// <summary>
         /// Fired when a tile wants to move position.
         /// </summary>
         /// <param name="obj">The object it's moving to</param>

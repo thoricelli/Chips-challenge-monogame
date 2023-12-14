@@ -52,16 +52,25 @@ namespace CHIPS_CHALLENGE.Classes.Entities
                     if (CheckMoveToTile()) //Can entity move to the tile it wants?
                         Position += (Velocity * 32);
 
+                Vector2 oldVelocity = Velocity;
                 Velocity = Vector2.Zero;
-                //CheckCollision -> Ask the game if where this entity wants to move, is possible
-                //If NOT, then position wont be changed.
-                //Then we look for the touched events, checkcollision should give back the item its colliding with :)
+
+                //Well, this is used for the force items, but with no delay, this will look to be instant...
+                FireHasMoved(oldVelocity);
             }
         }
 
         private Status UpdateTile(Vector2 position)
         {
             return ChipGame.UpdateTile(position);
+        }
+        private void FireHasMoved(Vector2 oldVelocity)
+        {
+            List<ChipObject> touchedObjects = ChipGame.CheckCollision(Position);
+            foreach (ChipObject item in touchedObjects)
+            {
+                item.HasMovedTo(this, oldVelocity);
+            }
         }
 
         private bool CheckMoveFromThisTile()

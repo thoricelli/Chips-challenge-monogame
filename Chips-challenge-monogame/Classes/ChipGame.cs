@@ -13,6 +13,7 @@ using CHIPS_CHALLENGE.Classes.Utilities;
 using CHIPS_CHALLENGE.Classes.Loader;
 using CHIPS_CHALLENGE.Classes.Entities.Enums;
 using CHIPS_CHALLENGE.Classes.Game;
+using CHIPS_CHALLENGE.Classes.Input;
 
 namespace CHIPS_CHALLENGE.Classes
 {
@@ -22,6 +23,8 @@ namespace CHIPS_CHALLENGE.Classes
         public static Keys Keys = new Keys();
         private static Vector2 _spawnLocation;
         private static ChipFileLoader chipFileLoader = new ChipFileLoader(".\\Content\\CHIPS.DAT");
+        
+        public static PlayerInputHandler thisPlayerInput;
 
         public static List<Player> Players { get { return _players; } }
 

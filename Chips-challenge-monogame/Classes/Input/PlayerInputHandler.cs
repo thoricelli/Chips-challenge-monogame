@@ -22,11 +22,11 @@ namespace CHIPS_CHALLENGE.Classes.Input
         }
         public void DisableInput()
         {
-            disableInput = false;
+            disableInput = true;
         }
         public void EnableInput()
         {
-            disableInput = true;
+            disableInput = false;
         }
         public void HandleInput()
         {
