@@ -8,9 +8,9 @@ namespace CHIPS_CHALLENGE.Classes.Game
 {
     public class Inventory
     {
-        public bool Blue { get; set; }
-        public bool Red { get; set; }
-        public bool Green { get; set; }
-        public bool Yellow { get; set; }
+        public bool Blue { get; set; } = false;
+        public bool Red { get; set; } = false;
+        public bool Green { get; set; } = false;
+        public bool Yellow { get; set; } = false;
     }
 }
