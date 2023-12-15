@@ -58,6 +58,14 @@ namespace CHIPS_CHALLENGE.Classes.Items
                     return new GreenDoor();
                 case Objects.YELLOW_DOOR:
                     return new YellowDoor();
+                case Objects.ICE_CORNER_NORTHWEST:
+                    return new IceCornerNorthWest();
+                case Objects.ICE_CORNER_NORTHEAST:
+                    return new IceCornerNorthEast();
+                case Objects.ICE_CORNER_SOUTHEAST:
+                    return new IceCornerSouthEast();
+                case Objects.ICE_CORNER_SOUTHWEST:
+                    return new IceCornerSouthWest();
                 //Skipping some objects :D
                 case Objects.UNUSED:
                     return new InvisibleWall();
