@@ -1,4 +1,5 @@
 ﻿using CHIPS_CHALLENGE.Classes.Entities.Enums;
+using CHIPS_CHALLENGE.Classes.Game;
 using CHIPS_CHALLENGE.Classes.Items;
 using CHIPS_CHALLENGE.Classes.Sprites;
 using CHIPS_CHALLENGE.Classes.Utilities;
@@ -18,8 +19,11 @@ namespace CHIPS_CHALLENGE.Classes.Entities
         public State State { get; set; }
         public float Health { get; set; }
         public bool MovementEnabled { get; set; } = true;
-
+        //Will update very PUSH update. (Which is configurable how fast)
+        public Vector2? QueuedPush { get { return _queuedPush; } }
         public Sprite Sprite { get; set; }
+
+        private Vector2? _queuedPush = null;
 
         protected Entity()
         {

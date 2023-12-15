@@ -30,6 +30,8 @@ namespace CHIPS_CHALLENGE.Classes
 
         private static List<Player> _players = new List<Player>(); //Multiplayer is a TODO.
 
+        //public static List<Entity> Entities;
+
         public static void LoadLevel(int level)
         {
             chipInfo = chipFileLoader.LoadLevelFromFile(level);
@@ -109,6 +111,13 @@ namespace CHIPS_CHALLENGE.Classes
         {
             player.Position = _spawnLocation;
             _players.Add(player);
+        }
+
+        public static void Update(GameTime gameTime)
+        {
+            thisPlayerInput.HandleInput();
+            //Every X seconds update enemies.
+            //Every X seconds update push for entities.
         }
     }
 }

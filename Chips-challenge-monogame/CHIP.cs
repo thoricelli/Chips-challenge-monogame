@@ -110,7 +110,6 @@ namespace CHIPS_CHALLENGE
         int previousScrollWheelValue = 0;
         protected override void Update(GameTime gameTime)
         {
-            inputHandler.HandleInput();
 
             if (Keyboard.GetState().IsKeyDown(Keys.F1) && upprev)
             {
@@ -146,6 +145,7 @@ namespace CHIPS_CHALLENGE
             index.Text = GeneralUtilities.ConvertFromVectorToIndex(thisPlayer.Position).ToString();
             positionString.Text = $"X: {thisPlayer.Position.X} Y: {thisPlayer.Position.Y}";
 
+            ChipGame.Update(gameTime);
             base.Update(gameTime);
         }
 
