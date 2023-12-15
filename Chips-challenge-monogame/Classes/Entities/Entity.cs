@@ -1,5 +1,5 @@
 ﻿using CHIPS_CHALLENGE.Classes.Entities.Enums;
-using CHIPS_CHALLENGE.Classes.Game;
+using CHIPS_CHALLENGE.Classes.Inventory;
 using CHIPS_CHALLENGE.Classes.Items;
 using CHIPS_CHALLENGE.Classes.Sprites;
 using CHIPS_CHALLENGE.Classes.Utilities;

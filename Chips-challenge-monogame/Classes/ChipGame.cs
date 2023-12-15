@@ -12,7 +12,7 @@ using CHIPS_CHALLENGE.Classes.Items.Enums;
 using CHIPS_CHALLENGE.Classes.Utilities;
 using CHIPS_CHALLENGE.Classes.Loader;
 using CHIPS_CHALLENGE.Classes.Entities.Enums;
-using CHIPS_CHALLENGE.Classes.Game;
+using CHIPS_CHALLENGE.Classes.Inventory;
 using CHIPS_CHALLENGE.Classes.Input;
 
 namespace CHIPS_CHALLENGE.Classes
@@ -20,7 +20,7 @@ namespace CHIPS_CHALLENGE.Classes
     public static class ChipGame
     {
         public static ChipFileInformation chipInfo;
-        public static Keys Keys = new Keys();
+        public static Inventory.Inventory Keys = new Inventory.Inventory();
         private static Vector2 _spawnLocation;
         private static ChipFileLoader chipFileLoader = new ChipFileLoader(".\\Content\\CHIPS.DAT");
         
