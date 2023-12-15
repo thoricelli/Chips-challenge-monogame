@@ -12,5 +12,9 @@ namespace CHIPS_CHALLENGE.Classes.Game
         public bool Red { get; set; } = false;
         public bool Green { get; set; } = false;
         public bool Yellow { get; set; } = false;
+        public bool WaterShoe { get; set; } = false;
+        public bool FireShoe { get; set; } = false;
+        public bool IceShoe { get; set; } = false;
+        public bool ForceShoe { get; set; } = false;
     }
 }

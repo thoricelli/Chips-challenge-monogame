@@ -100,6 +100,12 @@ namespace CHIPS_CHALLENGE.Classes.Items
                     return new GreenKey();
                 case Objects.YELLOW_KEY:
                     return new YellowKey();
+                case Objects.WATER_SHOE:
+                    return new WaterShoe();
+                case Objects.ICE_SHOE:
+                    return new IceShoe();
+                case Objects.FORCE_SHOE:
+                    return new ForceShoe();
                 default:
                     return new ChipObject(code);
             }
