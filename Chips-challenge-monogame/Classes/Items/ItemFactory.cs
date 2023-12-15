@@ -76,6 +76,21 @@ namespace CHIPS_CHALLENGE.Classes.Items
                     return new Thief();
                 case Objects.GATE:
                     return new Gate();
+                //TODO -> FIELDS.
+                //case Objects.TOGGLE_WALL_ON:
+                //Skipping some objects.
+                case Objects.BOMB:
+                    return new Bomb();
+                //Skipping some objects
+                case Objects.INVISIBLE_WALL_APPEAR:
+                    return new InvisibleWallAppear();
+                //Gravel doesn't need a switch.
+                //Skipping some objects
+                case Objects.THIN_WALL:
+                    return new ThinWall();
+                //Skipping objects
+                case Objects.FORCE_FLOOR_RANDOM:
+                    return new ForceFloorRandom();
                 default:
                     return new ChipObject(code);
             }
