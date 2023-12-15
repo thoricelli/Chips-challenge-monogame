@@ -66,7 +66,10 @@ namespace CHIPS_CHALLENGE.Classes.Items
                     return new IceCornerSouthEast();
                 case Objects.ICE_CORNER_SOUTHWEST:
                     return new IceCornerSouthWest();
-                //Skipping some objects :D
+                case Objects.BLUE_BLOCK_EMPTY:
+                    return new BlueBlockEmpty();
+                case Objects.BLUE_BLOCK_WALL:
+                    return new BlueBlock();
                 case Objects.UNUSED:
                     return new InvisibleWall();
                 case Objects.THIEF:
