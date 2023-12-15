@@ -16,19 +16,22 @@ namespace CHIPS_CHALLENGE.Classes.Items
         }
         public override void HasMovedTo(Entity entity, Vector2 oldVelocity)
         {
-            Random random = new Random();
-
-            int randomX = 0;
-            int randomY = 0;
-
-            do
+            if (!ChipGame.Inventory.ForceShoe)
             {
-                randomX = random.Next(-1, 2);
-                if (randomX == 0)
-                    randomY = random.Next(-1, 2);
-            } while (randomX == 0 && randomY == 0);
+                Random random = new Random();
 
-            entity.AddPush(new Vector2(randomX, randomY));
+                int randomX = 0;
+                int randomY = 0;
+
+                do
+                {
+                    randomX = random.Next(-1, 2);
+                    if (randomX == 0)
+                        randomY = random.Next(-1, 2);
+                } while (randomX == 0 && randomY == 0);
+
+                entity.AddPush(new Vector2(randomX, randomY));
+            }
         }
     }
 }

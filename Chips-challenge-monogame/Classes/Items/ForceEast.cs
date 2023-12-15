@@ -18,7 +18,8 @@ namespace CHIPS_CHALLENGE.Classes.Items
         }
         public override void HasMovedTo(Entity entity, Vector2 oldVelocity)
         {
-            entity.AddPush(new Vector2(1,0));
+            if (!ChipGame.Inventory.ForceShoe)
+                entity.AddPush(new Vector2(1,0));
         }
     }
 }
