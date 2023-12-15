@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CHIPS_CHALLENGE.Classes.Inventory
+namespace CHIPS_CHALLENGE.Classes.Game
 {
     public class Inventory
     {

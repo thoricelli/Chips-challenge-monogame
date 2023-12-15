@@ -12,7 +12,7 @@ using CHIPS_CHALLENGE.Classes.Items.Enums;
 using CHIPS_CHALLENGE.Classes.Utilities;
 using CHIPS_CHALLENGE.Classes.Loader;
 using CHIPS_CHALLENGE.Classes.Entities.Enums;
-using CHIPS_CHALLENGE.Classes.Inventory;
+using CHIPS_CHALLENGE.Classes.Game;
 using CHIPS_CHALLENGE.Classes.Input;
 
 namespace CHIPS_CHALLENGE.Classes
@@ -20,7 +20,7 @@ namespace CHIPS_CHALLENGE.Classes
     public static class ChipGame
     {
         public static ChipFileInformation chipInfo;
-        public static Inventory.Inventory Keys = new Inventory.Inventory();
+        public static Inventory Inventory = new Inventory();
         private static Vector2 _spawnLocation;
         private static ChipFileLoader chipFileLoader = new ChipFileLoader(".\\Content\\CHIPS.DAT");
         
@@ -98,10 +98,10 @@ namespace CHIPS_CHALLENGE.Classes
         }
         public static void ResetAllItems()
         {
-            Keys.Red = false;
-            Keys.Green = false;
-            Keys.Blue = false;
-            Keys.Yellow = false;
+            Inventory.Red = false;
+            Inventory.Green = false;
+            Inventory.Blue = false;
+            Inventory.Yellow = false;
             //Boots, etc too.
         }
         //What I need from this is: index or position vector goes in,

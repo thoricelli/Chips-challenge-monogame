@@ -15,7 +15,7 @@ namespace CHIPS_CHALLENGE.Classes.Items
         }
         public override bool MovingTo(Entity entity)
         {
-            return ChipGame.Keys.Blue;
+            return ChipGame.Inventory.Blue;
         }
     }
 }

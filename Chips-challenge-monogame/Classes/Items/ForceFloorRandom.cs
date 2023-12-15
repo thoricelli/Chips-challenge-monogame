@@ -23,8 +23,9 @@ namespace CHIPS_CHALLENGE.Classes.Items
 
             do
             {
-                randomX = random.Next(-1, 1);
-                randomY = random.Next(-1, 1);
+                randomX = random.Next(-1, 2);
+                if (randomX == 0)
+                    randomY = random.Next(-1, 2);
             } while (randomX == 0 && randomY == 0);
 
             entity.AddPush(new Vector2(randomX, randomY));

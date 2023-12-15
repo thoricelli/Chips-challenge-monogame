@@ -8,14 +8,16 @@ using System.Threading.Tasks;
 
 namespace CHIPS_CHALLENGE.Classes.Items
 {
-    public class GreenDoor : ChipObject
+    public class BlueKey : ChipObject
     {
-        public GreenDoor() : base(Objects.GREEN_DOOR)
+        public BlueKey() : base(Objects.BLUE_KEY)
         {
         }
         public override bool MovingTo(Entity entity)
         {
-            return ChipGame.Inventory.Green;
+            this.ChangeObjectInto(Objects.EMPTY);
+            ChipGame.Inventory.Blue = true;
+            return base.MovingTo(entity);
         }
     }
 }

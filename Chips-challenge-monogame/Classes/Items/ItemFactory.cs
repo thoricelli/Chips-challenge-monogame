@@ -91,6 +91,9 @@ namespace CHIPS_CHALLENGE.Classes.Items
                 //Skipping objects
                 case Objects.FORCE_FLOOR_RANDOM:
                     return new ForceFloorRandom();
+                //Skipping objects
+                case Objects.BLUE_KEY:
+                    
                 default:
                     return new ChipObject(code);
             }
