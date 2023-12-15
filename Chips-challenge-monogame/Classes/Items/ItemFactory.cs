@@ -39,7 +39,15 @@ namespace CHIPS_CHALLENGE.Classes.Items
                     return new Dirt();
                 case Objects.ICE:
                     return new Ice();
+                case Objects.FORCE_SOUTH:
+                    return new ForceSouth();
                 //SKIPPED A FEW OBJECTS :)
+                case Objects.FORCE_NORTH:
+                    return new ForceNorth();
+                case Objects.FORCE_EAST:
+                    return new ForceEast();
+                case Objects.FORCE_WEST:
+                    return new ForceWest();
                 case Objects.EXIT:
                     return new Exit();
                 case Objects.BLUE_DOOR:

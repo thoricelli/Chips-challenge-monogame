@@ -36,7 +36,7 @@ namespace CHIPS_CHALLENGE.Classes
          CONFIG IS TEMPORARILY HERE!
          */
         private static int UpdateEnemiesMs = 1000;
-        private static int UpdatePushMs = 1000;
+        private static int UpdatePushMs = 150;
 
         private static double LastEnemyUpdate = 0;
         private static double LastPushUpdate = 0;
@@ -143,6 +143,7 @@ namespace CHIPS_CHALLENGE.Classes
                     entity.HandlePush();
                 }
                 //What about enemies?
+                LastPushUpdate = gameTime.TotalGameTime.TotalMilliseconds;
             }
         }
     }

@@ -112,8 +112,14 @@ namespace CHIPS_CHALLENGE.Classes.Entities
         {
             if (QueuedPush.HasValue)
             {
-                Move(_queuedPush.Value);
+                ChipGame.thisPlayerInput.DisableInput();
+
+                Vector2 savedPush = _queuedPush.Value;
                 _queuedPush = null;
+                Move(savedPush);
+
+                if (_queuedPush == null)
+                    ChipGame.thisPlayerInput.EnableInput();
             }
         }
         /*Every entity will have a top, down, left, right sprite
