@@ -42,7 +42,7 @@ namespace CHIPS_CHALLENGE.Classes.Entities
         /// <param name="velocity"></param>
         public void Move(Vector2 velocity)
         {
-            if (this.State != State.Dead && MovementEnabled)
+            if (this.State != State.Dead && MovementEnabled && _queuedPush == null)
             {
                 Velocity += velocity;
 

@@ -13,7 +13,7 @@ namespace CHIPS_CHALLENGE.Classes.Items
 {
     public class ForceWest : ChipObject
     {
-        public ForceWest() : base(Objects.FORCE_NORTH)
+        public ForceWest() : base(Objects.FORCE_WEST)
         {
         }
         public override void HasMovedTo(Entity entity, Vector2 oldVelocity)
