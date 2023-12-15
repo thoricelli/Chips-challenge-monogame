@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 namespace CHIPS_CHALLENGE.Classes.Entities
 {
-    internal class Enemy
+    public abstract class Enemy : Entity
     {
+        //Update enemy movement
+        public abstract void Update();
     }
 }

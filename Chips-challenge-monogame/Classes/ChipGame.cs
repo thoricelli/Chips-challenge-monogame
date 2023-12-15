@@ -30,7 +30,16 @@ namespace CHIPS_CHALLENGE.Classes
 
         private static List<Player> _players = new List<Player>(); //Multiplayer is a TODO.
 
-        //public static List<Entity> Entities;
+        public static List<Enemy> Enemies = new List<Enemy>();
+
+        /*
+         CONFIG IS TEMPORARILY HERE!
+         */
+        private static int UpdateEnemiesMs = 1000;
+        private static int UpdatePushMs = 1000;
+
+        private static double LastEnemyUpdate = 0;
+        private static double LastPushUpdate = 0;
 
         public static void LoadLevel(int level)
         {
@@ -117,7 +126,24 @@ namespace CHIPS_CHALLENGE.Classes
         {
             thisPlayerInput.HandleInput();
             //Every X seconds update enemies.
+            double totalMiliseconds = gameTime.TotalGameTime.TotalMilliseconds;
+            if (totalMiliseconds - LastEnemyUpdate >= UpdateEnemiesMs)
+            {
+                foreach (Enemy enemy in Enemies)
+                {
+                    enemy.Update();
+                }
+                LastEnemyUpdate = gameTime.TotalGameTime.TotalMilliseconds;
+            }
             //Every X seconds update push for entities.
+            if (totalMiliseconds - LastPushUpdate >= UpdatePushMs)
+            {
+                foreach (Entity entity in Players)
+                {
+                    entity.HandlePush();
+                }
+                //What about enemies?
+            }
         }
     }
 }

@@ -104,7 +104,18 @@ namespace CHIPS_CHALLENGE.Classes.Entities
                 move = false;
             return move;
         }
-
+        public void AddPush(Vector2 push)
+        {
+            _queuedPush = push;
+        }
+        public void HandlePush()
+        {
+            if (QueuedPush.HasValue)
+            {
+                Move(_queuedPush.Value);
+                _queuedPush = null;
+            }
+        }
         /*Every entity will have a top, down, left, right sprite
           Animated will be later.
           So, why not define them here, have them programmed by the entity
