@@ -93,7 +93,13 @@ namespace CHIPS_CHALLENGE.Classes.Items
                     return new ForceFloorRandom();
                 //Skipping objects
                 case Objects.BLUE_KEY:
-                    
+                    return new BlueKey();
+                case Objects.RED_KEY:
+                    return new RedKey();
+                case Objects.GREEN_KEY:
+                    return new GreenKey();
+                case Objects.YELLOW_KEY:
+                    return new YellowKey();
                 default:
                     return new ChipObject(code);
             }
