@@ -19,12 +19,12 @@ namespace CHIPS_CHALLENGE.Classes
 {
     public static class ChipGame
     {
-        public static ChipFileInformation chipInfo;
+        public static ChipFileInformation chipInfo { get; set; }
         public static Inventory Inventory = new Inventory();
-        private static Vector2 _spawnLocation;
+        private static Vector2 _spawnLocation { get; set; }
         private static ChipFileLoader chipFileLoader = new ChipFileLoader(".\\Content\\CHIPS.DAT");
         
-        public static PlayerInputHandler thisPlayerInput;
+        public static PlayerInputHandler thisPlayerInput { get; set; }
 
         public static List<Player> Players { get { return _players; } }
 
@@ -98,11 +98,7 @@ namespace CHIPS_CHALLENGE.Classes
         }
         public static void ResetAllItems()
         {
-            Inventory.Red = false;
-            Inventory.Green = false;
-            Inventory.Blue = false;
-            Inventory.Yellow = false;
-            //Boots, etc too.
+            Inventory.ResetAllItems();
         }
         //What I need from this is: index or position vector goes in,
         //and all the players will have their position changed to that spawn location.

@@ -16,5 +16,17 @@ namespace CHIPS_CHALLENGE.Classes.Game
         public bool FireShoe { get; set; } = false;
         public bool IceShoe { get; set; } = false;
         public bool ForceShoe { get; set; } = false;
+        public void ResetAllItems()
+        {
+            Red = false;
+            Green = false;
+            Blue = false;
+            Yellow = false;
+
+            WaterShoe = false;
+            FireShoe = false;
+            IceShoe = false;
+            ForceShoe = false;
+        }
     }
 }

@@ -76,8 +76,8 @@ namespace CHIPS_CHALLENGE.Classes.Items
                     return new Thief();
                 case Objects.GATE:
                     return new Gate();
-                //TODO -> FIELDS.
-                //case Objects.TOGGLE_WALL_ON:
+                case Objects.TOGGLE_WALL_ON:
+
                 //Skipping some objects.
                 case Objects.BOMB:
                     return new Bomb();
@@ -102,6 +102,8 @@ namespace CHIPS_CHALLENGE.Classes.Items
                     return new YellowKey();
                 case Objects.WATER_SHOE:
                     return new WaterShoe();
+                case Objects.FIRE_SHOE:
+                    return new FireShoe();
                 case Objects.ICE_SHOE:
                     return new IceShoe();
                 case Objects.FORCE_SHOE:
