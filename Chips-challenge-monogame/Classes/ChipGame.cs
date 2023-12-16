@@ -30,7 +30,8 @@ namespace CHIPS_CHALLENGE.Classes
 
         private static List<Player> _players = new List<Player>(); //Multiplayer is a TODO.
 
-        public static List<Enemy> Enemies = new List<Enemy>();
+        public static List<Enemy> Enemies { get { return _enemies; } }
+        public static List<Enemy> _enemies = new List<Enemy>();
 
         /*
          CONFIG IS TEMPORARILY HERE!
@@ -116,6 +117,11 @@ namespace CHIPS_CHALLENGE.Classes
         {
             player.Position = _spawnLocation;
             _players.Add(player);
+        }
+
+        public static void AddEnemy(Enemy enemy)
+        {
+            _enemies.Add(enemy);
         }
 
         public static void Update(GameTime gameTime)

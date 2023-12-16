@@ -10,7 +10,7 @@ namespace CHIPS_CHALLENGE.Classes.Loader.ChipFile.Fields
     //LEVEL TIME
     [Serializable]
     [StructLayout(LayoutKind.Sequential, Pack = 1)]
-    public class Field1 : Field
+    public struct Field1
     {
         public ushort Time;
     }

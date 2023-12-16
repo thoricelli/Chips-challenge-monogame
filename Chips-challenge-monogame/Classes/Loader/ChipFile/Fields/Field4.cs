@@ -10,7 +10,7 @@ namespace CHIPS_CHALLENGE.Classes.Loader.ChipFile.Fields
     //TRAP CONTROLS
     [Serializable]
     [StructLayout(LayoutKind.Sequential, Pack = 1)]
-    public class Field4 : Field
+    public class Field4
     {
         public Trap[] traps;
     }

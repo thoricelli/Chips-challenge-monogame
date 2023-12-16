@@ -9,7 +9,11 @@ namespace CHIPS_CHALLENGE.Classes.Loader.ChipFile
 {
     [Serializable]
     [StructLayout(LayoutKind.Sequential, Pack = 1)]
-    public class CloneMachine : Trap
+    public struct CloneMachine
     {
+        public ushort ButtonX;
+        public ushort ButtonY;
+        public ushort ObjectX;
+        public ushort ObjectY;
     }
 }

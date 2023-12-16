@@ -14,10 +14,15 @@ namespace CHIPS_CHALLENGE.Classes.Loader.ChipFile
         public ushort LevelNumber { get; set; }
         public ushort Time { get; set; }
         public ushort ChipsToPickUp { get; set; }
+        public string MapTitle { get; set; }
+        public string Password { get; set; }
+        public string HintText { get; set; }
+        public List<Trap> Traps { get; set; } = new List<Trap>();
+        public List<CloneMachine> CloneMachines { get; set; } = new List<CloneMachine>();
+        //Enemies are in ChipGame
 
         public List<Layer> layers = new List<Layer>();
 
-        //Replace this stuff, it ain't great. + lots of unneeded overhead
-        public Field[] fields = new Field[11]; //We have 11 fields max, only accessible with functions.
+        
     }
 }

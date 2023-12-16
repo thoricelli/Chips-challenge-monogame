@@ -10,7 +10,7 @@ namespace CHIPS_CHALLENGE.Classes.Loader.ChipFile.Fields
     //CHIP COUNT
     [Serializable]
     [StructLayout(LayoutKind.Sequential, Pack = 1)]
-    public class Field2 : Field
+    public class Field2
     {
         public ushort ChipCount;
     }

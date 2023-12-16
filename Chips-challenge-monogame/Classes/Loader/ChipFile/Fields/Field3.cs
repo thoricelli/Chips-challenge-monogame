@@ -10,7 +10,7 @@ namespace CHIPS_CHALLENGE.Classes.Loader.ChipFile.Fields
     //MAP TITLE
     [Serializable]
     [StructLayout(LayoutKind.Sequential, Pack = 1)]
-    public class Field3 : Field
+    public struct Field3
     {
         public string Title;
     }

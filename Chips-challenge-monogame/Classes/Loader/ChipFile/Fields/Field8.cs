@@ -10,7 +10,7 @@ namespace CHIPS_CHALLENGE.Classes.Loader.ChipFile.Fields
     //MAP PASSWORD (UNENCODED + UNUSED)
     [Serializable]
     [StructLayout(LayoutKind.Sequential, Pack = 1)]
-    public class Field8 : Field
+    public class Field8
     {
         public string Password;
     }

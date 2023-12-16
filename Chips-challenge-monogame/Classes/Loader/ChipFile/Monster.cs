@@ -9,7 +9,7 @@ namespace CHIPS_CHALLENGE.Classes.Loader.ChipFile
 {
     [Serializable]
     [StructLayout(LayoutKind.Sequential, Pack = 1)]
-    public class Monster
+    public struct Monster
     {
         public byte X;
         public byte Y;

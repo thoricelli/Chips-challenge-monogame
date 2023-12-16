@@ -1,9 +1,12 @@
-﻿using CHIPS_CHALLENGE.Classes.Items;
+﻿using CHIPS_CHALLENGE.Classes.Entities;
+using CHIPS_CHALLENGE.Classes.Items;
 using CHIPS_CHALLENGE.Classes.Items.Enums;
 using CHIPS_CHALLENGE.Classes.Loader.ChipFile;
 using CHIPS_CHALLENGE.Classes.Loader.ChipFile.Fields;
 using CHIPS_CHALLENGE.Classes.Loader.ChipFile.Fields.Enums;
 using CHIPS_CHALLENGE.Classes.Sprites;
+using CHIPS_CHALLENGE.Classes.Utilities;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics.PackedVector;
 using Myra.Attributes;
 using SharpDX.MediaFoundation;
@@ -72,20 +75,7 @@ namespace CHIPS_CHALLENGE.Classes.Loader
                 chipInfo.layers.Add(ToLayer(layer));
             }
 
-            //Now we need to parse the fields.
-            byte[] sizeByte = new byte[2];
-            fs.Read(sizeByte, sizeByte.Length, 0);
-
-            int endAddress = (int)fs.Position + BitConverter.ToUInt16(sizeByte, 0);
-
-            fs.Seek(0x2, SeekOrigin.Current); //Size till end, WE DO NEED THIS...
-
-            /*do
-            {
-                int fieldNo = 0;
-                Field field = ReadField(fs, ref fieldNo);
-                chipInfo.fields[fieldNo] = field;
-            } while (fs.Position > endAddress);*/
+            PopulateFields(chipInfo, fs);
 
             fs.Close();
 
@@ -118,7 +108,21 @@ namespace CHIPS_CHALLENGE.Classes.Loader
             return code;
         }
 
-        private Field ReadField(FileStream fs, ref int fieldNo)
+        private void PopulateFields(ChipFileInformation chipInfo, FileStream fs)
+        {
+            //Now we need to parse the fields.
+            byte[] sizeByte = new byte[2];
+            fs.ReadAsync(sizeByte);
+
+            int endAddress = (int)fs.Position + BitConverter.ToUInt16(sizeByte, 0);
+
+            do
+            {
+                ReadField(chipInfo, fs);
+            } while (fs.Position <= endAddress);
+        }
+
+        private void ReadField(ChipFileInformation chipInfo, FileStream fs)
         {
             /* Read the first number as an INT, field number.
                Probably the best way to solve this is, not have fields but variables
@@ -126,32 +130,68 @@ namespace CHIPS_CHALLENGE.Classes.Loader
                Maybe just give the gameinfo as an argument, and let this function fill it up.
                annoying!
             */
-            fieldNo = fs.ReadByte();
-            switch ((FieldEnum)fieldNo)
+            Field field = FromFileStream<Field>(fs);
+            switch ((FieldEnum)(field.Type-1))
             {
-                case FieldEnum.LEVEL_TIME:
-                    return FromFileStream<Field1>(fs);
-                case FieldEnum.CHIP_COUNT:
-                    return FromFileStream<Field2>(fs);
                 case FieldEnum.MAP_TITLE:
-                    return FromFileStream<Field3>(fs);
+                    chipInfo.MapTitle = ReadString(field.Bytes, fs);
+                    break;
                 case FieldEnum.TRAP_CONTROLS:
-                    return FromFileStream<Field4>(fs);
+                    int endTrap = (int)(fs.Position + field.Bytes);
+                    do
+                    {
+                        Trap trap = FromFileStream<Trap>(fs);
+                        chipInfo.Traps.Add(trap);
+                    } while (fs.Position <= endTrap);
+                    break;
                 case FieldEnum.CLONING_CONTROLS:
-                    return FromFileStream<Field5>(fs);
+                    int endClone = (int)(fs.Position + field.Bytes);
+                    do
+                    {
+                        CloneMachine cloneMachine = FromFileStream<CloneMachine>(fs);
+                        chipInfo.CloneMachines.Add(cloneMachine);
+                    } while (fs.Position <= endClone);
+                    break;
                 case FieldEnum.MAP_PASSWORD:
-                    return FromFileStream<Field6>(fs);
+                    byte[] mapPassword = new byte[field.Bytes-1];
+                    fs.ReadAsync(mapPassword);
+                    fs.Seek(0x1, SeekOrigin.Current);
+                    chipInfo.Password = DecryptPassword(mapPassword);
+                    break;
                 case FieldEnum.MAP_HINT:
-                    return FromFileStream<Field7>(fs);
-                case FieldEnum.MAP_PASSWORD_NO_ENCODE:
-                    return FromFileStream<Field8>(fs);
+                    chipInfo.HintText = ReadString(field.Bytes, fs);
+                    break;
                 case FieldEnum.MOVEMENT:
-                    return FromFileStream<Field10>(fs);
+                    int endMovement = (int)(fs.Position + field.Bytes);
+                    do
+                    {
+                        Monster monster = FromFileStream<Monster>(fs);
+                        Vector2 position = new Vector2(monster.X, monster.Y);
+
+                        Objects code = chipInfo.layers[0].objects[GeneralUtilities.ConvertFromVectorToIndex(position)].code;
+
+                        ChipGame.AddEnemy(EnemyFactory.CreateObjectFromCode(code, position));
+                    } while (fs.Position <= endMovement);
+                    break;
                 default:
-                    return FromFileStream<Field>(fs);
+                    fs.Seek(field.Bytes, SeekOrigin.Current);
+                    break;
             }
         }
-
+        private string ReadString(int size, FileStream fs)
+        {
+            byte[] title = new byte[size];
+            fs.ReadAsync(title);
+            return Encoding.Default.GetString(title);
+        }
+        private string DecryptPassword(byte[] password)
+        {
+            for (int i = 0; i < password.Length; i++)
+            {
+                password[i] ^= 0x99;
+            }
+            return Encoding.Default.GetString(password);
+        }
         private byte[] DecompressLayer(FileStream fs)
         {
             LayerStruct layer = FromFileStream<LayerStruct>(fs);

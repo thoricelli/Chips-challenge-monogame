@@ -13,7 +13,7 @@ namespace CHIPS_CHALLENGE.Classes.Loader.ChipFile.Fields
      */
     [Serializable]
     [StructLayout(LayoutKind.Sequential, Pack = 1)]
-    public class Field10 : Field
+    public class Field10
     {
         public Monster[] monsters;
     }
