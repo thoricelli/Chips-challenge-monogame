@@ -166,9 +166,11 @@ namespace CHIPS_CHALLENGE.Classes.Loader
                     do
                     {
                         Monster monster = FromFileStream<Monster>(fs);
-                        Vector2 position = new Vector2(monster.X, monster.Y);
+                        Vector2 position = new Vector2(monster.X*32, monster.Y*32);
 
                         Objects code = chipInfo.layers[0].objects[GeneralUtilities.ConvertFromVectorToIndex(position)].code;
+                        //TEMP
+                        chipInfo.layers[0].objects[GeneralUtilities.ConvertFromVectorToIndex(position)] = ItemFactory.CreateObjectFromCode(Objects.EMPTY);
 
                         ChipGame.AddEnemy(EnemyFactory.CreateObjectFromCode(code, position));
                     } while (fs.Position <= endMovement);

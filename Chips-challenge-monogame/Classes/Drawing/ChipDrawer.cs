@@ -6,6 +6,8 @@ using CHIPS_CHALLENGE.Classes.Utilities;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace CHIPS_CHALLENGE.Classes.Drawing
 {
@@ -36,8 +38,9 @@ namespace CHIPS_CHALLENGE.Classes.Drawing
             //Draw all layers with objects on them
             DrawLayers();
             //Draw players
-            DrawPlayers();
+            DrawEntities(ChipGame.Players.ToList<Entity>());
             //Draw enemies
+            DrawEntities(ChipGame.Enemies.ToList<Entity>());
         }
 
         //Be able to ZOOM out or into the level
@@ -86,17 +89,17 @@ namespace CHIPS_CHALLENGE.Classes.Drawing
             }
         }
 
-        private void DrawPlayers()
+        private void DrawEntities(List<Entity> entities)
         {
-            foreach (Player player in ChipGame.Players)
+            foreach (Entity entity in entities)
             {
-                switch (player.State)
+                switch (entity.State)
                 {
                     case Entities.Enums.State.Alive:
                         spriteBatch.Draw(
-                            player.Sprite.SpriteSheet.spriteSheet,
-                            CalculateModifiers(player.Position),
-                            player.Sprite.SpriteRectangle,
+                            entity.Sprite.SpriteSheet.spriteSheet,
+                            CalculateModifiers(entity.Position),
+                            entity.Sprite.SpriteRectangle,
                             Color.White,
                             0,
                             Vector2.Zero,

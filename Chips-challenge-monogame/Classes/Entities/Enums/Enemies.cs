@@ -10,6 +10,5 @@ namespace CHIPS_CHALLENGE.Classes.Entities.Enums
     public enum Enemies
     {
         BUG = Objects.BUG_NORTH
-
     }
 }

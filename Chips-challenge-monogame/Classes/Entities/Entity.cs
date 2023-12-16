@@ -19,7 +19,6 @@ namespace CHIPS_CHALLENGE.Classes.Entities
         public Vector2 Position;
         public Vector2 Velocity;
         public State State { get; set; }
-        public float Health { get; set; }
         public bool MovementEnabled { get; set; } = true;
         //Will update very PUSH update. (Which is configurable how fast)
         public Vector2? QueuedPush { get { return _queuedPush; } }
@@ -27,14 +26,14 @@ namespace CHIPS_CHALLENGE.Classes.Entities
 
         private Vector2? _queuedPush = null;
 
-        protected Entity()
+        protected Entity(Objects code)
         {
+            this.Code = code;
             LoadSprite();
         }
 
         public abstract void LoadSprite();
         public void Kill() {
-            Health = 0;
             State = State.Dead;
             //Don't draw
         }

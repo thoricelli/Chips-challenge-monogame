@@ -12,9 +12,8 @@ namespace CHIPS_CHALLENGE.Classes.Entities
 {
     public class Enemy : Entity
     {
-        public Enemy(Objects code, Vector2 position)
+        public Enemy(Objects code, Vector2 position) : base(code)
         {
-            this.Code = code;
             this.Position = position;
         }
 

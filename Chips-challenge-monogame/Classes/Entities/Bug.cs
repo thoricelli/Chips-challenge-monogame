@@ -1,4 +1,5 @@
 ﻿using CHIPS_CHALLENGE.Classes.Entities.Enums;
+using CHIPS_CHALLENGE.Classes.Items;
 using CHIPS_CHALLENGE.Classes.Items.Enums;
 using Microsoft.Xna.Framework;
 using System;
@@ -16,7 +17,11 @@ namespace CHIPS_CHALLENGE.Classes.Entities
         }
         public override void Update()
         {
-            //this.AddPush()
+            //First we try to move left.
+            //This depends on the orientation though...
+            List<ChipObject> chipObjects = 
+                ChipGame.CheckCollision(this.Position + 
+                                        new Vector2() * 32);
         }
     }
 }
