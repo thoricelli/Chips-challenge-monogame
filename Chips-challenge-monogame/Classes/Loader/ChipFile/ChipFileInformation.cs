@@ -9,11 +9,11 @@ namespace CHIPS_CHALLENGE.Classes.Loader.ChipFile
 {
     public class ChipFileInformation
     {
-        //This shouldn't be here, those are the structures used for file reading
-        //We want a clear class with info, nothing extra that is just used for file reading.
-        //Plus, this class isn't supposed to be here, move it somewhere else.
-        public Base baseInfo;
-        public Level currentLevel;
+        public ushort NumberOfLevels { get; set; }
+
+        public ushort LevelNumber { get; set; }
+        public ushort Time { get; set; }
+        public ushort ChipsToPickUp { get; set; }
 
         public List<Layer> layers = new List<Layer>();
 

@@ -47,11 +47,11 @@ namespace CHIPS_CHALLENGE.Classes
         }
         public static void LoadNext()
         {
-            chipInfo = chipFileLoader.LoadLevelFromFile(chipInfo.currentLevel.LevelNumber+1);
+            chipInfo = chipFileLoader.LoadLevelFromFile(chipInfo.LevelNumber+1);
         }
         public static void RestartLevel()
         {
-            chipInfo = chipFileLoader.LoadLevelFromFile(chipInfo.currentLevel.LevelNumber);
+            chipInfo = chipFileLoader.LoadLevelFromFile(chipInfo.LevelNumber);
         }
         public static Status UpdateTile(Vector2 position)
         {
@@ -94,7 +94,7 @@ namespace CHIPS_CHALLENGE.Classes
         }
         public static void ChipPickedUp()
         {
-            chipInfo.currentLevel.ChipsToPickUp--;
+            chipInfo.ChipsToPickUp--;
         }
         public static void ResetAllItems()
         {

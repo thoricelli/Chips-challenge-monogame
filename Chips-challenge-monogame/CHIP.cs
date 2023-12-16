@@ -141,7 +141,7 @@ namespace CHIPS_CHALLENGE
 
             // TODO: Add your update logic here
 
-            label.Text = ChipGame.chipInfo.currentLevel.LevelNumber.ToString();
+            label.Text = ChipGame.chipInfo.LevelNumber.ToString();
             index.Text = GeneralUtilities.ConvertFromVectorToIndex(thisPlayer.Position).ToString();
             positionString.Text = $"X: {thisPlayer.Position.X} Y: {thisPlayer.Position.Y}";
 
