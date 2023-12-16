@@ -1,6 +1,7 @@
 ﻿using CHIPS_CHALLENGE.Classes.Entities.Enums;
 using CHIPS_CHALLENGE.Classes.Game;
 using CHIPS_CHALLENGE.Classes.Items;
+using CHIPS_CHALLENGE.Classes.Items.Enums;
 using CHIPS_CHALLENGE.Classes.Sprites;
 using CHIPS_CHALLENGE.Classes.Utilities;
 using Microsoft.Xna.Framework;
@@ -14,6 +15,7 @@ namespace CHIPS_CHALLENGE.Classes.Entities
 {
     public abstract class Entity
     {
+        public Objects Code;
         public Vector2 Position;
         public Vector2 Velocity;
         public State State { get; set; }

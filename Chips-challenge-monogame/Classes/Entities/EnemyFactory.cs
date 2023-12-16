@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
+using CHIPS_CHALLENGE.Classes.Entities.Enums;
 
 namespace CHIPS_CHALLENGE.Classes.Entities
 {
@@ -13,14 +14,13 @@ namespace CHIPS_CHALLENGE.Classes.Entities
     {
         public static Enemy CreateObjectFromCode(Objects code, Vector2 position)
         {
-            Enemy enemy;
-            switch (code)
+            switch ((Enemies)code)
             {
+                case Enemies.BUG:
+                    return new Bug(position);
                 default:
-                    enemy = new Enemy(position);
-                    break;
+                    return new Enemy(code, position);
             }
-            return enemy;
         }
     }
 }

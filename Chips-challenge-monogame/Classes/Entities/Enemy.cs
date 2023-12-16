@@ -1,4 +1,6 @@
-﻿using CHIPS_CHALLENGE.Classes.Sprites;
+﻿using CHIPS_CHALLENGE.Classes.Entities.Enums;
+using CHIPS_CHALLENGE.Classes.Items.Enums;
+using CHIPS_CHALLENGE.Classes.Sprites;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
@@ -10,8 +12,9 @@ namespace CHIPS_CHALLENGE.Classes.Entities
 {
     public class Enemy : Entity
     {
-        public Enemy(Vector2 position)
+        public Enemy(Objects code, Vector2 position)
         {
+            this.Code = code;
             this.Position = position;
         }
 
@@ -22,7 +25,7 @@ namespace CHIPS_CHALLENGE.Classes.Entities
         }
         public override void LoadSprite()
         {
-            this.Sprite = new Sprite(CHIP.spritesheet, 4, 0x6C);
+            this.Sprite = new Sprite(CHIP.spritesheet, 4, (int)Code);
         }
     }
 }
