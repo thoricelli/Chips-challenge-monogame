@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 
 namespace CHIPS_CHALLENGE.Classes.Entities
 {
-    public abstract class Entity
+    public abstract class Entity : Animator
     {
         public Objects Code;
         public Vector2 Position;
@@ -22,17 +22,13 @@ namespace CHIPS_CHALLENGE.Classes.Entities
         public bool MovementEnabled { get; set; } = true;
         //Will update very PUSH update. (Which is configurable how fast)
         public Vector2? QueuedPush { get { return _queuedPush; } }
-        public Sprite Sprite { get; set; }
 
         private Vector2? _queuedPush = null;
 
-        protected Entity(Objects code)
+        protected Entity(Objects code, Sprite North, Sprite East, Sprite South, Sprite West) : base (North, East, South, West)
         {
             this.Code = code;
-            LoadSprite();
         }
-
-        public abstract void LoadSprite();
         public void Kill() {
             State = State.Dead;
             //Don't draw

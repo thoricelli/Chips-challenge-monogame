@@ -10,13 +10,13 @@ namespace CHIPS_CHALLENGE.Classes.Entities
 {
     public class Player : Entity
     {
-        public Player() : base((Objects)0x6C)
+        public Player() : base(
+            Objects.HERO_NORTH,
+            new Sprite(CHIP.spritesheet, 4, (int)Objects.HERO_NORTH),
+            new Sprite(CHIP.spritesheet, 4, ((int)Objects.HERO_NORTH) + 1),
+            new Sprite(CHIP.spritesheet, 4, ((int)Objects.HERO_NORTH) + 2),
+            new Sprite(CHIP.spritesheet, 4, ((int)Objects.HERO_NORTH) + 3))
         {
-        }
-
-        public override void LoadSprite()
-        {
-            this.Sprite = new Sprite(CHIP.spritesheet, 4, (int)Code);
         }
     }
 }

@@ -12,7 +12,12 @@ namespace CHIPS_CHALLENGE.Classes.Entities
 {
     public class Enemy : Entity
     {
-        public Enemy(Objects code, Vector2 position) : base(code)
+        public Enemy(Objects code, Vector2 position)
+            : base(code,
+                  new Sprite(CHIP.spritesheet, 1, (int)code), //N
+                  new Sprite(CHIP.spritesheet, 1, (int)code + 1), //E
+                  new Sprite(CHIP.spritesheet, 1, (int)code + 2), //S
+                  new Sprite(CHIP.spritesheet, 1, (int)code + 3)) //W
         {
             this.Position = position;
         }
@@ -21,10 +26,6 @@ namespace CHIPS_CHALLENGE.Classes.Entities
         public virtual void Update()
         {
 
-        }
-        public override void LoadSprite()
-        {
-            this.Sprite = new Sprite(CHIP.spritesheet, 4, (int)Code);
         }
     }
 }
