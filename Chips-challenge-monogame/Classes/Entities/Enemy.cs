@@ -1,6 +1,8 @@
 ﻿using CHIPS_CHALLENGE.Classes.Entities.Enums;
+using CHIPS_CHALLENGE.Classes.Items;
 using CHIPS_CHALLENGE.Classes.Items.Enums;
 using CHIPS_CHALLENGE.Classes.Sprites;
+using CHIPS_CHALLENGE.Classes.Utilities;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
@@ -12,7 +14,11 @@ namespace CHIPS_CHALLENGE.Classes.Entities
 {
     public class Enemy : Entity
     {
-        public Enemy(Objects code, Vector2 position)
+        //AI.
+        private Objects[] allowedObjects;
+        private Direction[] directions;
+
+        public Enemy(Objects code, Vector2 position, Direction[] directions, Objects[] allowedObjects)
             : base(code,
                   new Sprite(CHIP.spritesheet, 1, (int)code), //N
                   new Sprite(CHIP.spritesheet, 1, (int)code + 1), //E
@@ -20,6 +26,15 @@ namespace CHIPS_CHALLENGE.Classes.Entities
                   new Sprite(CHIP.spritesheet, 1, (int)code + 3)) //W
         {
             this.Position = position;
+            this.directions = directions;
+            this.allowedObjects = allowedObjects;
+        }
+        public Enemy(Objects code, Vector2 position, Sprite North, Sprite East, Sprite South, Sprite West, Direction[] directions, Objects[] allowedObjects)
+            : base(code,North, East, South, West)
+        {
+            this.Position = position;
+            this.directions = directions;
+            this.allowedObjects = allowedObjects;
         }
         public override bool Move(Vector2 velocity)
         {
@@ -32,7 +47,32 @@ namespace CHIPS_CHALLENGE.Classes.Entities
         //Update enemy movement
         public virtual void Update()
         {
+            int triedDirections = 0;
+            bool blocked = false;
+            do
+            {
+                blocked = false;
 
+                Vector2 velocity = GeneralUtilities.SpriteFacingToVector(
+                                                directions[triedDirections],
+                                                this.Facing
+                                                );
+                List<ChipObject> chipObjects =
+                    ChipGame.CheckCollision(this.Position + velocity * 32);
+                foreach (ChipObject item in chipObjects)
+                {
+                    if (!allowedObjects.Contains(item.code))
+                    {
+                        blocked = true;
+                    }
+                    else if (!blocked)
+                    {
+                        Move(velocity);
+                        break; //TODO, remove...
+                    }
+                }
+                triedDirections++;
+            } while (triedDirections < directions.Length && blocked);
         }
     }
 }
