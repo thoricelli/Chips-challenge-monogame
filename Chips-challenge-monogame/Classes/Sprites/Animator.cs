@@ -16,9 +16,10 @@ namespace CHIPS_CHALLENGE.Classes.Sprites
          ...ETC
          */
         //The current sprite that's displayed.
-        public Sprite Sprite { get { return Sprites[(int)_direction]; } }
+        public Sprite Sprite { get { return Sprites[(int)_facing]; } }
         //The direction of the sprite.
-        private Direction _direction;
+        public Facing Facing { get { return _facing; } }
+        private Facing _facing;
 
         public Animator(Sprite North, Sprite East, Sprite South, Sprite West)
         {
@@ -30,9 +31,9 @@ namespace CHIPS_CHALLENGE.Classes.Sprites
                 West
             };
         }
-        public void ChangeDirection(Direction direction)
+        public void ChangeDirection(Facing direction)
         {
-            this._direction = direction;
+            this._facing = direction;
         }
 
         public void AnimationRenderStepped()

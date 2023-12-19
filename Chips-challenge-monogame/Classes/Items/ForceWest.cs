@@ -1,4 +1,5 @@
 ﻿using CHIPS_CHALLENGE.Classes.Entities;
+using CHIPS_CHALLENGE.Classes.Game;
 using CHIPS_CHALLENGE.Classes.Items.Enums;
 using Microsoft.Xna.Framework;
 using System;
@@ -19,7 +20,7 @@ namespace CHIPS_CHALLENGE.Classes.Items
         public override void HasMovedTo(Entity entity, Vector2 oldVelocity)
         {
             if (!ChipGame.Inventory.ForceShoe)
-                entity.AddPush(new Vector2(-1,0));
+                entity.AddPush(new Push(new Vector2(-1,0), Game.Enums.PushType.MOVEMENT_ENABLED));
         }
     }
 }

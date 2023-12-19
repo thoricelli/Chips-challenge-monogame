@@ -56,19 +56,38 @@ namespace CHIPS_CHALLENGE.Classes.Utilities
                     //We're all good.
                     break;
                 case Facing.WEST:
-                    Vector2.Transform(position, Matrix.CreateRotationX(270));
+                    position = new Vector2(position.Y, -position.X);
                     break;
                 case Facing.SOUTH:
-                    Vector2.Transform(position, Matrix.CreateRotationX(180));
+                    position = new Vector2(-position.X, -position.Y);
                     break;
                 case Facing.EAST:
-                    Vector2.Transform(position, Matrix.CreateRotationX(90));
+                    position = new Vector2(-position.Y, position.X);
                     break;
                 default:
                     break;
             }
 
             return position;
+        }
+        public static Facing VelocityToFacing(Vector2 velocity)
+        {
+            switch (velocity.X)
+            {
+                case -1:
+                    return Facing.WEST;
+                case 1:
+                    return Facing.EAST;
+            }
+
+            switch (velocity.Y)
+            {
+                case -1:
+                    return Facing.NORTH;
+                case 1:
+                    return Facing.SOUTH;
+            }
+            return Facing.NORTH;
         }
     }
 }

@@ -1,4 +1,6 @@
 ﻿using CHIPS_CHALLENGE.Classes.Entities;
+using CHIPS_CHALLENGE.Classes.Game;
+using CHIPS_CHALLENGE.Classes.Game.Enums;
 using CHIPS_CHALLENGE.Classes.Items.Enums;
 using Microsoft.Xna.Framework;
 using System;
@@ -30,7 +32,7 @@ namespace CHIPS_CHALLENGE.Classes.Items
                         randomY = random.Next(-1, 2);
                 } while (randomX == 0 && randomY == 0);
 
-                entity.AddPush(new Vector2(randomX, randomY));
+                entity.AddPush(new Push(new Vector2(randomX, randomY), PushType.MOVEMENT_ENABLED));
             }
         }
     }

@@ -1,5 +1,6 @@
 ﻿using CHIPS_CHALLENGE.Classes.Entities.Enums;
 using CHIPS_CHALLENGE.Classes.Game;
+using CHIPS_CHALLENGE.Classes.Game.Enums;
 using CHIPS_CHALLENGE.Classes.Items;
 using CHIPS_CHALLENGE.Classes.Items.Enums;
 using CHIPS_CHALLENGE.Classes.Sprites;
@@ -21,9 +22,9 @@ namespace CHIPS_CHALLENGE.Classes.Entities
         public State State { get; set; }
         public bool MovementEnabled { get; set; } = true;
         //Will update very PUSH update. (Which is configurable how fast)
-        public Vector2? QueuedPush { get { return _queuedPush; } }
+        public Push QueuedPush { get { return _queuedPush; } }
 
-        private Vector2? _queuedPush = null;
+        private Push _queuedPush { get; set; } = null;
 
         protected Entity(Objects code, Sprite North, Sprite East, Sprite South, Sprite West) : base (North, East, South, West)
         {
@@ -37,27 +38,33 @@ namespace CHIPS_CHALLENGE.Classes.Entities
         /// Moves the entity N tile.
         /// </summary>
         /// <param name="velocity"></param>
-        public void Move(Vector2 velocity)
+        public virtual void Move(Vector2 velocity)
         {
             if (this.State != State.Dead && MovementEnabled && _queuedPush == null)
             {
                 Velocity += velocity;
 
-                if (Velocity != Vector2.Zero)
-                    Velocity.Normalize();
-
                 //We should probably have a handler or something for this...
                 //Idk.
-                
-                if (CheckMoveFromThisTile()) //Can entity move from current tile?
-                    if (CheckMoveToTile()) //Can entity move to the tile it wants?
+
+                if (CheckMoveFromThisTile())
+                { //Can entity move from current tile?
+                    if (CheckMoveToTile())
+                    { //Can entity move to the tile it wants?
                         Position += (Velocity * 32);
+                        ChangeDirection(GeneralUtilities.VelocityToFacing(velocity));
+                    }
+                }
+                
 
                 Vector2 oldVelocity = Velocity;
                 Velocity = Vector2.Zero;
 
                 //Well, this is used for the force items, but with no delay, this will look to be instant...
                 FireHasMoved(oldVelocity);
+            } else if (_queuedPush != null)
+            {
+                _queuedPush.QueuedMove = velocity;
             }
         }
 
@@ -101,17 +108,18 @@ namespace CHIPS_CHALLENGE.Classes.Entities
                 move = false;
             return move;
         }
-        public void AddPush(Vector2 push)
+        public void AddPush(Push push)
         {
             _queuedPush = push;
         }
         public void HandlePush()
         {
-            if (QueuedPush.HasValue)
+            if (_queuedPush != null)
             {
-                ChipGame.thisPlayerInput.DisableInput();
+                if (_queuedPush.Type == PushType.MOVEMENT_DISABLED)
+                    ChipGame.thisPlayerInput.DisableInput();
 
-                Vector2 savedPush = _queuedPush.Value;
+                Vector2 savedPush = _queuedPush.Velocity + _queuedPush.QueuedMove;
                 _queuedPush = null;
                 Move(savedPush);
 

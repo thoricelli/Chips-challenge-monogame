@@ -36,7 +36,7 @@ namespace CHIPS_CHALLENGE.Classes
         /*
          CONFIG IS TEMPORARILY HERE!
          */
-        private static int UpdateEnemiesMs = 1000;
+        private static int UpdateEnemiesMs = 500;
         private static int UpdatePushMs = 150;
 
         private static double LastEnemyUpdate = 0;
@@ -44,15 +44,24 @@ namespace CHIPS_CHALLENGE.Classes
 
         public static void LoadLevel(int level)
         {
+            ResetAll();
             chipInfo = chipFileLoader.LoadLevelFromFile(level);
         }
         public static void LoadNext()
         {
+            ResetAll();
             chipInfo = chipFileLoader.LoadLevelFromFile(chipInfo.LevelNumber+1);
         }
         public static void RestartLevel()
         {
+            ResetAll();
             chipInfo = chipFileLoader.LoadLevelFromFile(chipInfo.LevelNumber);
+        }
+        public static void ResetAll()
+        {
+            //Make players alive again.
+            _enemies = new List<Enemy>();
+            ResetAllItems();
         }
         public static Status UpdateTile(Vector2 position)
         {
@@ -129,10 +138,12 @@ namespace CHIPS_CHALLENGE.Classes
             thisPlayerInput.HandleInput();
             //Every X seconds update enemies.
             double totalMiliseconds = gameTime.TotalGameTime.TotalMilliseconds;
+            int enemyno = 0;
             if (totalMiliseconds - LastEnemyUpdate >= UpdateEnemiesMs)
             {
                 foreach (Enemy enemy in Enemies)
                 {
+                    enemyno++;
                     enemy.Update();
                 }
                 LastEnemyUpdate = gameTime.TotalGameTime.TotalMilliseconds;
@@ -147,6 +158,15 @@ namespace CHIPS_CHALLENGE.Classes
                 //What about enemies?
                 LastPushUpdate = gameTime.TotalGameTime.TotalMilliseconds;
             }
+        }
+        public static Player CheckPlayerTouched(Vector2 position)
+        {
+            foreach (Player player in _players)
+            {
+                if (player.Position == position)
+                    return player;
+            }
+            return null;
         }
     }
 }

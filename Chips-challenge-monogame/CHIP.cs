@@ -83,7 +83,7 @@ namespace CHIPS_CHALLENGE
         private Player thisPlayer;
         private PlayerInputHandler inputHandler;
 
-        int curLevel = 1;
+        int curLevel = 9;
 
         protected override void LoadContent()
         {
