@@ -13,5 +13,6 @@ namespace CHIPS_CHALLENGE.Classes.Entities.Enums
         SENTRY = Objects.SENTRY_NORTH,
         BALL = Objects.BALL_NORTH,
         TANK = Objects.TANK_NORTH,
+        ROCKET = Objects.ROCKET_NORTH,
     }
 }

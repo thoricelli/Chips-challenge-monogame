@@ -32,6 +32,9 @@ namespace CHIPS_CHALLENGE.Classes.Entities
                     case Enemies.TANK:
                         enemy = new Tank();
                         break;
+                    case Enemies.ROCKET:
+                        enemy = new Rocket();
+                        break;
                 }
                 face++;
             } while (face < 4 && enemy == null);
