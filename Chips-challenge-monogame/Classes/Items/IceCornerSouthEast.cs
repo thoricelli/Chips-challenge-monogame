@@ -17,7 +17,7 @@ namespace CHIPS_CHALLENGE.Classes.Items
         }
         public override void HasMovedTo(Entity entity, Vector2 oldVelocity)
         {
-            entity.AddPush(new Push(new Vector2(-oldVelocity.Y, -oldVelocity.X), Game.Enums.PushType.MOVEMENT_DISABLED));
+            entity.AddPush(new Push(new Vector2(-oldVelocity.Y, -oldVelocity.X), Game.Enums.PushType.ICE));
         }
     }
 }

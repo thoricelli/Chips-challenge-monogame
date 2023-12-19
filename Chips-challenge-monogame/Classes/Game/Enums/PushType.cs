@@ -8,7 +8,7 @@ namespace CHIPS_CHALLENGE.Classes.Game.Enums
 {
     public enum PushType
     {
-        MOVEMENT_ENABLED, //Used by force platforms
-        MOVEMENT_DISABLED //Used by ice + allows for bouncing.
+        FORCE, //Used by force platforms
+        ICE //Used by ice + allows for bouncing.
     }
 }

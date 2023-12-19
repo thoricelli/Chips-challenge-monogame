@@ -20,7 +20,7 @@ namespace CHIPS_CHALLENGE.Classes.Items
         public override void HasMovedTo(Entity entity, Vector2 oldVelocity)
         {
             if (!ChipGame.Inventory.IceShoe)
-                entity.AddPush(new Push(oldVelocity, Game.Enums.PushType.MOVEMENT_DISABLED));
+                entity.AddPush(new Push(oldVelocity, Game.Enums.PushType.ICE));
         }
     }
 }

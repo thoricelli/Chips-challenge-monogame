@@ -116,7 +116,7 @@ namespace CHIPS_CHALLENGE.Classes.Entities
         {
             if (_queuedPush != null)
             {
-                if (_queuedPush.Type == PushType.MOVEMENT_DISABLED)
+                if (_queuedPush.Type == PushType.ICE)
                     ChipGame.thisPlayerInput.DisableInput();
 
                 Vector2 savedPush = _queuedPush.Velocity + _queuedPush.QueuedMove;
