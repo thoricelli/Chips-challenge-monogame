@@ -21,12 +21,13 @@ namespace CHIPS_CHALLENGE.Classes.Entities
         {
             this.Position = position;
         }
-        public override void Move(Vector2 velocity)
+        public override bool Move(Vector2 velocity)
         {
-            base.Move(velocity);
+            bool move = base.Move(velocity);
             Player playerHit = ChipGame.CheckPlayerTouched(this.Position);
             if (playerHit != null)
                 playerHit.Kill();
+            return move;
         }
         //Update enemy movement
         public virtual void Update()

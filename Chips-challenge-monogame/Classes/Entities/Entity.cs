@@ -38,8 +38,9 @@ namespace CHIPS_CHALLENGE.Classes.Entities
         /// Moves the entity N tile.
         /// </summary>
         /// <param name="velocity"></param>
-        public virtual void Move(Vector2 velocity)
+        public virtual bool Move(Vector2 velocity)
         {
+            bool move = false;
             if (this.State != State.Dead && MovementEnabled && _queuedPush == null)
             {
                 Velocity += velocity;
@@ -53,6 +54,7 @@ namespace CHIPS_CHALLENGE.Classes.Entities
                     { //Can entity move to the tile it wants?
                         Position += (Velocity * 32);
                         ChangeDirection(GeneralUtilities.VelocityToFacing(velocity));
+                        move = true;
                     }
                 }
                 
@@ -66,6 +68,7 @@ namespace CHIPS_CHALLENGE.Classes.Entities
             {
                 _queuedPush.QueuedMove = velocity;
             }
+            return move;
         }
 
         private Status UpdateTile(Vector2 position)
