@@ -15,8 +15,17 @@ namespace CHIPS_CHALLENGE.Classes.Entities
     public class Enemy : Entity
     {
         //AI.
-        private Objects[] allowedObjects;
-        private Direction[] directions;
+        private List<Objects> allowedObjects = 
+            new List<Objects>() { 
+                Objects.EMPTY, 
+                Objects.WALL_BUTTON, 
+                Objects.CLONER_BUTTON, 
+                Objects.TOGGLE_WALL_ON,
+                Objects.TOGGLE_WALL_OFF,
+                Objects.TRAP_BUTTON,
+                Objects.SENTRY_BUTTON,
+                Objects.TELEPORT_BUTTON};
+        private List<Direction> directions = new List<Direction>();
         public Enemy(Objects code, Vector2 position, Facing facing)
             : base(code,
                   new Sprite(CHIP.spritesheet, 1, (int)code), //N
@@ -27,7 +36,7 @@ namespace CHIPS_CHALLENGE.Classes.Entities
         {
             this.Position = position;
         }
-        public Enemy(Objects code, Vector2 position, Direction[] directions, Objects[] allowedObjects, Facing facing)
+        public Enemy(Objects code, Vector2 position, List<Direction> directions, List<Objects> allowedObjects, Facing facing)
             : base(code,
                   new Sprite(CHIP.spritesheet, 1, (int)code), //N
                   new Sprite(CHIP.spritesheet, 1, (int)code + 1), //E
@@ -39,7 +48,18 @@ namespace CHIPS_CHALLENGE.Classes.Entities
             this.directions = directions;
             this.allowedObjects = allowedObjects;
         }
-        public Enemy(Objects code, Vector2 position, Sprite North, Sprite East, Sprite South, Sprite West, Direction[] directions, Objects[] allowedObjects, Facing facing)
+        public Enemy(Objects code, Vector2 position, List<Direction> directions, Facing facing)
+            : base(code,
+                  new Sprite(CHIP.spritesheet, 1, (int)code), //N
+                  new Sprite(CHIP.spritesheet, 1, (int)code + 1), //E
+                  new Sprite(CHIP.spritesheet, 1, (int)code + 2), //S
+                  new Sprite(CHIP.spritesheet, 1, (int)code + 3), //W
+                  facing)
+        {
+            this.Position = position;
+            this.directions = directions;
+        }
+        public Enemy(Objects code, Vector2 position, Sprite North, Sprite East, Sprite South, Sprite West, List<Direction> directions, List<Objects> allowedObjects, Facing facing)
             : base(code, North, East, South, West, facing)
         {
             this.Position = position;
@@ -57,7 +77,7 @@ namespace CHIPS_CHALLENGE.Classes.Entities
         //Update enemy movement
         public virtual void Update()
         {
-            if (allowedObjects != null && directions != null)
+            if (allowedObjects.Count != 0 && directions.Count != 0)
             {
                 int triedDirections = 0;
                 bool blocked = false;
@@ -84,7 +104,7 @@ namespace CHIPS_CHALLENGE.Classes.Entities
                         }
                     }
                     triedDirections++;
-                } while (triedDirections < directions.Length && blocked);
+                } while (triedDirections < directions.Count && blocked);
             }
         }
     }

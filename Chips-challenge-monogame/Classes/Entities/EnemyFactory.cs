@@ -22,6 +22,8 @@ namespace CHIPS_CHALLENGE.Classes.Entities
                         return new Bug(position, (Facing)i);
                     case Enemies.SENTRY:
                         return new Sentry(position, (Facing)i);
+                    case Enemies.BALL:
+                        return new Ball(position, (Facing)i);
                 }
             }
             return new Enemy(code, position, Facing.NORTH);

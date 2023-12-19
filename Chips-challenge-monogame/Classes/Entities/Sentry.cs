@@ -14,11 +14,11 @@ namespace CHIPS_CHALLENGE.Classes.Entities
 {
     public class Sentry : Enemy
     {
+        //TODO, sentry can't die to fire...
         public Sentry(Vector2 position, Facing facing) 
             : base((Objects)Enemies.SENTRY,
                   position,
-                  new Direction[] { Direction.UP, Direction.RIGHT, Direction.LEFT },
-                  new Objects[] { Objects.EMPTY, Objects.FIRE, Objects.WATER },
+                  new List<Direction> { Direction.UP, Direction.RIGHT, Direction.LEFT },
                   facing)
         {
         }

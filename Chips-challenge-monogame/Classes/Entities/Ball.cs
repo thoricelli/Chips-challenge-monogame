@@ -12,12 +12,13 @@ using System.Threading.Tasks;
 
 namespace CHIPS_CHALLENGE.Classes.Entities
 {
-    public class Bug : Enemy
+    public class Ball : Enemy
     {
-        public Bug(Vector2 position, Facing facing) 
-            : base((Objects)Enemies.BUG,
+        //TODO, sentry can't die to fire...
+        public Ball(Vector2 position, Facing facing) 
+            : base((Objects)Enemies.BALL,
                   position,
-                  new List<Direction> { Direction.LEFT, Direction.UP, Direction.RIGHT, Direction.DOWN },
+                  new List<Direction> { Direction.UP, Direction.DOWN },
                   facing)
         {
         }

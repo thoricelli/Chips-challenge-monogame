@@ -75,7 +75,7 @@ namespace CHIPS_CHALLENGE.Classes
                 if (item.GoToDirection.HasValue)
                 {
                     //Check if we can move to something (will HAVE to be an empty tile)
-                    Vector2 pos = (position + new Vector2(item.GoToDirection.Value.X, item.GoToDirection.Value.Y * 32));
+                    Vector2 pos = (position + new Vector2(item.GoToDirection.Value.X*32, item.GoToDirection.Value.Y * 32));
                     int index = GeneralUtilities.ConvertFromVectorToIndex(pos);
 
                     Objects? transformInto = item.TileMove(layer.objects[index].code);
