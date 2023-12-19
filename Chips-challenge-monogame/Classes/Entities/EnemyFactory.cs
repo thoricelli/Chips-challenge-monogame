@@ -14,19 +14,35 @@ namespace CHIPS_CHALLENGE.Classes.Entities
     {
         public static Enemy CreateObjectFromCode(Objects code, Vector2 position)
         {
-            for (int i = 0; i < 4; i++)
+            Enemy enemy = null;
+            int face = 0;
+            do
             {
-                switch ((Enemies)code-i)
+                switch ((Enemies)code - face)
                 {
                     case Enemies.BUG:
-                        return new Bug(position, (Facing)i);
+                        enemy = new Bug();
+                        break;
                     case Enemies.SENTRY:
-                        return new Sentry(position, (Facing)i);
+                        enemy = new Sentry();
+                        break;
                     case Enemies.BALL:
-                        return new Ball(position, (Facing)i);
+                        enemy = new Ball();
+                        break;
+                    case Enemies.TANK:
+                        enemy = new Tank();
+                        break;
                 }
-            }
-            return new Enemy(code, position, Facing.NORTH);
+                face++;
+            } while (face < 4 && enemy == null);
+
+            if (enemy == null)
+                enemy = new Enemy(code);
+
+            enemy.ChangeDirection((Facing)face-1);
+            enemy.Position = position;
+
+            return enemy;
         }
     }
 }

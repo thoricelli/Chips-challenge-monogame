@@ -26,45 +26,22 @@ namespace CHIPS_CHALLENGE.Classes.Entities
                 Objects.SENTRY_BUTTON,
                 Objects.TELEPORT_BUTTON};
         private List<Direction> directions = new List<Direction>();
-        public Enemy(Objects code, Vector2 position, Facing facing)
+        public Enemy(Objects code)
             : base(code,
                   new Sprite(CHIP.spritesheet, 1, (int)code), //N
                   new Sprite(CHIP.spritesheet, 1, (int)code + 1), //E
                   new Sprite(CHIP.spritesheet, 1, (int)code + 2), //S
-                  new Sprite(CHIP.spritesheet, 1, (int)code + 3),
-                  facing) //W
+                  new Sprite(CHIP.spritesheet, 1, (int)code + 3)) //W
         {
-            this.Position = position;
         }
-        public Enemy(Objects code, Vector2 position, List<Direction> directions, List<Objects> allowedObjects, Facing facing)
+        public Enemy(Objects code, List<Direction> directions)
             : base(code,
                   new Sprite(CHIP.spritesheet, 1, (int)code), //N
                   new Sprite(CHIP.spritesheet, 1, (int)code + 1), //E
                   new Sprite(CHIP.spritesheet, 1, (int)code + 2), //S
-                  new Sprite(CHIP.spritesheet, 1, (int)code + 3), //W
-                  facing)
+                  new Sprite(CHIP.spritesheet, 1, (int)code + 3)) //W
         {
-            this.Position = position;
             this.directions = directions;
-            this.allowedObjects = allowedObjects;
-        }
-        public Enemy(Objects code, Vector2 position, List<Direction> directions, Facing facing)
-            : base(code,
-                  new Sprite(CHIP.spritesheet, 1, (int)code), //N
-                  new Sprite(CHIP.spritesheet, 1, (int)code + 1), //E
-                  new Sprite(CHIP.spritesheet, 1, (int)code + 2), //S
-                  new Sprite(CHIP.spritesheet, 1, (int)code + 3), //W
-                  facing)
-        {
-            this.Position = position;
-            this.directions = directions;
-        }
-        public Enemy(Objects code, Vector2 position, Sprite North, Sprite East, Sprite South, Sprite West, List<Direction> directions, List<Objects> allowedObjects, Facing facing)
-            : base(code, North, East, South, West, facing)
-        {
-            this.Position = position;
-            this.directions = directions;
-            this.allowedObjects = allowedObjects;
         }
         public override bool Move(Vector2 velocity)
         {

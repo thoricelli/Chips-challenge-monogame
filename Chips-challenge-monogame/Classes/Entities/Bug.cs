@@ -14,11 +14,9 @@ namespace CHIPS_CHALLENGE.Classes.Entities
 {
     public class Bug : Enemy
     {
-        public Bug(Vector2 position, Facing facing) 
+        public Bug() 
             : base((Objects)Enemies.BUG,
-                  position,
-                  new List<Direction> { Direction.LEFT, Direction.UP, Direction.RIGHT, Direction.DOWN },
-                  facing)
+                  new List<Direction> { Direction.LEFT, Direction.UP, Direction.RIGHT, Direction.DOWN })
         {
         }
     }

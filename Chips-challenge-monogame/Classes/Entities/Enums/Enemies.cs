@@ -11,6 +11,7 @@ namespace CHIPS_CHALLENGE.Classes.Entities.Enums
     {
         BUG = Objects.BUG_NORTH,
         SENTRY = Objects.SENTRY_NORTH,
-        BALL = Objects.BALL_NORTH
+        BALL = Objects.BALL_NORTH,
+        TANK = Objects.TANK_NORTH,
     }
 }
