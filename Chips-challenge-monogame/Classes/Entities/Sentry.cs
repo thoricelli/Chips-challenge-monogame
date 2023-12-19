@@ -12,13 +12,13 @@ using System.Threading.Tasks;
 
 namespace CHIPS_CHALLENGE.Classes.Entities
 {
-    public class Bug : Enemy
+    public class Sentry : Enemy
     {
-        public Bug(Vector2 position, Facing facing) 
-            : base((Objects)Enemies.BUG,
+        public Sentry(Vector2 position, Facing facing) 
+            : base((Objects)Enemies.SENTRY,
                   position,
-                  new Direction[] { Direction.LEFT, Direction.UP, Direction.RIGHT },
-                  new Objects[] { Objects.EMPTY },
+                  new Direction[] { Direction.UP, Direction.RIGHT, Direction.LEFT },
+                  new Objects[] { Objects.EMPTY, Objects.FIRE, Objects.WATER },
                   facing)
         {
         }

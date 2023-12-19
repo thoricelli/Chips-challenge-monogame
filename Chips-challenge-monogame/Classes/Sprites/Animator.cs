@@ -21,7 +21,7 @@ namespace CHIPS_CHALLENGE.Classes.Sprites
         public Facing Facing { get { return _facing; } }
         private Facing _facing;
 
-        public Animator(Sprite North, Sprite East, Sprite South, Sprite West)
+        public Animator(Sprite North, Sprite East, Sprite South, Sprite West, Facing facing)
         {
             Sprites = new Sprite[]
             {
@@ -30,6 +30,7 @@ namespace CHIPS_CHALLENGE.Classes.Sprites
                 South,
                 West
             };
+            this._facing = facing;
         }
         public void ChangeDirection(Facing direction)
         {

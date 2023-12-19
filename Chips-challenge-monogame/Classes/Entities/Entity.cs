@@ -26,7 +26,7 @@ namespace CHIPS_CHALLENGE.Classes.Entities
 
         private Push _queuedPush { get; set; } = null;
 
-        protected Entity(Objects code, Sprite North, Sprite East, Sprite South, Sprite West) : base (North, East, South, West)
+        protected Entity(Objects code, Sprite North, Sprite East, Sprite South, Sprite West, Facing facing = Facing.NORTH) : base (North, East, South, West, facing)
         {
             this.Code = code;
         }

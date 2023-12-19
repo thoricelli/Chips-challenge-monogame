@@ -14,13 +14,17 @@ namespace CHIPS_CHALLENGE.Classes.Entities
     {
         public static Enemy CreateObjectFromCode(Objects code, Vector2 position)
         {
-            switch ((Enemies)code)
+            for (int i = 0; i < 4; i++)
             {
-                case Enemies.BUG:
-                    return new Bug(position);
-                default:
-                    return new Enemy(code, position);
+                switch ((Enemies)code-i)
+                {
+                    case Enemies.BUG:
+                        return new Bug(position, (Facing)i);
+                    case Enemies.SENTRY:
+                        return new Sentry(position, (Facing)i);
+                }
             }
+            return new Enemy(code, position, Facing.NORTH);
         }
     }
 }

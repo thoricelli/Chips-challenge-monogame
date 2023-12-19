@@ -9,6 +9,7 @@ namespace CHIPS_CHALLENGE.Classes.Entities.Enums
 {
     public enum Enemies
     {
-        BUG = Objects.BUG_NORTH
+        BUG = Objects.BUG_NORTH,
+        SENTRY = Objects.SENTRY_NORTH
     }
 }

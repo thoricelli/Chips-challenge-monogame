@@ -17,20 +17,30 @@ namespace CHIPS_CHALLENGE.Classes.Entities
         //AI.
         private Objects[] allowedObjects;
         private Direction[] directions;
-
-        public Enemy(Objects code, Vector2 position, Direction[] directions, Objects[] allowedObjects)
+        public Enemy(Objects code, Vector2 position, Facing facing)
             : base(code,
                   new Sprite(CHIP.spritesheet, 1, (int)code), //N
                   new Sprite(CHIP.spritesheet, 1, (int)code + 1), //E
                   new Sprite(CHIP.spritesheet, 1, (int)code + 2), //S
-                  new Sprite(CHIP.spritesheet, 1, (int)code + 3)) //W
+                  new Sprite(CHIP.spritesheet, 1, (int)code + 3),
+                  facing) //W
+        {
+            this.Position = position;
+        }
+        public Enemy(Objects code, Vector2 position, Direction[] directions, Objects[] allowedObjects, Facing facing)
+            : base(code,
+                  new Sprite(CHIP.spritesheet, 1, (int)code), //N
+                  new Sprite(CHIP.spritesheet, 1, (int)code + 1), //E
+                  new Sprite(CHIP.spritesheet, 1, (int)code + 2), //S
+                  new Sprite(CHIP.spritesheet, 1, (int)code + 3), //W
+                  facing)
         {
             this.Position = position;
             this.directions = directions;
             this.allowedObjects = allowedObjects;
         }
-        public Enemy(Objects code, Vector2 position, Sprite North, Sprite East, Sprite South, Sprite West, Direction[] directions, Objects[] allowedObjects)
-            : base(code,North, East, South, West)
+        public Enemy(Objects code, Vector2 position, Sprite North, Sprite East, Sprite South, Sprite West, Direction[] directions, Objects[] allowedObjects, Facing facing)
+            : base(code, North, East, South, West, facing)
         {
             this.Position = position;
             this.directions = directions;
@@ -47,32 +57,35 @@ namespace CHIPS_CHALLENGE.Classes.Entities
         //Update enemy movement
         public virtual void Update()
         {
-            int triedDirections = 0;
-            bool blocked = false;
-            do
+            if (allowedObjects != null && directions != null)
             {
-                blocked = false;
-
-                Vector2 velocity = GeneralUtilities.SpriteFacingToVector(
-                                                directions[triedDirections],
-                                                this.Facing
-                                                );
-                List<ChipObject> chipObjects =
-                    ChipGame.CheckCollision(this.Position + velocity * 32);
-                foreach (ChipObject item in chipObjects)
+                int triedDirections = 0;
+                bool blocked = false;
+                do
                 {
-                    if (!allowedObjects.Contains(item.code))
+                    blocked = false;
+
+                    Vector2 velocity = GeneralUtilities.SpriteFacingToVector(
+                                                    directions[triedDirections],
+                                                    this.Facing
+                                                    );
+                    List<ChipObject> chipObjects =
+                        ChipGame.CheckCollision(this.Position + velocity * 32);
+                    foreach (ChipObject item in chipObjects)
                     {
-                        blocked = true;
+                        if (!allowedObjects.Contains(item.code))
+                        {
+                            blocked = true;
+                        }
+                        else if (!blocked)
+                        {
+                            Move(velocity);
+                            break; //TODO, remove...
+                        }
                     }
-                    else if (!blocked)
-                    {
-                        Move(velocity);
-                        break; //TODO, remove...
-                    }
-                }
-                triedDirections++;
-            } while (triedDirections < directions.Length && blocked);
+                    triedDirections++;
+                } while (triedDirections < directions.Length && blocked);
+            }
         }
     }
 }
