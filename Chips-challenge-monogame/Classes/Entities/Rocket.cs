@@ -16,7 +16,7 @@ namespace CHIPS_CHALLENGE.Classes.Entities
     {
         //TODO, sentry can't die to fire...
         public Rocket() 
-            : base((Objects)Enemies.ROCKET,
+            : base((Objects)Enemies.GLIDER,
                   new List<Direction> { Direction.UP, Direction.LEFT, Direction.RIGHT, Direction.DOWN })
         {
         }

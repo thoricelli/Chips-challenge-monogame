@@ -63,7 +63,7 @@ namespace CHIPS_CHALLENGE.Classes.Entities
                     blocked = false;
 
                     Vector2 velocity = GeneralUtilities.SpriteFacingToVector(
-                                                    directions[triedDirections],
+                                                    GetDirection(triedDirections),
                                                     this.Facing
                                                     );
                     List<ChipObject> chipObjects =
@@ -83,6 +83,10 @@ namespace CHIPS_CHALLENGE.Classes.Entities
                     triedDirections++;
                 } while (triedDirections < directions.Count && blocked);
             }
+        }
+        public virtual Direction GetDirection(int tries)
+        {
+            return directions[tries];
         }
     }
 }

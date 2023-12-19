@@ -10,9 +10,10 @@ namespace CHIPS_CHALLENGE.Classes.Entities.Enums
     public enum Enemies
     {
         BUG = Objects.BUG_NORTH,
-        SENTRY = Objects.SENTRY_NORTH,
+        FIREBALL = Objects.FIREBALL_NORTH,
         BALL = Objects.BALL_NORTH,
         TANK = Objects.TANK_NORTH,
-        ROCKET = Objects.ROCKET_NORTH,
+        GLIDER = Objects.GLIDER_NORTH,
+        WALKER = Objects.WALKER_NORTH,
     }
 }

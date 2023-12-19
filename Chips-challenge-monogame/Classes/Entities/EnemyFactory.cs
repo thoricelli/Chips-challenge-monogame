@@ -23,7 +23,7 @@ namespace CHIPS_CHALLENGE.Classes.Entities
                     case Enemies.BUG:
                         enemy = new Bug();
                         break;
-                    case Enemies.SENTRY:
+                    case Enemies.FIREBALL:
                         enemy = new Sentry();
                         break;
                     case Enemies.BALL:
@@ -32,9 +32,11 @@ namespace CHIPS_CHALLENGE.Classes.Entities
                     case Enemies.TANK:
                         enemy = new Tank();
                         break;
-                    case Enemies.ROCKET:
+                    case Enemies.GLIDER:
                         enemy = new Rocket();
                         break;
+                    //SKIPPING TEETH
+                    case Enemies
                 }
                 face++;
             } while (face < 4 && enemy == null);
