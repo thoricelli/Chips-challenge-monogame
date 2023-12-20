@@ -36,7 +36,12 @@ namespace CHIPS_CHALLENGE.Classes.Entities
                         enemy = new Rocket();
                         break;
                     //SKIPPING TEETH
-                    case Enemies
+                    case Enemies.WALKER:
+                        enemy = new Walker();
+                        break;
+                    case Enemies.BLOB:
+
+                        break;
                 }
                 face++;
             } while (face < 4 && enemy == null);

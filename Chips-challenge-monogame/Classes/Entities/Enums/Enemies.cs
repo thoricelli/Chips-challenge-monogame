@@ -15,5 +15,6 @@ namespace CHIPS_CHALLENGE.Classes.Entities.Enums
         TANK = Objects.TANK_NORTH,
         GLIDER = Objects.GLIDER_NORTH,
         WALKER = Objects.WALKER_NORTH,
+        BLOB = Objects.BLOB_NORTH,
     }
 }

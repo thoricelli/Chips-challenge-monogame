@@ -81,12 +81,16 @@ namespace CHIPS_CHALLENGE.Classes.Entities
                         }
                     }
                     triedDirections++;
-                } while (triedDirections < directions.Count && blocked);
+                } while (CanStillMove(triedDirections) && blocked);
             }
         }
         public virtual Direction GetDirection(int tries)
         {
             return directions[tries];
+        }
+        public virtual bool CanStillMove(int tries)
+        {
+            return tries < directions.Count;
         }
     }
 }
