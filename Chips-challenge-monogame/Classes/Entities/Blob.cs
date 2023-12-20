@@ -12,21 +12,17 @@ using System.Threading.Tasks;
 
 namespace CHIPS_CHALLENGE.Classes.Entities
 {
-    public class Walker : Enemy
+    public class Blob : Enemy
     {
         //TODO, sentry can't die to fire...
-        public Walker() 
-            : base((Objects)Enemies.WALKER,
-                  new List<Direction> { Direction.UP })
+        public Blob() 
+            : base((Objects)Enemies.BLOB)
         {
         }
         public override Direction GetDirection(int tries)
         {
             Random random = new Random();
-            if (tries == 0)
-                return base.GetDirection(tries);
-            else
-                return (Direction)random.Next(1, 5);
+            return (Direction)random.Next(1, 5);
         }
         public override bool CanStillMove(int tries)
         {

@@ -54,7 +54,7 @@ namespace CHIPS_CHALLENGE.Classes.Entities
         //Update enemy movement
         public virtual void Update()
         {
-            if (allowedObjects.Count != 0 && directions.Count != 0)
+            if (allowedObjects.Count != 0)
             {
                 int triedDirections = 0;
                 bool blocked = false;
@@ -86,7 +86,10 @@ namespace CHIPS_CHALLENGE.Classes.Entities
         }
         public virtual Direction GetDirection(int tries)
         {
-            return directions[tries];
+            if (directions.Count != 0)
+                return directions[tries];
+            else
+                return Direction.UP;
         }
         public virtual bool CanStillMove(int tries)
         {

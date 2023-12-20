@@ -40,7 +40,7 @@ namespace CHIPS_CHALLENGE.Classes.Entities
                         enemy = new Walker();
                         break;
                     case Enemies.BLOB:
-
+                        enemy = new Blob();
                         break;
                 }
                 face++;
