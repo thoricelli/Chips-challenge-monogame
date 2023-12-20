@@ -130,13 +130,9 @@ namespace CHIPS_CHALLENGE.Classes.Entities
                     Move(new Vector2(-savedPush.X, -savedPush.Y));
                 }
 
-                if (_queuedPush == null)
+                if (_queuedPush == null || _queuedPush.Type == PushType.FORCE)
                     ChipGame.thisPlayerInput.EnableInput();
             }
         }
-        /*Every entity will have a top, down, left, right sprite
-          Animated will be later.
-          So, why not define them here, have them programmed by the entity
-          class! */
     }
 }
