@@ -23,6 +23,10 @@ namespace CHIPS_CHALLENGE
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
         private GameState state;
+        public void ChangeState(GameState state)
+        {
+            this.state = state;
+        }
 
         public CHIP()
         {
@@ -45,15 +49,14 @@ namespace CHIPS_CHALLENGE
             _graphics.PreferredBackBufferHeight = 720;
             _graphics.ApplyChanges();
 
-            state.Initialize();
+            InGameState inGameState = new InGameState(GraphicsDevice, _spriteBatch, this);
+            state = inGameState;
 
             base.Initialize();
         }
 
         protected override void LoadContent()
         {
-            InGameState inGameState = new InGameState(GraphicsDevice, _spriteBatch, this);
-            state = inGameState;
         }
         protected override void Update(GameTime gameTime)
         {

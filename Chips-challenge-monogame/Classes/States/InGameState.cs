@@ -44,21 +44,6 @@ namespace CHIPS_CHALLENGE.Classes.States
 
         public InGameState(GraphicsDevice graphics, SpriteBatch spriteBatch, CHIP chip) : base(graphics, spriteBatch, chip)
         {
-            _spriteBatch = new SpriteBatch(_graphics);
-
-            spritesheet = new Spritesheet(_game.Content.Load<Texture2D>("ChipTiles"), 32, 32, 0, 0, 16);
-            sprite = new Sprite(spritesheet, 152);
-            ChipGame.LoadLevel(curLevel);
-
-            chipDrawer = new ChipDrawer(_spriteBatch, _graphics);
-
-            //TESTPLAYER
-            thisPlayer = new Player();
-            ChipGame.AddPlayer(thisPlayer);
-            chipDrawer.ChangeSubject(thisPlayer);
-
-            inputHandler = new PlayerInputHandler(thisPlayer);
-            ChipGame.thisPlayerInput = inputHandler; //TEMP
         }
 
         public override void Draw(GameTime gameTime)
@@ -110,6 +95,25 @@ namespace CHIPS_CHALLENGE.Classes.States
             positionString.Text = $"X: {thisPlayer.Position.X} Y: {thisPlayer.Position.Y}";
 
             ChipGame.Update(gameTime);
+        }
+
+        public override void LoadContent()
+        {
+            _spriteBatch = new SpriteBatch(_graphics);
+
+            spritesheet = new Spritesheet(_game.Content.Load<Texture2D>("ChipTiles"), 32, 32, 0, 0, 16);
+            sprite = new Sprite(spritesheet, 152);
+            ChipGame.LoadLevel(curLevel);
+
+            chipDrawer = new ChipDrawer(_spriteBatch, _graphics);
+
+            //TESTPLAYER
+            thisPlayer = new Player();
+            ChipGame.AddPlayer(thisPlayer);
+            chipDrawer.ChangeSubject(thisPlayer);
+
+            inputHandler = new PlayerInputHandler(thisPlayer);
+            ChipGame.thisPlayerInput = inputHandler; //TEMP
         }
 
         public override void Initialize()

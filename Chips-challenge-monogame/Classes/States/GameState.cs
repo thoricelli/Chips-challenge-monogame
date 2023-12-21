@@ -18,8 +18,11 @@ namespace CHIPS_CHALLENGE.Classes.States
             _graphics = graphics;
             _spriteBatch = spriteBatch;
             this._game = chip;
+            this.LoadContent();
+            this.Initialize();
         }
         public abstract void Initialize();
+        public abstract void LoadContent();
         public abstract void Update(GameTime gameTime);
         public abstract void Draw(GameTime gameTime);
     }
