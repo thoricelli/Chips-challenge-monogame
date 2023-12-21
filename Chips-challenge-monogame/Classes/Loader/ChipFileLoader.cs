@@ -101,8 +101,12 @@ namespace CHIPS_CHALLENGE.Classes.Loader
             //Do any mutations or setup here, I should probably refactor this and move this to another class.
             switch (codeObject)
             {
+                case Objects.HERO_NORTH:
+                case Objects.HERO_WEST:
                 case Objects.HERO_SOUTH:
+                case Objects.HERO_EAST:
                     ChipGame.SetSpawnLocation(index);
+                    code = (byte)Objects.EMPTY;
                     break;
             }
             return code;

@@ -1,4 +1,5 @@
 ﻿using CHIPS_CHALLENGE.Classes.Entities;
+using CHIPS_CHALLENGE.Classes.Game;
 using CHIPS_CHALLENGE.Classes.Items;
 using CHIPS_CHALLENGE.Classes.Items.Enums;
 using CHIPS_CHALLENGE.Classes.Sprites;
@@ -73,6 +74,7 @@ namespace CHIPS_CHALLENGE.Classes.Drawing
                 {
                     ChipObject item = layer.objects[i];
                     Vector2 position = GeneralUtilities.ConvertFromIndexToVector(i);
+                    GameUpdate.Update(item);
 
                     spriteBatch.Draw(
                             item.Sprite.SpriteSheet.spriteSheet,
