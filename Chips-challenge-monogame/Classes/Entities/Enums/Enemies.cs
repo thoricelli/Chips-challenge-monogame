@@ -16,5 +16,6 @@ namespace CHIPS_CHALLENGE.Classes.Entities.Enums
         GLIDER = Objects.GLIDER_NORTH,
         WALKER = Objects.WALKER_NORTH,
         BLOB = Objects.BLOB_NORTH,
+        PARAMECIUM = Objects.PARAMECIUM_NORTH,
     }
 }

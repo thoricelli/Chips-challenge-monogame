@@ -12,20 +12,12 @@ using System.Threading.Tasks;
 
 namespace CHIPS_CHALLENGE.Classes.Entities
 {
-    public class Blob : Enemy
+    public class Paramecium : Enemy
     {
-        public Blob() 
-            : base((Objects)Enemies.BLOB)
+        public Paramecium() 
+            : base((Objects)Enemies.PARAMECIUM,
+                  new List<Direction> { Direction.RIGHT, Direction.UP, Direction.LEFT, Direction.DOWN })
         {
-        }
-        public override Direction GetDirection(int tries)
-        {
-            Random random = new Random();
-            return (Direction)random.Next(1, 5);
-        }
-        public override bool CanStillMove(int tries)
-        {
-            return tries < 10;
         }
     }
 }

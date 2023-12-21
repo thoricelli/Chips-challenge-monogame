@@ -42,6 +42,9 @@ namespace CHIPS_CHALLENGE.Classes.Entities
                     case Enemies.BLOB:
                         enemy = new Blob();
                         break;
+                    case Enemies.PARAMECIUM:
+
+                        break;
                 }
                 face++;
             } while (face < 4 && enemy == null);

@@ -14,7 +14,6 @@ namespace CHIPS_CHALLENGE.Classes.Entities
 {
     public class Tank : Enemy
     {
-        //TODO, sentry can't die to fire...
         public Tank() 
             : base((Objects)Enemies.TANK,
                   new List<Direction> { Direction.UP })

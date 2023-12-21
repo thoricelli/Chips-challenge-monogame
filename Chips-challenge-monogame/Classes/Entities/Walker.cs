@@ -14,7 +14,6 @@ namespace CHIPS_CHALLENGE.Classes.Entities
 {
     public class Walker : Enemy
     {
-        //TODO, sentry can't die to fire...
         public Walker() 
             : base((Objects)Enemies.WALKER,
                   new List<Direction> { Direction.UP })
