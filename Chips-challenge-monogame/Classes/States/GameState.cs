@@ -17,7 +17,7 @@ namespace CHIPS_CHALLENGE.Classes.States
         {
             _graphics = graphics;
             _spriteBatch = spriteBatch;
-            this.chip = chip;
+            this._game = chip;
         }
         public abstract void Initialize();
         public abstract void Update(GameTime gameTime);

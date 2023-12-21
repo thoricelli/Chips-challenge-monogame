@@ -1,5 +1,6 @@
 ﻿using CHIPS_CHALLENGE.Classes.Items.Enums;
 using CHIPS_CHALLENGE.Classes.Sprites;
+using CHIPS_CHALLENGE.Classes.States;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,10 +13,10 @@ namespace CHIPS_CHALLENGE.Classes.Entities
     {
         public Player() : base(
             Objects.HERO_NORTH,
-            new Sprite(CHIP.spritesheet, 4, (int)Objects.HERO_NORTH),
-            new Sprite(CHIP.spritesheet, 4, ((int)Objects.HERO_NORTH) + 1),
-            new Sprite(CHIP.spritesheet, 4, ((int)Objects.HERO_NORTH) + 2),
-            new Sprite(CHIP.spritesheet, 4, ((int)Objects.HERO_NORTH) + 3))
+            new Sprite(InGameState.spritesheet, 4, (int)Objects.HERO_NORTH),
+            new Sprite(InGameState.spritesheet, 4, ((int)Objects.HERO_NORTH) + 1),
+            new Sprite(InGameState.spritesheet, 4, ((int)Objects.HERO_NORTH) + 2),
+            new Sprite(InGameState.spritesheet, 4, ((int)Objects.HERO_NORTH) + 3))
         {
         }
     }

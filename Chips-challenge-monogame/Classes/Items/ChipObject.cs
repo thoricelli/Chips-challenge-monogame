@@ -1,6 +1,7 @@
 ﻿using CHIPS_CHALLENGE.Classes.Entities;
 using CHIPS_CHALLENGE.Classes.Items.Enums;
 using CHIPS_CHALLENGE.Classes.Sprites;
+using CHIPS_CHALLENGE.Classes.States;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
@@ -37,7 +38,7 @@ namespace CHIPS_CHALLENGE.Classes.Items
         public ChipObject(Objects code)
         {
             this.code = code;
-            Sprite = new Sprite(CHIP.spritesheet, 1, (int)code); //REPLACE THIS LATER!
+            Sprite = new Sprite(InGameState.spritesheet, 1, (int)code); //REPLACE THIS LATER!
         }
         /// <summary>
         /// Fired when the object is touched by a entity

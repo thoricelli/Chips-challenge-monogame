@@ -2,6 +2,7 @@
 using CHIPS_CHALLENGE.Classes.Items;
 using CHIPS_CHALLENGE.Classes.Items.Enums;
 using CHIPS_CHALLENGE.Classes.Sprites;
+using CHIPS_CHALLENGE.Classes.States;
 using CHIPS_CHALLENGE.Classes.Utilities;
 using Microsoft.Xna.Framework;
 using System;
@@ -28,18 +29,18 @@ namespace CHIPS_CHALLENGE.Classes.Entities
         private List<Direction> directions = new List<Direction>();
         public Enemy(Objects code)
             : base(code,
-                  new Sprite(CHIP.spritesheet, 1, (int)code), //N
-                  new Sprite(CHIP.spritesheet, 1, (int)code + 1), //E
-                  new Sprite(CHIP.spritesheet, 1, (int)code + 2), //S
-                  new Sprite(CHIP.spritesheet, 1, (int)code + 3)) //W
+                  new Sprite(InGameState.spritesheet, 1, (int)code), //N
+                  new Sprite(InGameState.spritesheet, 1, (int)code + 1), //E
+                  new Sprite(InGameState.spritesheet, 1, (int)code + 2), //S
+                  new Sprite(InGameState.spritesheet, 1, (int)code + 3)) //W
         {
         }
         public Enemy(Objects code, List<Direction> directions)
             : base(code,
-                  new Sprite(CHIP.spritesheet, 1, (int)code), //N
-                  new Sprite(CHIP.spritesheet, 1, (int)code + 1), //E
-                  new Sprite(CHIP.spritesheet, 1, (int)code + 2), //S
-                  new Sprite(CHIP.spritesheet, 1, (int)code + 3)) //W
+                  new Sprite(InGameState.spritesheet, 1, (int)code), //N
+                  new Sprite(InGameState.spritesheet, 1, (int)code + 1), //E
+                  new Sprite(InGameState.spritesheet, 1, (int)code + 2), //S
+                  new Sprite(InGameState.spritesheet, 1, (int)code + 3)) //W
         {
             this.directions = directions;
         }
