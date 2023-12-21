@@ -1,18 +1,29 @@
-﻿using Myra.Graphics2D.UI;
+﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using Myra.Graphics2D.UI;
 using Myra;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Microsoft.Xna.Framework;
 
-namespace CHIPS_CHALLENGE.Classes.UI
+namespace CHIPS_CHALLENGE.Classes.States
 {
-    public class StartScreen
+    public class MenuState : GameState
     {
-        public void ShowStartMenu(Panel panel)
+        public MenuState(GraphicsDevice graphics, SpriteBatch spriteBatch, CHIP chip) : base(graphics, spriteBatch, chip)
         {
+        }
+
+        public override void Draw(GameTime gameTime)
+        {
+            base.Draw(gameTime);
+        }
+
+        public override void Initialize()
+        {
+            base.Initialize();
             /*if (desktop.ContextMenu != null)
             {
                 // Dont show if it's already shown
@@ -53,7 +64,17 @@ namespace CHIPS_CHALLENGE.Classes.UI
 
             container.Widgets.Add(verticalMenu);
 
-            panel.Widgets.Add(container);
+            _desktop.Root = container;
+        }
+
+        public override void LoadContent()
+        {
+            
+        }
+
+        public override void Update(GameTime gameTime)
+        {
+            
         }
     }
 }

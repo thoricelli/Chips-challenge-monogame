@@ -12,7 +12,6 @@ using Myra.Graphics2D.UI;
 using Myra;
 using CHIPS_CHALLENGE.Classes.Utilities;
 using CHIPS_CHALLENGE.Classes.Input;
-using CHIPS_CHALLENGE.Classes.UI;
 using CHIPS_CHALLENGE.Classes.States;
 using SharpDX.Direct3D9;
 
@@ -49,8 +48,11 @@ namespace CHIPS_CHALLENGE
             _graphics.PreferredBackBufferHeight = 720;
             _graphics.ApplyChanges();
 
-            InGameState inGameState = new InGameState(GraphicsDevice, _spriteBatch, this);
-            state = inGameState;
+            /*InGameState inGameState = new InGameState(GraphicsDevice, _spriteBatch, this);
+            state = inGameState;*/
+
+            MenuState menuState = new MenuState(GraphicsDevice, _spriteBatch, this);
+            this.ChangeState(menuState);
 
             base.Initialize();
         }

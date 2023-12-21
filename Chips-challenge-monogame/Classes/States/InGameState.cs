@@ -2,7 +2,6 @@
 using CHIPS_CHALLENGE.Classes.Entities;
 using CHIPS_CHALLENGE.Classes.Input;
 using CHIPS_CHALLENGE.Classes.Sprites;
-using CHIPS_CHALLENGE.Classes.UI;
 using CHIPS_CHALLENGE.Classes.Utilities;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -37,7 +36,6 @@ namespace CHIPS_CHALLENGE.Classes.States
         bool upprev = true;
         int previousScrollWheelValue = 0;
 
-        private Desktop _desktop;
         private Label label;
         private Label index;
         private Label positionString;
@@ -54,8 +52,7 @@ namespace CHIPS_CHALLENGE.Classes.States
             chipDrawer.Draw();
             _spriteBatch.End();
 
-            //Render MRYA UI.
-            _desktop.Render();
+            base.Draw(gameTime);
         }
 
         public override void Update(GameTime gameTime)
@@ -118,10 +115,7 @@ namespace CHIPS_CHALLENGE.Classes.States
 
         public override void Initialize()
         {
-            MyraEnvironment.Game = this._game;
-
-            _desktop = new Desktop();
-
+            base.Initialize();
             Panel _panel = new Panel();
 
             label = new Label()
@@ -141,9 +135,6 @@ namespace CHIPS_CHALLENGE.Classes.States
             _panel.Widgets.Add(label);
             _panel.Widgets.Add(index);
             _panel.Widgets.Add(positionString);
-
-            StartScreen screen = new StartScreen();
-            screen.ShowStartMenu(_panel);
 
             _desktop.Root = _panel;
         }
