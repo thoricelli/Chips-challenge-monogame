@@ -24,11 +24,6 @@ namespace CHIPS_CHALLENGE.Classes.States
         public override void Initialize()
         {
             base.Initialize();
-            /*if (desktop.ContextMenu != null)
-            {
-                // Dont show if it's already shown
-                return;
-            }*/
 
             var container = new VerticalStackPanel
             {
@@ -45,16 +40,14 @@ namespace CHIPS_CHALLENGE.Classes.States
 
             var menuItem1 = new MenuItem();
             menuItem1.Text = "Start New Game";
-            menuItem1.Selected += (s, a) =>
-            {
-                // "Start New Game" selected
-            };
+            menuItem1.Selected += NewGameSelected;
 
             /*var menuItem2 = new MenuItem();
             menuItem2.Text = "Options";*/
 
             var menuItem3 = new MenuItem();
             menuItem3.Text = "Quit";
+            menuItem3.Selected += QuitGameSelected;
 
             var verticalMenu = new VerticalMenu();
 
@@ -75,6 +68,14 @@ namespace CHIPS_CHALLENGE.Classes.States
         public override void Update(GameTime gameTime)
         {
             
+        }
+        private void NewGameSelected(object sender, EventArgs e)
+        {
+            _game.ChangeState(new InGameState(_graphics, _spriteBatch, _game));
+        }
+        private void QuitGameSelected(object sender, EventArgs e)
+        {
+            _game.Exit();
         }
     }
 }
