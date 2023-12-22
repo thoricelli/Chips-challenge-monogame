@@ -76,17 +76,20 @@ namespace CHIPS_CHALLENGE.Classes.Drawing
                     Vector2 position = GeneralUtilities.ConvertFromIndexToVector(i);
                     layer.objects[i] = GameUpdate.Update(item);
 
-                    spriteBatch.Draw(
-                            item.Sprite.SpriteSheet.spriteSheet,
-                            CalculateModifiers(position),
-                            item.Sprite.SpriteRectangle,
-                            Color.White,
-                            0,
-                            Vector2.Zero,
-                            ZoomModifier,
-                            SpriteEffects.None,
-                            0
-                        );
+                    if (layerIndex == 1 || (layerIndex == 0 && item.code != Objects.EMPTY))
+                    {
+                        spriteBatch.Draw(
+                                item.Sprite.SpriteSheet.spriteSheet,
+                                CalculateModifiers(position),
+                                item.Sprite.SpriteRectangle,
+                                Color.White,
+                                0,
+                                Vector2.Zero,
+                                ZoomModifier,
+                                SpriteEffects.None,
+                                0
+                            );
+                    }
                 }
             }
             GameUpdate.ClearUpdateList();

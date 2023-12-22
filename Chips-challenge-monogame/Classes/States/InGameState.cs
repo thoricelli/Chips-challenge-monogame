@@ -2,6 +2,7 @@
 using CHIPS_CHALLENGE.Classes.Entities;
 using CHIPS_CHALLENGE.Classes.Input;
 using CHIPS_CHALLENGE.Classes.Sprites;
+using CHIPS_CHALLENGE.Classes.UI;
 using CHIPS_CHALLENGE.Classes.Utilities;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -21,6 +22,8 @@ namespace CHIPS_CHALLENGE.Classes.States
     {
         //Chip game related info & drawer
         private ChipDrawer chipDrawer;
+
+        public static GameUI gameUI;
 
         //Sprite basis
         private Sprite sprite;
@@ -135,6 +138,9 @@ namespace CHIPS_CHALLENGE.Classes.States
             _panel.Widgets.Add(label);
             _panel.Widgets.Add(index);
             _panel.Widgets.Add(positionString);
+
+            gameUI = new GameUI(_panel);
+            gameUI.ShowMapTitle(ChipGame.chipInfo.MapTitle);
 
             _desktop.Root = _panel;
         }

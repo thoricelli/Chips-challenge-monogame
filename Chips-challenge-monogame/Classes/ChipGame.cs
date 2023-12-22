@@ -14,6 +14,9 @@ using CHIPS_CHALLENGE.Classes.Loader;
 using CHIPS_CHALLENGE.Classes.Entities.Enums;
 using CHIPS_CHALLENGE.Classes.Game;
 using CHIPS_CHALLENGE.Classes.Input;
+using CHIPS_CHALLENGE.Classes.States;
+using CHIPS_CHALLENGE.Classes.UI;
+using SharpDX.MediaFoundation;
 
 namespace CHIPS_CHALLENGE.Classes
 {
@@ -33,6 +36,8 @@ namespace CHIPS_CHALLENGE.Classes
         public static List<Enemy> Enemies { get { return _enemies; } }
         public static List<Enemy> _enemies = new List<Enemy>();
 
+        private static bool hasGameStarted = false;
+
         /*
          CONFIG IS TEMPORARILY HERE!
          */
@@ -46,21 +51,32 @@ namespace CHIPS_CHALLENGE.Classes
         {
             ResetAll();
             chipInfo = chipFileLoader.LoadLevelFromFile(level);
+            LevelHasChanged();
         }
         public static void LoadNext()
         {
             ResetAll();
             chipInfo = chipFileLoader.LoadLevelFromFile(chipInfo.LevelNumber+1);
+            LevelHasChanged();
         }
         public static void RestartLevel()
         {
             ResetAll();
             chipInfo = chipFileLoader.LoadLevelFromFile(chipInfo.LevelNumber);
+            LevelHasChanged();
+        }
+        public static void LevelHasChanged()
+        {
+            if (InGameState.gameUI != null)
+                InGameState.gameUI.ShowMapTitle(chipInfo.MapTitle);
         }
         public static void ResetAll()
         {
             //Make players alive again.
             _enemies = new List<Enemy>();
+            if (InGameState.gameUI != null)
+                InGameState.gameUI.LevelChanged();
+            hasGameStarted = false;
             ResetAllItems();
         }
         public static Status UpdateTile(Vector2 position)
@@ -133,30 +149,39 @@ namespace CHIPS_CHALLENGE.Classes
             _enemies.Add(enemy);
         }
 
+        public static void StartGame()
+        {
+            hasGameStarted = true;
+            InGameState.gameUI.HideMapTitle();
+        }
+
         public static void Update(GameTime gameTime)
         {
             thisPlayerInput.HandleInput();
             //Every X seconds update enemies.
-            double totalMiliseconds = gameTime.TotalGameTime.TotalMilliseconds;
-            int enemyno = 0;
-            if (totalMiliseconds - LastEnemyUpdate >= UpdateEnemiesMs)
+            if (hasGameStarted)
             {
-                foreach (Enemy enemy in Enemies)
+                double totalMiliseconds = gameTime.TotalGameTime.TotalMilliseconds;
+                int enemyno = 0;
+                if (totalMiliseconds - LastEnemyUpdate >= UpdateEnemiesMs)
                 {
-                    enemyno++;
-                    enemy.Update();
+                    foreach (Enemy enemy in Enemies)
+                    {
+                        enemyno++;
+                        enemy.Update();
+                    }
+                    LastEnemyUpdate = gameTime.TotalGameTime.TotalMilliseconds;
                 }
-                LastEnemyUpdate = gameTime.TotalGameTime.TotalMilliseconds;
-            }
-            //Every X seconds update push for entities.
-            if (totalMiliseconds - LastPushUpdate >= UpdatePushMs)
-            {
-                foreach (Entity entity in Players)
+                //Every X seconds update push for entities.
+                if (totalMiliseconds - LastPushUpdate >= UpdatePushMs)
                 {
-                    entity.HandlePush();
+                    foreach (Entity entity in Players)
+                    {
+                        entity.HandlePush();
+                    }
+                    //What about enemies?
+                    LastPushUpdate = gameTime.TotalGameTime.TotalMilliseconds;
                 }
-                //What about enemies?
-                LastPushUpdate = gameTime.TotalGameTime.TotalMilliseconds;
             }
         }
         public static Player CheckPlayerTouched(Vector2 position)

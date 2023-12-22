@@ -123,7 +123,7 @@ namespace CHIPS_CHALLENGE.Classes.Loader
             do
             {
                 ReadField(chipInfo, fs);
-            } while (fs.Position <= endAddress);
+            } while (fs.Position < endAddress);
         }
 
         private void ReadField(ChipFileInformation chipInfo, FileStream fs)

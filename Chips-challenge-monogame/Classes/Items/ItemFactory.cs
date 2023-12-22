@@ -78,8 +78,8 @@ namespace CHIPS_CHALLENGE.Classes.Items
                     return new Gate();
                 case Objects.WALL_BUTTON:
                     return new WallButton();
-                /*case Objects.TOGGLE_WALL_ON:
-                    break;*/
+                case Objects.TOGGLE_WALL_ON:
+                    return new ToggleWallOn();
                 //Skipping some objects.
                 case Objects.BOMB:
                     return new Bomb();
@@ -88,6 +88,8 @@ namespace CHIPS_CHALLENGE.Classes.Items
                     return new InvisibleWallAppear();
                 //Gravel doesn't need a switch.
                 //Skipping some objects
+                case Objects.HINT:
+                    return new Hint();
                 case Objects.THIN_WALL:
                     return new ThinWall();
                 //Skipping objects

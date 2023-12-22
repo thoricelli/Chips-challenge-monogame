@@ -1,4 +1,5 @@
 ﻿using CHIPS_CHALLENGE.Classes.Entities;
+using CHIPS_CHALLENGE.Classes.States;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 using System;
@@ -52,6 +53,8 @@ namespace CHIPS_CHALLENGE.Classes.Input
                     player.Move(new Vector2(1, 0));
                     upkey = false;
                 }
+                if (!upkey)
+                    ChipGame.StartGame();
             }
 
             if (
