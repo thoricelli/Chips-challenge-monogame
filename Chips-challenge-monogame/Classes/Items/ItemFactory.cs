@@ -83,7 +83,8 @@ namespace CHIPS_CHALLENGE.Classes.Items
                 //Skipping some objects.
                 case Objects.TANK_BUTTON:
                     return new TankButton();
-                //Skip
+                case Objects.TELEPORT_BUTTON:
+                    return new TeleportButton();
                 case Objects.BOMB:
                     return new Bomb();
                 //Skipping some objects

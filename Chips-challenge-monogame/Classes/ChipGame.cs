@@ -201,5 +201,26 @@ namespace CHIPS_CHALLENGE.Classes
             }
             return null;
         }
+        public static Vector2 PositionOfTileInReverse(Objects obj, Vector2 startVector)
+        {
+            foreach (Layer layer in chipInfo.layers)
+            {
+                int startIndex = GeneralUtilities.ConvertFromVectorToIndex(startVector);
+                for (int i = startIndex-1; i >= 0; i--)
+                {
+                    ChipObject chipObj = layer.objects[i];
+                    if (chipObj.code == obj)
+                        return GeneralUtilities.ConvertFromIndexToVector(i);
+                }
+                //TODO seperate function....
+                for (int i = layer.objects.Length-1; i > startIndex; i--)
+                {
+                    ChipObject chipObj = layer.objects[i];
+                    if (chipObj.code == obj)
+                        return GeneralUtilities.ConvertFromIndexToVector(i);
+                }
+            }
+            return startVector;
+        }
     }
 }
