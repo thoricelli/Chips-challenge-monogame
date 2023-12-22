@@ -81,6 +81,9 @@ namespace CHIPS_CHALLENGE.Classes.Items
                 case Objects.TOGGLE_WALL_ON:
                     return new ToggleWallOn();
                 //Skipping some objects.
+                case Objects.TANK_BUTTON:
+                    return new TankButton();
+                //Skip
                 case Objects.BOMB:
                     return new Bomb();
                 //Skipping some objects

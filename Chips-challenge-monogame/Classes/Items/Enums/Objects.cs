@@ -48,7 +48,7 @@ namespace CHIPS_CHALLENGE.Classes.Items.Enums
         TOGGLE_WALL_ON,
         TOGGLE_WALL_OFF,
         TRAP_BUTTON,
-        SENTRY_BUTTON,
+        TANK_BUTTON,
         TELEPORT_BUTTON,
         BOMB,
         TRAP,

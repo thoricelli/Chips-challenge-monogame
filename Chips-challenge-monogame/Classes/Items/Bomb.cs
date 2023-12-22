@@ -10,7 +10,7 @@ namespace CHIPS_CHALLENGE.Classes.Items
 {
     public class Bomb : ChipObject
     {
-        public Bomb() : base(Objects.FIRE)
+        public Bomb() : base(Objects.BOMB)
         {
 
         }

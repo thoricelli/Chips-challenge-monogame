@@ -1,4 +1,6 @@
-﻿using CHIPS_CHALLENGE.Classes.Items;
+﻿using CHIPS_CHALLENGE.Classes.Entities;
+using CHIPS_CHALLENGE.Classes.Entities.Enums;
+using CHIPS_CHALLENGE.Classes.Items;
 using CHIPS_CHALLENGE.Classes.Items.Enums;
 using System;
 using System.Collections.Generic;
@@ -17,6 +19,33 @@ namespace CHIPS_CHALLENGE.Classes.Game
         public static void ReplaceTile(Objects find, Objects replace)
         {
             replaceTiles.Add(new FindReplace(find, replace));
+        }
+        public static void SwitchDirection(Enemies enemyCode)
+        {
+            foreach (Enemy enemy in ChipGame.Enemies)
+            {
+                if (enemy.Code == (Objects)enemyCode)
+                {
+                    Facing facing = Facing.NORTH;
+                    //Too lazy to do math here.
+                    switch (enemy.Facing)
+                    {
+                        case Entities.Enums.Facing.NORTH:
+                            facing = Facing.SOUTH;
+                            break;
+                        case Entities.Enums.Facing.WEST:
+                            facing = Facing.EAST;
+                            break;
+                        case Entities.Enums.Facing.SOUTH:
+                            facing = Facing.NORTH;
+                            break;
+                        case Entities.Enums.Facing.EAST:
+                            facing = Facing.WEST;
+                            break;
+                    }
+                    enemy.ChangeDirection(facing);
+                }
+            }
         }
         public static ChipObject Update(ChipObject obj)
         {

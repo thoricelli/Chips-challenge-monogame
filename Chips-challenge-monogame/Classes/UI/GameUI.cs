@@ -18,6 +18,8 @@ namespace CHIPS_CHALLENGE.Classes.UI
 
         private Label MapTitle;
 
+        private Label YouDied;
+
         public GameUI(Panel main)
         {
             _mainPanel = main;
@@ -43,7 +45,16 @@ namespace CHIPS_CHALLENGE.Classes.UI
 
             MapTitle = new Label()
             {
-                Text = "Testing!",
+                HorizontalAlignment = HorizontalAlignment.Center,
+                VerticalAlignment = VerticalAlignment.Center,
+                TextAlign = FontStashSharp.RichText.TextHorizontalAlignment.Center,
+                Height = 25,
+                Background = new SolidBrush(Color.Black)
+            };
+
+            YouDied = new Label()
+            {
+                Text = "You died!",
                 HorizontalAlignment = HorizontalAlignment.Center,
                 VerticalAlignment = VerticalAlignment.Center,
                 TextAlign = FontStashSharp.RichText.TextHorizontalAlignment.Center,
@@ -53,6 +64,15 @@ namespace CHIPS_CHALLENGE.Classes.UI
 
             _mainPanel.Widgets.Add(HintPanel);
             _mainPanel.Widgets.Add(MapTitle);
+            _mainPanel.Widgets.Add(YouDied);
+        }
+        public void ShowYouDied()
+        {
+            YouDied.Visible = true;
+        }
+        public void HideYouDied()
+        {
+            YouDied.Visible = false;
         }
         public void ShowMapTitle(string text)
         {
