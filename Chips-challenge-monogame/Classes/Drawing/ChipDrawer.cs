@@ -74,7 +74,7 @@ namespace CHIPS_CHALLENGE.Classes.Drawing
                 {
                     ChipObject item = layer.objects[i];
                     Vector2 position = GeneralUtilities.ConvertFromIndexToVector(i);
-                    GameUpdate.Update(item);
+                    layer.objects[i] = GameUpdate.Update(item);
 
                     spriteBatch.Draw(
                             item.Sprite.SpriteSheet.spriteSheet,
@@ -89,6 +89,7 @@ namespace CHIPS_CHALLENGE.Classes.Drawing
                         );
                 }
             }
+            GameUpdate.ClearUpdateList();
         }
 
         private void DrawEntities(List<Entity> entities)

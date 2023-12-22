@@ -76,8 +76,10 @@ namespace CHIPS_CHALLENGE.Classes.Items
                     return new Thief();
                 case Objects.GATE:
                     return new Gate();
-                case Objects.TOGGLE_WALL_ON:
-
+                case Objects.WALL_BUTTON:
+                    return new WallButton();
+                /*case Objects.TOGGLE_WALL_ON:
+                    break;*/
                 //Skipping some objects.
                 case Objects.BOMB:
                     return new Bomb();
