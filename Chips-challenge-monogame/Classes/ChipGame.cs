@@ -17,6 +17,7 @@ using CHIPS_CHALLENGE.Classes.Input;
 using CHIPS_CHALLENGE.Classes.States;
 using CHIPS_CHALLENGE.Classes.UI;
 using SharpDX.MediaFoundation;
+using System.Threading;
 
 namespace CHIPS_CHALLENGE.Classes
 {
@@ -142,6 +143,13 @@ namespace CHIPS_CHALLENGE.Classes
         {
             player.Position = _spawnLocation;
             _players.Add(player);
+        }
+        public static void PlayerDied(Player player)
+        {
+            /*InGameState.gameUI.ShowYouDied();
+            InGameState.gameUI.HideYouDied();*/
+            RestartLevel();
+            player.Revive();
         }
 
         public static void AddEnemy(Enemy enemy)

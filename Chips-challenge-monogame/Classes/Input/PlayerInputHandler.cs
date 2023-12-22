@@ -53,16 +53,19 @@ namespace CHIPS_CHALLENGE.Classes.Input
                     player.Move(new Vector2(1, 0));
                     upkey = false;
                 }
-                if (!upkey)
-                    ChipGame.StartGame();
             }
+            
+            if (!upkey)
+                ChipGame.StartGame();
 
             if (
                 Keyboard.GetState().IsKeyUp(Keys.Up)
                 && Keyboard.GetState().IsKeyUp(Keys.Down)
                 && Keyboard.GetState().IsKeyUp(Keys.Left)
                 && Keyboard.GetState().IsKeyUp(Keys.Right))
+            {
                 upkey = true;
+            }
         }
     }
 }

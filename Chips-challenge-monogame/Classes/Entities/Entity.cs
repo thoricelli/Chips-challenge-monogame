@@ -30,9 +30,14 @@ namespace CHIPS_CHALLENGE.Classes.Entities
         {
             this.Code = code;
         }
-        public void Kill() {
+        public virtual void Kill() {
             State = State.Dead;
             //Don't draw
+        }
+        public void Revive()
+        {
+            State = State.Alive;
+            Velocity = new Vector2(0,0);
         }
         /// <summary>
         /// Moves the entity N tile.

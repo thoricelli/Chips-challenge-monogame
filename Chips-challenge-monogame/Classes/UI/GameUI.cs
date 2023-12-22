@@ -59,7 +59,8 @@ namespace CHIPS_CHALLENGE.Classes.UI
                 VerticalAlignment = VerticalAlignment.Center,
                 TextAlign = FontStashSharp.RichText.TextHorizontalAlignment.Center,
                 Height = 25,
-                Background = new SolidBrush(Color.Black)
+                Background = new SolidBrush(Color.Black),
+                Visible = false,
             };
 
             _mainPanel.Widgets.Add(HintPanel);

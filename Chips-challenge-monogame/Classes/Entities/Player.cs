@@ -19,5 +19,10 @@ namespace CHIPS_CHALLENGE.Classes.Entities
             new Sprite(InGameState.spritesheet, 4, ((int)Objects.HERO_NORTH) + 3))
         {
         }
+        public override void Kill()
+        {
+            base.Kill();
+            ChipGame.PlayerDied(this);
+        }
     }
 }
