@@ -146,7 +146,7 @@ namespace CHIPS_CHALLENGE.Classes.Loader
                     {
                         ChipFile.Trap trap = FromFileStream<ChipFile.Trap>(fs);
                         chipInfo.Traps.Add(trap);
-                    } while (fs.Position <= endTrap);
+                    } while (fs.Position < endTrap);
                     break;
                 case FieldEnum.CLONING_CONTROLS:
                     int endClone = (int)(fs.Position + field.Bytes);
@@ -154,7 +154,7 @@ namespace CHIPS_CHALLENGE.Classes.Loader
                     {
                         CloneMachine cloneMachine = FromFileStream<CloneMachine>(fs);
                         chipInfo.CloneMachines.Add(cloneMachine);
-                    } while (fs.Position <= endClone);
+                    } while (fs.Position < endClone);
                     break;
                 case FieldEnum.MAP_PASSWORD:
                     byte[] mapPassword = new byte[field.Bytes-1];

@@ -182,7 +182,7 @@ namespace CHIPS_CHALLENGE.Classes
                 int enemyno = 0;
                 if (totalMiliseconds - LastEnemyUpdate >= UpdateEnemiesMs)
                 {
-                    foreach (Enemy enemy in Enemies)
+                    foreach (Enemy enemy in Enemies.ToList())
                     {
                         enemyno++;
                         enemy.Update();
@@ -192,11 +192,10 @@ namespace CHIPS_CHALLENGE.Classes
                 //Every X seconds update push for entities.
                 if (totalMiliseconds - LastPushUpdate >= UpdatePushMs)
                 {
-                    foreach (Entity entity in Players)
+                    foreach (Entity entity in Entities)
                     {
                         entity.HandlePush();
                     }
-                    //What about enemies?
                     LastPushUpdate = gameTime.TotalGameTime.TotalMilliseconds;
                 }
             }

@@ -32,7 +32,7 @@ namespace CHIPS_CHALLENGE.Classes.States
         private Player thisPlayer;
         private PlayerInputHandler inputHandler;
 
-        int curLevel = 1;
+        int curLevel = 5;
 
         //TEMPORARY!
         bool upnext = true;//TEMP
