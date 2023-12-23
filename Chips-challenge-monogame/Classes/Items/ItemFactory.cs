@@ -94,6 +94,8 @@ namespace CHIPS_CHALLENGE.Classes.Items
                     return new InvisibleWallAppear();
                 //Gravel doesn't need a switch.
                 //Skipping some objects
+                case Objects.RETRACTED_BUTTON:
+                    return new RetractedButton();
                 case Objects.HINT:
                     return new Hint();
                 case Objects.THIN_WALL:
