@@ -268,7 +268,11 @@ namespace CHIPS_CHALLENGE.Classes
         }
         public static void CloneEnemy(Enemy entity)
         {
-            Enemies.Add(EnemyFactory.CreateObjectFromCode(entity.Code, entity.Position));
+            Enemies.Add(EnemyFactory.CreateObjectFromCode(entity.Code + (int)entity.Facing, entity.Position));
+        }
+        public static void RemoveEnemy(Enemy enemy)
+        {
+            Enemies.Remove(enemy);
         }
     }
 }

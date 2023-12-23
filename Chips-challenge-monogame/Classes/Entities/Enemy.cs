@@ -110,5 +110,11 @@ namespace CHIPS_CHALLENGE.Classes.Entities
         {
             return tries < directions.Count;
         }
+
+        public override void Kill(Objects killedBy)
+        {
+            base.Kill(killedBy);
+            ChipGame.RemoveEnemy(this);
+        }
     }
 }

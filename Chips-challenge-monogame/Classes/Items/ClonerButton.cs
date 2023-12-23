@@ -26,7 +26,7 @@ namespace CHIPS_CHALLENGE.Classes.Items
 
             ChipGame.CloneEnemy(cloneEntity);
 
-            cloneEntity.ReleaseEntity();
+            cloneEntity.waitToBeReleased = true;
             cloneEntity.Update();
 
             base.HasMovedTo(entity, oldVelocity);
