@@ -21,7 +21,6 @@ namespace CHIPS_CHALLENGE.Classes.Entities
                 Objects.EMPTY, 
                 Objects.WALL_BUTTON, 
                 Objects.CLONER_BUTTON, 
-                Objects.TOGGLE_WALL_ON,
                 Objects.TOGGLE_WALL_OFF,
                 Objects.TRAP_BUTTON,
                 Objects.TANK_BUTTON,
