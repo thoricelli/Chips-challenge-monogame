@@ -38,10 +38,8 @@ namespace CHIPS_CHALLENGE.Classes.Drawing
             UpdateCamera();
             //Draw all layers with objects on them
             DrawLayers();
-            //Draw players
-            DrawEntities(ChipGame.Players.ToList<Entity>());
-            //Draw enemies
-            DrawEntities(ChipGame.Enemies.ToList<Entity>());
+            //Draw all entities
+            DrawEntities(ChipGame.Entities);
         }
 
         //Be able to ZOOM out or into the level
