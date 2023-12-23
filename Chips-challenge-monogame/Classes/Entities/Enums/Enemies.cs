@@ -17,5 +17,6 @@ namespace CHIPS_CHALLENGE.Classes.Entities.Enums
         WALKER = Objects.WALKER_NORTH,
         BLOB = Objects.BLOB_NORTH,
         PARAMECIUM = Objects.PARAMECIUM_NORTH,
+        TEETH = Objects.TEETH_NORTH,
     }
 }

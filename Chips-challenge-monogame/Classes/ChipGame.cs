@@ -274,5 +274,29 @@ namespace CHIPS_CHALLENGE.Classes
         {
             Enemies.Remove(enemy);
         }
+        public static Player GetNearbyPlayer(Vector2 position)
+        {
+            Player lastPlayer = null;
+            int lastDistance = -1;
+            foreach (Player player in Players)
+            {
+                int distance = GeneralUtilities.Distance(position, player.Position);
+
+                if (lastPlayer == null) {
+                    lastPlayer = player;
+                    lastDistance = distance;
+                } else if (lastDistance < distance)
+                {
+                    lastPlayer = player;
+                    lastDistance = distance;
+                }
+            }
+            return lastPlayer;
+        }
+
+        public static void PlayerMoved(Player player)
+        {
+            //Later
+        }
     }
 }

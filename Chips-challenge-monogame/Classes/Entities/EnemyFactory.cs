@@ -35,7 +35,9 @@ namespace CHIPS_CHALLENGE.Classes.Entities
                     case Enemies.GLIDER:
                         enemy = new Rocket();
                         break;
-                    //SKIPPING TEETH
+                    case Enemies.TEETH:
+                        enemy = new Teeth();
+                        break;
                     case Enemies.WALKER:
                         enemy = new Walker();
                         break;

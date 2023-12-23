@@ -76,25 +76,27 @@ namespace CHIPS_CHALLENGE.Classes.Entities
                                                     this.Facing
                                                     );
                     Vector2 movingTo = this.Position + velocity * 32;
-                    List<ChipObject> chipObjects =
-                        ChipGame.CheckCollision(movingTo);
-                    foreach (ChipObject item in chipObjects)
-                    {
-                        if (!CanMove(item.code, movingTo))
-                        {
-                            blocked = true;
-                        }
-                        else if (!blocked)
-                        {
-                            Move(velocity);
-                            break; //TODO, remove...
-                        }
-                    }
+                    if (CheckMovement(movingTo))
+                        Move(velocity);
                     triedDirections++;
                 } while (CanStillMove(triedDirections) && blocked);
             }
         }
-        public virtual bool CanMove(Objects code, Vector2 movingTo)
+        //Returns when blocked.
+        public virtual bool CheckMovement(Vector2 position)
+        {
+            List<ChipObject> chipObjects =
+                        ChipGame.CheckCollision(position);
+            foreach (ChipObject item in chipObjects)
+            {
+                if (!CanMoveTo(item.code, position))
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+        public virtual bool CanMoveTo(Objects code, Vector2 movingTo)
         {
             return allowedObjects.Contains(code) && ChipGame.CheckEntityTouched(movingTo) as Enemy == null;
         }

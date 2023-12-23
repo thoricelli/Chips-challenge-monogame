@@ -89,5 +89,11 @@ namespace CHIPS_CHALLENGE.Classes.Utilities
             }
             return Facing.NORTH;
         }
+        public static int Distance(Vector2 from, Vector2 to)
+        {
+            double xDifference = Math.Pow((to.X - from.Y), 2);
+            double yDifference = Math.Pow((to.Y - from.Y), 2);
+            return (int)Math.Sqrt(xDifference + yDifference);
+        }
     }
 }

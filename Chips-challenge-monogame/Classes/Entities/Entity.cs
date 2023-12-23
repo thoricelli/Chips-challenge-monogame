@@ -63,6 +63,9 @@ namespace CHIPS_CHALLENGE.Classes.Entities
                         Position += (Velocity * 32);
                         ChangeDirection(GeneralUtilities.VelocityToFacing(velocity));
                         move = true;
+
+                        if (this is Player)
+                            ChipGame.PlayerMoved(this as Player);
                     }
                 }
                 
