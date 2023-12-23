@@ -69,7 +69,6 @@ namespace CHIPS_CHALLENGE.Classes.States
             if (Keyboard.GetState().IsKeyDown(Keys.F2) && upnext)
             {
                 upnext = false;
-                ChipGame.chipInfo.LevelNumber++;
                 ChipGame.LoadNext();
             }
             if (Keyboard.GetState().IsKeyDown(Keys.R) && upr)
