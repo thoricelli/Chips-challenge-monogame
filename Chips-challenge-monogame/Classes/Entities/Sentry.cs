@@ -29,5 +29,10 @@ namespace CHIPS_CHALLENGE.Classes.Entities
             }
             return base.CanMove(code, movingTo);
         }
+        public override void Kill(Objects killedBy)
+        {
+            if (killedBy != Objects.FIRE)
+                base.Kill(killedBy);
+        }
     }
 }
