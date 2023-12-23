@@ -78,6 +78,8 @@ namespace CHIPS_CHALLENGE.Classes.Items
                     return new Gate();
                 case Objects.WALL_BUTTON:
                     return new WallButton();
+                case Objects.CLONER_BUTTON:
+                    return new ClonerButton();
                 case Objects.TOGGLE_WALL_ON:
                     return new ToggleWallOn();
                 case Objects.TRAP_BUTTON:

@@ -10,7 +10,7 @@ namespace CHIPS_CHALLENGE.Classes.Items
 {
     public class Cloner : ChipObject
     {
-        public Cloner() : base(Objects.WALL)
+        public Cloner() : base(Objects.CLONER)
         {
         }
         public override bool MovingTo(Entity entity)
@@ -19,6 +19,11 @@ namespace CHIPS_CHALLENGE.Classes.Items
         }
         public override bool MovingFrom(Entity entity)
         {
+            if (entity.waitToBeReleased)
+            {
+                entity.waitToBeReleased = false;
+                return true;
+            }
             return false;
         }
     }

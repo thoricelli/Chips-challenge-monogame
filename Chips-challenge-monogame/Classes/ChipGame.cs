@@ -242,14 +242,14 @@ namespace CHIPS_CHALLENGE.Classes
         }
         public static void ReleaseEnemy(Vector2 buttonPosition)
         {
-            Trap? trap = GetTrapFromPosition(buttonPosition);
+            Trap? trap = GetTrapFromButtonPosition(buttonPosition);
             if (trap.HasValue)
             {
                 Entity entity = CheckEntityTouched(new Vector2(trap.Value.ObjectX*32, trap.Value.ObjectY*32));
                 entity.waitToBeReleased = true;
             }
         }
-        public static Trap? GetTrapFromPosition(Vector2 buttonPosition)
+        public static Trap? GetTrapFromButtonPosition(Vector2 buttonPosition)
         {
             foreach (Trap trap in chipInfo.Traps)
             {
@@ -257,6 +257,19 @@ namespace CHIPS_CHALLENGE.Classes
                     return trap;
             }
             return null;
+        }
+        public static CloneMachine? GetCloneFromButtonPosition(Vector2 buttonPosition)
+        {
+            foreach (CloneMachine cloner in chipInfo.CloneMachines)
+            {
+                if (new Vector2(cloner.ButtonX, cloner.ButtonY) == buttonPosition / 32)
+                    return cloner;
+            }
+            return null;
+        }
+        public static void CloneEnemy(Enemy entity)
+        {
+            Enemies.Add(EnemyFactory.CreateObjectFromCode(entity.Code, entity.Position));
         }
     }
 }
