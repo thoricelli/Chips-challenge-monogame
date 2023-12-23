@@ -96,7 +96,7 @@ namespace CHIPS_CHALLENGE.Classes.Entities
         }
         public virtual bool CanMove(Objects code, Vector2 movingTo)
         {
-            return allowedObjects.Contains(code) && ChipGame.CheckEntityTouched(movingTo) == null;
+            return allowedObjects.Contains(code) && ChipGame.CheckEntityTouched(movingTo) as Enemy == null;
         }
         public virtual Direction GetDirection(int tries)
         {

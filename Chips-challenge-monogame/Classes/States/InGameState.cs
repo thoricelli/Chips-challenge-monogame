@@ -42,6 +42,7 @@ namespace CHIPS_CHALLENGE.Classes.States
         private Label label;
         private Label index;
         private Label positionString;
+        private Label chipsNeeded;
 
         public InGameState(GraphicsDevice graphics, SpriteBatch spriteBatch, CHIP chip) : base(graphics, spriteBatch, chip)
         {
@@ -93,6 +94,7 @@ namespace CHIPS_CHALLENGE.Classes.States
             label.Text = ChipGame.chipInfo.LevelNumber.ToString();
             index.Text = GeneralUtilities.ConvertFromVectorToIndex(thisPlayer.Position).ToString();
             positionString.Text = $"X: {thisPlayer.Position.X} Y: {thisPlayer.Position.Y}";
+            chipsNeeded.Text = $"Chips needed: {ChipGame.chipInfo.ChipsToPickUp}";
 
             ChipGame.Update(gameTime);
         }
@@ -123,21 +125,30 @@ namespace CHIPS_CHALLENGE.Classes.States
 
             label = new Label()
             {
-                Text = "Test"
+                Text = "Test",
+                TextColor = Color.Black,
             };
 
             index = new Label()
             {
-                Top = 20
+                Top = 20,
+                TextColor = Color.Black,
             };
             positionString = new Label()
             {
-                Top = 40
+                Top = 40,
+                TextColor = Color.Black,
+            };
+            chipsNeeded = new Label()
+            {
+                Top = 60,
+                TextColor = Color.Black,
             };
 
             _panel.Widgets.Add(label);
             _panel.Widgets.Add(index);
             _panel.Widgets.Add(positionString);
+            _panel.Widgets.Add(chipsNeeded);
 
             gameUI = new GameUI(_panel);
             gameUI.ShowMapTitle(ChipGame.chipInfo.MapTitle);
