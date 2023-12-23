@@ -101,13 +101,25 @@ namespace CHIPS_CHALLENGE.Classes
                 if (item.GoToDirection.HasValue)
                 {
                     //Check if we can move to something (will HAVE to be an empty tile)
-                    Vector2 pos = (position + new Vector2(item.GoToDirection.Value.X*32, item.GoToDirection.Value.Y * 32));
+                    Vector2 velocity = new Vector2(item.GoToDirection.Value.X * 32, item.GoToDirection.Value.Y * 32);
+                    Vector2 pos = (position + velocity);
                     int index = GeneralUtilities.ConvertFromVectorToIndex(pos);
 
-                    Objects? transformInto = item.TileMove(layer.objects[index].code);
+                    ChipObject goToObject = layer.objects[index];
+                    Objects? transformInto = item.TileMove(goToObject.code);
                     if (transformInto.HasValue)
                     {
-                        layer.objects[index] = ItemFactory.CreateObjectFromCode((Objects)transformInto);
+                        ChipObject tileMoveTo = layer.objects[index];
+                        if (tileMoveTo is TeleportButton)
+                        {
+                            TeleportButton teleporter = tileMoveTo as TeleportButton;
+                            layer.objects[
+                                GeneralUtilities.ConvertFromVectorToIndex(teleporter.GetTeleportPosition(pos) + velocity)
+                                ]
+                                = ItemFactory.CreateObjectFromCode((Objects)transformInto);
+                        }
+                        else
+                            layer.objects[index] = ItemFactory.CreateObjectFromCode((Objects)transformInto);
                         layer.objects[i] = ItemFactory.CreateObjectFromCode(Objects.EMPTY);
                     } else
                     {

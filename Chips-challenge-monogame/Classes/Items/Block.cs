@@ -26,6 +26,8 @@ namespace CHIPS_CHALLENGE.Classes.Items
             {
                 case Objects.WATER:
                     return Objects.DIRT;
+                case Objects.TELEPORT_BUTTON:
+                    return code;
             }
             return base.TileMove(obj);
         }

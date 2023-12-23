@@ -17,7 +17,12 @@ namespace CHIPS_CHALLENGE.Classes.Items
 
         public override void HasMovedTo(Entity entity, Vector2 oldVelocity)
         {
-            entity.Position = ChipGame.PositionOfTileInReverse(Objects.TELEPORT_BUTTON, entity.Position);
+            entity.Position = GetTeleportPosition(entity.Position);
+        }
+
+        public Vector2 GetTeleportPosition(Vector2 position)
+        {
+            return ChipGame.PositionOfTileInReverse(Objects.TELEPORT_BUTTON, position);
         }
     }
 }
