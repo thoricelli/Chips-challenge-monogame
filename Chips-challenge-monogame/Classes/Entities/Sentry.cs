@@ -20,5 +20,14 @@ namespace CHIPS_CHALLENGE.Classes.Entities
                   new List<Direction> { Direction.UP, Direction.RIGHT, Direction.LEFT })
         {
         }
+        public override bool CanMove(Objects code, Vector2 movingTo)
+        {
+            switch (code)
+            {
+                case Objects.FIRE:
+                    return true;
+            }
+            return base.CanMove(code, movingTo);
+        }
     }
 }

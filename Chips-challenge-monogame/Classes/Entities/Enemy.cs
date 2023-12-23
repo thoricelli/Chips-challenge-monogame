@@ -27,7 +27,12 @@ namespace CHIPS_CHALLENGE.Classes.Entities
                 Objects.TANK_BUTTON,
                 Objects.TELEPORT_BUTTON,
                 Objects.BOMB,
-                Objects.TRAP
+                Objects.TRAP,
+                Objects.FORCE_FLOOR_RANDOM,
+                Objects.FORCE_NORTH,
+                Objects.FORCE_EAST,
+                Objects.FORCE_SOUTH,
+                Objects.FORCE_WEST
             };
         private List<Direction> directions = new List<Direction>();
         public Enemy(Objects code)
@@ -52,7 +57,7 @@ namespace CHIPS_CHALLENGE.Classes.Entities
             bool move = base.Move(velocity);
             Player playerHit = ChipGame.CheckPlayerTouched(this.Position);
             if (playerHit != null)
-                playerHit.Kill();
+                playerHit.Kill(this.Code);
             return move;
         }
         //Update enemy movement
@@ -70,11 +75,12 @@ namespace CHIPS_CHALLENGE.Classes.Entities
                                                     GetDirection(triedDirections),
                                                     this.Facing
                                                     );
+                    Vector2 movingTo = this.Position + velocity * 32;
                     List<ChipObject> chipObjects =
-                        ChipGame.CheckCollision(this.Position + velocity * 32);
+                        ChipGame.CheckCollision(movingTo);
                     foreach (ChipObject item in chipObjects)
                     {
-                        if (!allowedObjects.Contains(item.code))
+                        if (!CanMove(item.code, movingTo))
                         {
                             blocked = true;
                         }
@@ -87,6 +93,10 @@ namespace CHIPS_CHALLENGE.Classes.Entities
                     triedDirections++;
                 } while (CanStillMove(triedDirections) && blocked);
             }
+        }
+        public virtual bool CanMove(Objects code, Vector2 movingTo)
+        {
+            return allowedObjects.Contains(code) && ChipGame.CheckEntityTouched(movingTo) == null;
         }
         public virtual Direction GetDirection(int tries)
         {

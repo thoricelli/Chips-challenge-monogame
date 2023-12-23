@@ -19,7 +19,7 @@ namespace CHIPS_CHALLENGE.Classes.Items
         public override bool MovingTo(Entity entity)
         {
             if (!ChipGame.Inventory.WaterShoe)
-             entity.Kill();
+             entity.Kill(this.code);
             return true;
         }
     }

@@ -17,7 +17,7 @@ namespace CHIPS_CHALLENGE.Classes.Items
 
         public override bool MovingTo(Entity entity)
         {
-            entity.Kill();
+            entity.Kill(this.code);
             this.ChangeObjectInto(Objects.EMPTY);
             return true;
         }

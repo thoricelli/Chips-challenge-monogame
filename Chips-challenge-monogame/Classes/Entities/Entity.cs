@@ -33,7 +33,7 @@ namespace CHIPS_CHALLENGE.Classes.Entities
         {
             this.Code = code;
         }
-        public virtual void Kill() {
+        public virtual void Kill(Objects killedBy) {
             State = State.Dead;
             //Don't draw
         }
