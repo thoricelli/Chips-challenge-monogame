@@ -99,7 +99,8 @@ namespace CHIPS_CHALLENGE.Classes.Items
                     return new Hint();
                 case Objects.THIN_WALL:
                     return new ThinWall();
-                //Skipping objects
+                case Objects.CLONER:
+                    return new Cloner();
                 case Objects.FORCE_FLOOR_RANDOM:
                     return new ForceFloorRandom();
                 //Skipping objects
