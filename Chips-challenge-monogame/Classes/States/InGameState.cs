@@ -32,11 +32,10 @@ namespace CHIPS_CHALLENGE.Classes.States
         private Player thisPlayer;
         private PlayerInputHandler inputHandler;
 
-        int curLevel = 5;
-
         //TEMPORARY!
         bool upnext = true;//TEMP
         bool upprev = true;
+        bool upr = true;
         int previousScrollWheelValue = 0;
 
         private Label label;
@@ -64,20 +63,27 @@ namespace CHIPS_CHALLENGE.Classes.States
             if (Keyboard.GetState().IsKeyDown(Keys.F1) && upprev)
             {
                 upprev = false;
-                curLevel--;
-                ChipGame.LoadLevel(curLevel);
+                ChipGame.chipInfo.LevelNumber--;
+                ChipGame.LoadLevel(ChipGame.chipInfo.LevelNumber);
             }
             if (Keyboard.GetState().IsKeyDown(Keys.F2) && upnext)
             {
                 upnext = false;
-                curLevel++;
-                ChipGame.LoadLevel(curLevel);
+                ChipGame.chipInfo.LevelNumber++;
+                ChipGame.LoadNext();
+            }
+            if (Keyboard.GetState().IsKeyDown(Keys.R) && upr)
+            {
+                upr = false;
+                ChipGame.RestartLevel();
             }
 
             if (Keyboard.GetState().IsKeyUp(Keys.F1))
                 upprev = true;
             if (Keyboard.GetState().IsKeyUp(Keys.F2))
                 upnext = true;
+            if (Keyboard.GetState().IsKeyUp(Keys.R))
+                upr = true;
 
             chipDrawer.Zoom(
                 (float)(Mouse.GetState().ScrollWheelValue - previousScrollWheelValue)
@@ -105,7 +111,7 @@ namespace CHIPS_CHALLENGE.Classes.States
 
             spritesheet = new Spritesheet(_game.Content.Load<Texture2D>("ChipTiles"), 32, 32, 0, 0, 16);
             sprite = new Sprite(spritesheet, 152);
-            ChipGame.LoadLevel(curLevel);
+            ChipGame.LoadLevel(1);
 
             chipDrawer = new ChipDrawer(_spriteBatch, _graphics);
 
