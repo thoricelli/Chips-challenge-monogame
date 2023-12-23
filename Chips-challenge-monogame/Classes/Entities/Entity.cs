@@ -23,6 +23,9 @@ namespace CHIPS_CHALLENGE.Classes.Entities
         public bool MovementEnabled { get; set; } = true;
         //Will update very PUSH update. (Which is configurable how fast)
         public Push QueuedPush { get { return _queuedPush; } }
+        //Will be true if waiting for release.
+        public bool waitToBeReleased = false;
+        public bool Trapped = false;
 
         private Push _queuedPush { get; set; } = null;
 
@@ -63,7 +66,6 @@ namespace CHIPS_CHALLENGE.Classes.Entities
                     }
                 }
                 
-
                 Vector2 oldVelocity = Velocity;
                 Velocity = Vector2.Zero;
 
@@ -138,6 +140,15 @@ namespace CHIPS_CHALLENGE.Classes.Entities
                 if (_queuedPush == null || _queuedPush.Type == PushType.FORCE)
                     ChipGame.thisPlayerInput.EnableInput();
             }
+        }
+        public void ReleaseEntity()
+        {
+            Trapped = false;
+            waitToBeReleased = false;
+        }
+        public void TrapEntity()
+        {
+            Trapped = true;
         }
     }
 }

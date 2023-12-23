@@ -15,7 +15,8 @@ namespace CHIPS_CHALLENGE.Classes.Items
         }
         public override bool MovingTo(Entity entity)
         {
-            this.ChangeObjectInto(Objects.EMPTY);
+            if (ChipGame.chipInfo.ChipsToPickUp == 0)
+                this.ChangeObjectInto(Objects.EMPTY);
             return ChipGame.chipInfo.ChipsToPickUp == 0;
         }
     }

@@ -18,6 +18,7 @@ using CHIPS_CHALLENGE.Classes.States;
 using CHIPS_CHALLENGE.Classes.UI;
 using SharpDX.MediaFoundation;
 using System.Threading;
+using Trap = CHIPS_CHALLENGE.Classes.Loader.ChipFile.Trap;
 
 namespace CHIPS_CHALLENGE.Classes
 {
@@ -36,6 +37,14 @@ namespace CHIPS_CHALLENGE.Classes
 
         public static List<Enemy> Enemies { get { return _enemies; } }
         public static List<Enemy> _enemies = new List<Enemy>();
+
+        public static List<Entity> Entities { get {
+                List<Entity> entities = new List<Entity>();
+                entities.AddRange(Players);
+                entities.AddRange(Enemies);
+                return entities;
+            } 
+        }
 
         private static bool hasGameStarted = false;
 
@@ -201,6 +210,15 @@ namespace CHIPS_CHALLENGE.Classes
             }
             return null;
         }
+        public static Entity CheckEntityTouched(Vector2 position)
+        {
+            foreach (Entity entity in Entities)
+            {
+                if (entity.Position == position)
+                    return entity;
+            }
+            return null;
+        }
         public static Vector2 PositionOfTileInReverse(Objects obj, Vector2 startVector)
         {
             foreach (Layer layer in chipInfo.layers)
@@ -221,6 +239,24 @@ namespace CHIPS_CHALLENGE.Classes
                 }
             }
             return startVector;
+        }
+        public static void ReleaseEnemy(Vector2 buttonPosition)
+        {
+            Trap? trap = GetTrapFromPosition(buttonPosition);
+            if (trap.HasValue)
+            {
+                Entity entity = CheckEntityTouched(new Vector2(trap.Value.ObjectX*32, trap.Value.ObjectY*32));
+                entity.waitToBeReleased = true;
+            }
+        }
+        public static Trap? GetTrapFromPosition(Vector2 buttonPosition)
+        {
+            foreach (Trap trap in chipInfo.Traps)
+            {
+                if (new Vector2(trap.ButtonX, trap.ButtonY) == buttonPosition / 32)
+                    return trap;
+            }
+            return null;
         }
     }
 }

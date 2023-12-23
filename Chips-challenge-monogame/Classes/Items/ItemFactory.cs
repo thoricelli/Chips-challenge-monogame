@@ -80,14 +80,16 @@ namespace CHIPS_CHALLENGE.Classes.Items
                     return new WallButton();
                 case Objects.TOGGLE_WALL_ON:
                     return new ToggleWallOn();
-                //Skipping some objects.
+                case Objects.TRAP_BUTTON:
+                    return new TrapButton(); 
                 case Objects.TANK_BUTTON:
                     return new TankButton();
                 case Objects.TELEPORT_BUTTON:
                     return new TeleportButton();
                 case Objects.BOMB:
                     return new Bomb();
-                //Skipping some objects
+                case Objects.TRAP:
+                    return new Trap();
                 case Objects.INVISIBLE_WALL_APPEAR:
                     return new InvisibleWallAppear();
                 //Gravel doesn't need a switch.

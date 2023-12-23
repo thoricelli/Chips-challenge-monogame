@@ -144,7 +144,7 @@ namespace CHIPS_CHALLENGE.Classes.Loader
                     int endTrap = (int)(fs.Position + field.Bytes);
                     do
                     {
-                        Trap trap = FromFileStream<Trap>(fs);
+                        ChipFile.Trap trap = FromFileStream<ChipFile.Trap>(fs);
                         chipInfo.Traps.Add(trap);
                     } while (fs.Position <= endTrap);
                     break;

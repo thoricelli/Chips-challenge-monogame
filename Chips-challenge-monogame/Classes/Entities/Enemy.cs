@@ -25,7 +25,10 @@ namespace CHIPS_CHALLENGE.Classes.Entities
                 Objects.TOGGLE_WALL_OFF,
                 Objects.TRAP_BUTTON,
                 Objects.TANK_BUTTON,
-                Objects.TELEPORT_BUTTON};
+                Objects.TELEPORT_BUTTON,
+                Objects.BOMB,
+                Objects.TRAP
+            };
         private List<Direction> directions = new List<Direction>();
         public Enemy(Objects code)
             : base(code,
