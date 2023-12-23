@@ -76,7 +76,8 @@ namespace CHIPS_CHALLENGE.Classes.Entities
                                                     this.Facing
                                                     );
                     Vector2 movingTo = this.Position + velocity * 32;
-                    if (CheckMovement(movingTo))
+                    blocked = !CheckMovement(movingTo);
+                    if (!blocked)
                         Move(velocity);
                     triedDirections++;
                 } while (CanStillMove(triedDirections) && blocked);
@@ -85,16 +86,17 @@ namespace CHIPS_CHALLENGE.Classes.Entities
         //Returns when blocked.
         public virtual bool CheckMovement(Vector2 position)
         {
+            bool move = true;
             List<ChipObject> chipObjects =
                         ChipGame.CheckCollision(position);
             foreach (ChipObject item in chipObjects)
             {
                 if (!CanMoveTo(item.code, position))
                 {
-                    return false;
+                    move = false;
                 }
             }
-            return true;
+            return move;
         }
         public virtual bool CanMoveTo(Objects code, Vector2 movingTo)
         {
