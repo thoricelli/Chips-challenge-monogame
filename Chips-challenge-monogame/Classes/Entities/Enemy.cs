@@ -33,6 +33,7 @@ namespace CHIPS_CHALLENGE.Classes.Entities
                 Objects.FORCE_SOUTH,
                 Objects.FORCE_WEST,
                 Objects.WATER,
+                Objects.ICE,
             };
         private List<Direction> directions = new List<Direction>();
         public Enemy(Objects code)

@@ -74,7 +74,7 @@ namespace CHIPS_CHALLENGE.Classes.Entities
 
                 //Well, this is used for the force items, but with no delay, this will look to be instant...
                 FireHasMoved(oldVelocity);
-            } else if (_queuedPush != null)
+            } else if (_queuedPush != null && _queuedPush.Type == PushType.FORCE)
             {
                 _queuedPush.QueuedMove = velocity;
             }
@@ -129,7 +129,7 @@ namespace CHIPS_CHALLENGE.Classes.Entities
         {
             if (_queuedPush != null)
             {
-                if (_queuedPush.Type == PushType.ICE)
+                if (_queuedPush.Type == PushType.ICE && this is Player)
                     ChipGame.thisPlayerInput.DisableInput();
 
                 Vector2 savedPush = _queuedPush.Velocity + _queuedPush.QueuedMove;
@@ -140,7 +140,7 @@ namespace CHIPS_CHALLENGE.Classes.Entities
                     Move(new Vector2(-savedPush.X, -savedPush.Y));
                 }
 
-                if (_queuedPush == null || _queuedPush.Type == PushType.FORCE)
+                if ((_queuedPush == null || _queuedPush.Type == PushType.FORCE) && this is Player)
                     ChipGame.thisPlayerInput.EnableInput();
             }
         }

@@ -257,7 +257,8 @@ namespace CHIPS_CHALLENGE.Classes
             if (trap.HasValue)
             {
                 Entity entity = CheckEntityTouched(new Vector2(trap.Value.ObjectX*32, trap.Value.ObjectY*32));
-                entity.waitToBeReleased = true;
+                if (entity != null)
+                    entity.waitToBeReleased = true;
             }
         }
         public static Trap? GetTrapFromButtonPosition(Vector2 buttonPosition)
@@ -280,7 +281,8 @@ namespace CHIPS_CHALLENGE.Classes
         }
         public static void CloneEnemy(Enemy entity)
         {
-            Enemies.Add(EnemyFactory.CreateObjectFromCode(entity.Code + (int)entity.Facing, entity.Position));
+            if (entity != null)
+                Enemies.Add(EnemyFactory.CreateObjectFromCode(entity.Code + (int)entity.Facing, entity.Position));
         }
         public static void RemoveEnemy(Enemy enemy)
         {

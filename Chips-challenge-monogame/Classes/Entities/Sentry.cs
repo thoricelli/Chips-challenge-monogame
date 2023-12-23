@@ -17,7 +17,7 @@ namespace CHIPS_CHALLENGE.Classes.Entities
         //TODO, sentry can't die to fire...
         public Sentry() 
             : base((Objects)Enemies.FIREBALL,
-                  new List<Direction> { Direction.UP, Direction.RIGHT, Direction.LEFT })
+                  new List<Direction> { Direction.UP, Direction.RIGHT, Direction.LEFT, Direction.DOWN })
         {
         }
         public override bool CanMoveTo(Objects code, Vector2 movingTo)
