@@ -131,6 +131,7 @@ namespace CHIPS_CHALLENGE.Classes.States
         public override void Initialize()
         {
             base.Initialize();
+            previousScrollWheelValue = Mouse.GetState().ScrollWheelValue;
             Panel _panel = new Panel();
 
             label = new Label()
