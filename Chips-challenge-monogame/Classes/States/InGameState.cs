@@ -94,8 +94,6 @@ namespace CHIPS_CHALLENGE.Classes.States
             /*if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 sprite.NextSprite();*/
 
-            // TODO: Add your update logic here
-
             label.Text = ChipGame.chipInfo.LevelNumber.ToString();
             index.Text = GeneralUtilities.ConvertFromVectorToIndex(thisPlayer.Position).ToString();
             positionString.Text = $"X: {thisPlayer.Position.X} Y: {thisPlayer.Position.Y}";

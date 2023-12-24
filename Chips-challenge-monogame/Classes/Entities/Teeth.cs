@@ -37,7 +37,6 @@ namespace CHIPS_CHALLENGE.Classes.Entities
             //IF X's difference is greater, move in the X direction (by 1)
             //IF Y's difference is greater than X's, move in the Y direction (by 1)
             //IF it can't, try the reverse axis.
-            //TODO, check if allowed to move!
 
             if (yDifference > xDifference)
             {

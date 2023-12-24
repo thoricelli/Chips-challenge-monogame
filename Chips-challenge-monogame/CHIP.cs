@@ -37,8 +37,6 @@ namespace CHIPS_CHALLENGE
         
         protected override void Initialize()
         {
-            // TODO: Add your initialization logic here
-
             if (GraphicsDevice == null)
             {
                 _graphics.ApplyChanges();
