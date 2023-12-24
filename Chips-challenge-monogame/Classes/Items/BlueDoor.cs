@@ -16,12 +16,8 @@ namespace CHIPS_CHALLENGE.Classes.Items
         public override bool MovingTo(Entity entity)
         {
             if (ChipGame.Inventory.Blue)
-            {
                 this.ChangeObjectInto(Objects.EMPTY);
-                ChipGame.Inventory.Blue = false;
-                return true;
-            }
-            return false;
+            return ChipGame.Inventory.Blue;
         }
     }
 }
