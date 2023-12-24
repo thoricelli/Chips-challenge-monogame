@@ -1,6 +1,9 @@
 ﻿using CHIPS_CHALLENGE.Classes.Entities;
+using CHIPS_CHALLENGE.Classes.Entities.Enums;
 using CHIPS_CHALLENGE.Classes.Items.Enums;
 using CHIPS_CHALLENGE.Classes.Loader.ChipFile;
+using CHIPS_CHALLENGE.Classes.Utilities;
+using info.lundin.math;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
@@ -21,13 +24,28 @@ namespace CHIPS_CHALLENGE.Classes.Items
             //Allow entity to move thats on cloner, clone new entity
             //Get cloner linked to this button
             CloneMachine? cloner = ChipGame.GetCloneFromButtonPosition(entity.Position);
-            //Get entity on the cloner.
-            Enemy cloneEntity = ChipGame.CheckEntityTouched(new Vector2(cloner.Value.ObjectX * 32, cloner.Value.ObjectY * 32)) as Enemy;
+            if (cloner.HasValue)
+            {
+                //Get entity on the cloner.
+                Vector2 clonePosition = new Vector2(cloner.Value.ObjectX * 32, cloner.Value.ObjectY * 32);
+                Enemy cloneEntity = ChipGame.CheckEntityTouched(clonePosition) as Enemy;
+                Objects objectOnTop = ChipGame.GetObjectFromIndex(0, GeneralUtilities.ConvertFromVectorToIndex(clonePosition));
 
-            ChipGame.CloneEnemy(cloneEntity);
+                if (cloneEntity != null)
+                {
+                    ChipGame.CloneEnemy(cloneEntity);
 
-            cloneEntity.waitToBeReleased = true;
-            cloneEntity.Update();
+                    cloneEntity.waitToBeReleased = true;
+                    cloneEntity.Update();
+                }
+                else
+                {
+                    Enemy enemy = ChipGame.AddEnemy(objectOnTop, clonePosition);
+
+                    enemy.waitToBeReleased = true;
+                    enemy.Update();
+                }
+            }
 
             base.HasMovedTo(entity, oldVelocity);
         }

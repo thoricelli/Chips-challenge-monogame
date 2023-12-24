@@ -45,7 +45,7 @@ namespace CHIPS_CHALLENGE.Classes.Entities
                         enemy = new Blob();
                         break;
                     case Enemies.PARAMECIUM:
-
+                        //TODO!
                         break;
                 }
                 face++;

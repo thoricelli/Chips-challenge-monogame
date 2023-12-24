@@ -28,7 +28,7 @@ namespace CHIPS_CHALLENGE.Classes
         public static Inventory Inventory = new Inventory();
         private static Vector2 _spawnLocation { get; set; }
         private static ChipFileLoader chipFileLoader = new ChipFileLoader(".\\Content\\CHIPS.DAT");
-        
+
         public static PlayerInputHandler thisPlayerInput { get; set; }
 
         public static List<Player> Players { get { return _players; } }
@@ -284,6 +284,12 @@ namespace CHIPS_CHALLENGE.Classes
             if (entity != null)
                 Enemies.Add(EnemyFactory.CreateObjectFromCode(entity.Code + (int)entity.Facing, entity.Position));
         }
+        public static Enemy AddEnemy(Objects code, Vector2 position)
+        {
+            Enemy toAdd = EnemyFactory.CreateObjectFromCode(code, position);
+            Enemies.Add(toAdd);
+            return toAdd;
+        }
         public static void RemoveEnemy(Enemy enemy)
         {
             Enemies.Remove(enemy);
@@ -311,6 +317,10 @@ namespace CHIPS_CHALLENGE.Classes
         public static void PlayerMoved(Player player)
         {
             //Later
+        }
+        public static Objects GetObjectFromIndex(int layerIndex, int objectIndex)
+        {
+            return chipInfo.layers[layerIndex].objects[objectIndex].code;
         }
     }
 }
