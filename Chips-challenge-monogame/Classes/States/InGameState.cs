@@ -1,6 +1,7 @@
 ﻿using CHIPS_CHALLENGE.Classes.Drawing;
 using CHIPS_CHALLENGE.Classes.Entities;
 using CHIPS_CHALLENGE.Classes.Input;
+using CHIPS_CHALLENGE.Classes.Loader.ChipFile;
 using CHIPS_CHALLENGE.Classes.Sprites;
 using CHIPS_CHALLENGE.Classes.UI;
 using CHIPS_CHALLENGE.Classes.Utilities;
@@ -38,6 +39,9 @@ namespace CHIPS_CHALLENGE.Classes.States
         bool upprev = true;
         bool upr = true;
         int previousScrollWheelValue = 0;
+
+        //ugh...
+        public static ushort Level = 0;
 
         private Label label;
         private Label index;
@@ -111,7 +115,7 @@ namespace CHIPS_CHALLENGE.Classes.States
             chipAni = new Spritesheet(_game.Content.Load<Texture2D>("Chip2Animations"), 32, 32, 0, 0, 8);
             
             sprite = new Sprite(spritesheet, 152);
-            ChipGame.LoadLevel(1);
+            ChipGame.LoadLevel(Level);
 
             chipDrawer = new ChipDrawer(_spriteBatch, _graphics);
 

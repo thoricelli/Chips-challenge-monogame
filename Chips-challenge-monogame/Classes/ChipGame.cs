@@ -27,7 +27,7 @@ namespace CHIPS_CHALLENGE.Classes
         public static ChipFileInformation chipInfo { get; set; }
         public static Inventory Inventory = new Inventory();
         private static Vector2 _spawnLocation { get; set; }
-        private static ChipFileLoader chipFileLoader = new ChipFileLoader(".\\Content\\CHIPS.DAT");
+        public static ChipFileLoader chipFileLoader = new ChipFileLoader(".\\Content\\CHIPS.DAT");
 
         public static PlayerInputHandler thisPlayerInput { get; set; }
 

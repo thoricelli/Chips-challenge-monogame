@@ -42,8 +42,9 @@ namespace CHIPS_CHALLENGE.Classes.States
             menuItem1.Text = "Start New Game";
             menuItem1.Selected += NewGameSelected;
 
-            /*var menuItem2 = new MenuItem();
-            menuItem2.Text = "Options";*/
+            var menuItem2 = new MenuItem();
+            menuItem2.Text = "Level select";
+            menuItem2.Selected += LevelSelectSelected;
 
             var menuItem3 = new MenuItem();
             menuItem3.Text = "Quit";
@@ -52,7 +53,7 @@ namespace CHIPS_CHALLENGE.Classes.States
             var verticalMenu = new VerticalMenu();
 
             verticalMenu.Items.Add(menuItem1);
-            //verticalMenu.Items.Add(menuItem2);
+            verticalMenu.Items.Add(menuItem2);
             verticalMenu.Items.Add(menuItem3);
 
             container.Widgets.Add(verticalMenu);
@@ -76,6 +77,11 @@ namespace CHIPS_CHALLENGE.Classes.States
         private void QuitGameSelected(object sender, EventArgs e)
         {
             _game.Exit();
+        }
+        private void LevelSelectSelected(object sender, EventArgs e)
+        {
+            InGameState.Level = 1;
+            _game.ChangeState(new LevelSelectState(_graphics, _spriteBatch, _game));
         }
     }
 }

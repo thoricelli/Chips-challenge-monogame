@@ -34,7 +34,7 @@ namespace CHIPS_CHALLENGE.Classes.Loader
         }
 
         //REFER TO https://www.seasip.info/ccfile.html
-        public ChipFileInformation LoadLevelFromFile(int level)
+        public ChipFileInformation LoadLevelFromFile(int level, bool populateLevel = true)
         {
             ChipFileInformation chipInfo = new ChipFileInformation();
 
@@ -62,24 +62,52 @@ namespace CHIPS_CHALLENGE.Classes.Loader
             //OK, we found our level!
 
             fs.Seek(0x2, SeekOrigin.Current); //Field 1, we skip this.
-            
+
             //Implement level loading logic.
             //Hardcoded layers for now.
-            byte[] layer1 = DecompressLayer(fs);
-            byte[] layer2 = DecompressLayer(fs);
-
-            List<byte[]> layers = new List<byte[]>() { layer1, layer2 };
-
-            foreach (byte[] layer in layers)
+            if (populateLevel)
             {
-                chipInfo.layers.Add(ToLayer(layer));
+                byte[] layer1 = DecompressLayer(fs);
+                byte[] layer2 = DecompressLayer(fs);
+
+                List<byte[]> layers = new List<byte[]>() { layer1, layer2 };
+
+                foreach (byte[] layer in layers)
+                {
+                    chipInfo.layers.Add(ToLayer(layer));
+                }
+            } else
+            {
+                LayerStruct layer = FromFileStream<LayerStruct>(fs);
+                fs.Seek(layer.Bytes, SeekOrigin.Current);
+                LayerStruct layer2 = FromFileStream<LayerStruct>(fs);
+                fs.Seek(layer2.Bytes, SeekOrigin.Current);
             }
 
-            PopulateFields(chipInfo, fs);
+            PopulateFields(chipInfo, fs, populateLevel);
 
             fs.Close();
 
             return chipInfo;
+        }
+
+        public List<ChipFileInformation> GetAllLevels()
+        {
+            FileStream fs = File.Open(filepath, FileMode.Open);
+            Base chipBase = FromFileStream<Base>(fs);
+            fs.Close();
+
+            int level = 1;
+
+            List<ChipFileInformation> fileInfo = new List<ChipFileInformation>();
+
+            do
+            {
+                fileInfo.Add(LoadLevelFromFile(level, false));
+                level++;
+            } while (chipBase.NumberOfLevels > level);
+
+            return fileInfo;
         }
 
         private Layer ToLayer(byte[] layer)
@@ -112,7 +140,7 @@ namespace CHIPS_CHALLENGE.Classes.Loader
             return code;
         }
 
-        private void PopulateFields(ChipFileInformation chipInfo, FileStream fs)
+        private void PopulateFields(ChipFileInformation chipInfo, FileStream fs, bool populateLevel)
         {
             //Now we need to parse the fields.
             byte[] sizeByte = new byte[2];
@@ -122,11 +150,11 @@ namespace CHIPS_CHALLENGE.Classes.Loader
 
             do
             {
-                ReadField(chipInfo, fs);
+                ReadField(chipInfo, fs, populateLevel);
             } while (fs.Position < endAddress);
         }
 
-        private void ReadField(ChipFileInformation chipInfo, FileStream fs)
+        private void ReadField(ChipFileInformation chipInfo, FileStream fs, bool populateLevel)
         {
             /* Read the first number as an INT, field number.
                Probably the best way to solve this is, not have fields but variables
@@ -172,11 +200,13 @@ namespace CHIPS_CHALLENGE.Classes.Loader
                         Monster monster = FromFileStream<Monster>(fs);
                         Vector2 position = new Vector2(monster.X*32, monster.Y*32);
 
-                        Objects code = chipInfo.layers[0].objects[GeneralUtilities.ConvertFromVectorToIndex(position)].code;
-                        //TEMP
-                        chipInfo.layers[0].objects[GeneralUtilities.ConvertFromVectorToIndex(position)] = ItemFactory.CreateObjectFromCode(Objects.EMPTY);
-
-                        ChipGame.AddEnemy(EnemyFactory.CreateObjectFromCode(code, position));
+                        if (populateLevel)
+                        {
+                            Objects code = chipInfo.layers[0].objects[GeneralUtilities.ConvertFromVectorToIndex(position)].code;
+                            //TEMP
+                            chipInfo.layers[0].objects[GeneralUtilities.ConvertFromVectorToIndex(position)] = ItemFactory.CreateObjectFromCode(Objects.EMPTY);
+                            ChipGame.AddEnemy(EnemyFactory.CreateObjectFromCode(code, position));
+                        }
                     } while (fs.Position < endMovement);
                     break;
                 default:
