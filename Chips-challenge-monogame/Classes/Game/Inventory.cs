@@ -8,20 +8,20 @@ namespace CHIPS_CHALLENGE.Classes.Game
 {
     public class Inventory
     {
-        public ushort Blue { get; set; } = 0;
-        public ushort Red { get; set; } = 0;
-        public ushort Green { get; set; } = 0;
-        public ushort Yellow { get; set; } = 0;
+        public bool Blue { get; set; } = false;
+        public bool Red { get; set; } = false;
+        public bool Green { get; set; } = false;
+        public bool Yellow { get; set; } = false;
         public bool WaterShoe { get; set; } = false;
         public bool FireShoe { get; set; } = false;
         public bool IceShoe { get; set; } = false;
         public bool ForceShoe { get; set; } = false;
         public void ResetAllItems()
         {
-            Red = 0;
-            Green = 0;
-            Blue = 0;
-            Yellow = 0;
+            Red = false;
+            Green = false;
+            Blue = false;
+            Yellow = false;
 
             WaterShoe = false;
             FireShoe = false;
