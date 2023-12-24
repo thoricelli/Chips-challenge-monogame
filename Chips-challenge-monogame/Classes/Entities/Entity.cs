@@ -148,13 +148,13 @@ namespace CHIPS_CHALLENGE.Classes.Entities
 
                 Vector2 savedPush = _queuedPush.Velocity + _queuedPush.QueuedMove;
                 _queuedPush = null;
-                if (!Move(savedPush) && _queuedPush.Type == PushType.ICE)
+                if (!Move(savedPush) && _queuedPush != null && _queuedPush.Type == PushType.ICE)
                 {
                     _queuedPush = null;
                     Move(new Vector2(-savedPush.X, -savedPush.Y));
                 }
 
-                if ((_queuedPush == null || _queuedPush.Type == PushType.FORCE) && this is Player)
+                if ((_queuedPush == null || (_queuedPush != null && _queuedPush.Type == PushType.FORCE)) && this is Player)
                     ChipGame.thisPlayerInput.EnableInput();
             }
         }
