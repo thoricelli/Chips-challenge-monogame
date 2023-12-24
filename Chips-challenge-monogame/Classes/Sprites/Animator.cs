@@ -38,7 +38,7 @@ namespace CHIPS_CHALLENGE.Classes.Sprites
 
         public void AnimationRenderStepped()
         {
-            //For animated sprites.
+            Sprite.NextSprite();
         }
     }
 }

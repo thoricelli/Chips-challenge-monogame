@@ -206,6 +206,8 @@ namespace CHIPS_CHALLENGE.Classes
                 {
                     foreach (Entity entity in Entities)
                     {
+                        if (entity is Player)
+                            (entity as Player).AnimationRenderStepped();
                         entity.HandlePush();
                     }
                     LastPushUpdate = gameTime.TotalGameTime.TotalMilliseconds;

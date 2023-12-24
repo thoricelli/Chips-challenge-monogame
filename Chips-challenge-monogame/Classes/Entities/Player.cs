@@ -1,6 +1,7 @@
 ﻿using CHIPS_CHALLENGE.Classes.Items.Enums;
 using CHIPS_CHALLENGE.Classes.Sprites;
 using CHIPS_CHALLENGE.Classes.States;
+using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,16 +14,29 @@ namespace CHIPS_CHALLENGE.Classes.Entities
     {
         public Player() : base(
             Objects.HERO_NORTH,
-            new Sprite(InGameState.spritesheet, 4, (int)Objects.HERO_NORTH),
-            new Sprite(InGameState.spritesheet, 4, ((int)Objects.HERO_NORTH) + 1),
-            new Sprite(InGameState.spritesheet, 4, ((int)Objects.HERO_NORTH) + 2),
-            new Sprite(InGameState.spritesheet, 4, ((int)Objects.HERO_NORTH) + 3))
+            new Sprite(InGameState.chipAni, 8, 0, false),
+            new Sprite(InGameState.chipAni, 8, 24, false),
+            new Sprite(InGameState.chipAni, 8, 16, false),
+            new Sprite(InGameState.chipAni, 8, 8, false))
         {
         }
         public override void Kill(Objects killedBy)
         {
             base.Kill(killedBy);
             ChipGame.PlayerDied(this);
+        }
+        public override bool Move(Vector2 velocity)
+        {
+            Enemy enemy = ChipGame.CheckEntityTouched(this.Position + velocity * 32) as Enemy;
+            if (enemy != null)
+                this.Kill(enemy.Code);
+            Player player = ChipGame.CheckPlayerTouched(this.Position + velocity * 32);
+            if (player != null)
+            {
+                velocity = Vector2.Zero;
+                return false;
+            }
+            return base.Move(velocity);
         }
     }
 }

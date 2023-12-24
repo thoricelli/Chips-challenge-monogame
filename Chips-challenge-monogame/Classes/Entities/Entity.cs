@@ -26,6 +26,7 @@ namespace CHIPS_CHALLENGE.Classes.Entities
         //Will be true if waiting for release.
         public bool waitToBeReleased = false;
         public bool Trapped = false;
+        public bool isSmoothMoving = false;
 
         private Push _queuedPush { get; set; } = null;
 
@@ -78,6 +79,19 @@ namespace CHIPS_CHALLENGE.Classes.Entities
             {
                 _queuedPush.QueuedMove = velocity;
             }
+
+            //Entity moves
+            //Position gets updated
+            //displayPosition is still the same as previous position.
+
+            //Don't allow movement for that entity (this WILL conflict with enemymovement!!!)
+            //IF SmoothMoving = true
+            //Start playing animation every X seconds
+            //Update displayposition every X seconds
+            //(DisplayPosition must be / amount of steps of the animation so it's smooth.
+
+            //WHEN displayposition == position, done, stop animation, stop at the first frame.
+
             return move;
         }
 

@@ -28,6 +28,7 @@ namespace CHIPS_CHALLENGE.Classes.States
         //Sprite basis
         private Sprite sprite;
         public static Spritesheet spritesheet; //Temporarily public, because we're using this as a default
+        public static Spritesheet chipAni;
 
         private Player thisPlayer;
         private PlayerInputHandler inputHandler;
@@ -107,6 +108,8 @@ namespace CHIPS_CHALLENGE.Classes.States
             _spriteBatch = new SpriteBatch(_graphics);
 
             spritesheet = new Spritesheet(_game.Content.Load<Texture2D>("ChipTiles"), 32, 32, 0, 0, 16);
+            chipAni = new Spritesheet(_game.Content.Load<Texture2D>("Chip2Animations"), 32, 32, 0, 0, 8);
+            
             sprite = new Sprite(spritesheet, 152);
             ChipGame.LoadLevel(1);
 
