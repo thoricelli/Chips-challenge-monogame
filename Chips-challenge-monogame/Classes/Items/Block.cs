@@ -28,6 +28,8 @@ namespace CHIPS_CHALLENGE.Classes.Items
                     return Objects.DIRT;
                 case Objects.TELEPORT_BUTTON:
                     return code;
+                case Objects.BOMB:
+                    return Objects.EMPTY;
             }
             return base.TileMove(obj);
         }
