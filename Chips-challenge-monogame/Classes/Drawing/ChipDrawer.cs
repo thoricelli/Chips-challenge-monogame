@@ -117,7 +117,7 @@ namespace CHIPS_CHALLENGE.Classes.Drawing
         }
 
         //TODO, other class??
-        private Vector2 CalculateModifiers(Vector2 vector) //Is this not by reference?
+        public Vector2 CalculateModifiers(Vector2 vector) //Is this not by reference?
         {
             return new Vector2(
                 ((vector.X + CameraX) * ZoomModifier) + CameraXOffset, 

@@ -177,7 +177,7 @@ namespace CHIPS_CHALLENGE.Classes.Loader
                         chipInfo.layers[0].objects[GeneralUtilities.ConvertFromVectorToIndex(position)] = ItemFactory.CreateObjectFromCode(Objects.EMPTY);
 
                         ChipGame.AddEnemy(EnemyFactory.CreateObjectFromCode(code, position));
-                    } while (fs.Position <= endMovement);
+                    } while (fs.Position < endMovement);
                     break;
                 default:
                     fs.Seek(field.Bytes, SeekOrigin.Current);
