@@ -1,4 +1,5 @@
 ﻿using CHIPS_CHALLENGE.Classes.Entities;
+using CHIPS_CHALLENGE.Classes.Interfaces;
 using CHIPS_CHALLENGE.Classes.Items.Enums;
 using System;
 using System.Collections.Generic;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace CHIPS_CHALLENGE.Classes.Items
 {
-    public class Chip : ChipObject
+    public class Chip : ChipObject, IPickUpAble
     {
         public Chip() : base(Objects.COMPUTER_CHIP)
         {
@@ -16,9 +17,14 @@ namespace CHIPS_CHALLENGE.Classes.Items
 
         public override bool MovingTo(Entity entity)
         {
+            PickUp();
+            return base.MovingTo(entity);
+        }
+
+        public void PickUp()
+        {
             this.ChangeObjectInto(Objects.EMPTY);
             ChipGame.ChipPickedUp();
-            return true;
-        } 
+        }
     }
 }

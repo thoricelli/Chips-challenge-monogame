@@ -1,4 +1,5 @@
 ﻿using CHIPS_CHALLENGE.Classes.Entities;
+using CHIPS_CHALLENGE.Classes.Interfaces;
 using CHIPS_CHALLENGE.Classes.Items.Enums;
 using System;
 using System.Collections.Generic;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace CHIPS_CHALLENGE.Classes.Items
 {
-    public class GreenDoor : ChipObject
+    public class GreenDoor : ChipObject, IOpenAble
     {
         public GreenDoor() : base(Objects.GREEN_DOOR)
         {
@@ -17,10 +18,15 @@ namespace CHIPS_CHALLENGE.Classes.Items
         {
             if (ChipGame.Inventory.Green)
             {
-                this.ChangeObjectInto(Objects.EMPTY);
-                return true;
+                Open();
+                return base.MovingTo(entity);
             }
             return false;
+        }
+
+        public void Open()
+        {
+            this.ChangeObjectInto(Objects.EMPTY);
         }
     }
 }

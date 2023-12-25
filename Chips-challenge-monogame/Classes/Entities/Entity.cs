@@ -4,6 +4,7 @@ using CHIPS_CHALLENGE.Classes.Game.Enums;
 using CHIPS_CHALLENGE.Classes.Items;
 using CHIPS_CHALLENGE.Classes.Items.Enums;
 using CHIPS_CHALLENGE.Classes.Sprites;
+using CHIPS_CHALLENGE.Classes.States;
 using CHIPS_CHALLENGE.Classes.Utilities;
 using Microsoft.Xna.Framework;
 using System;

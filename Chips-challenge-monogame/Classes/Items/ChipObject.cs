@@ -1,4 +1,5 @@
 ﻿using CHIPS_CHALLENGE.Classes.Entities;
+using CHIPS_CHALLENGE.Classes.Interfaces;
 using CHIPS_CHALLENGE.Classes.Items.Enums;
 using CHIPS_CHALLENGE.Classes.Sprites;
 using CHIPS_CHALLENGE.Classes.States;
@@ -46,6 +47,12 @@ namespace CHIPS_CHALLENGE.Classes.Items
         /// <param name="entity">Entity that is going to move to this tile</param>
         /// <returns>If the entity can move through it</returns>
         public virtual bool MovingTo(Entity entity) {
+            if (this is IPickUpAble)
+                InGameState.audioPlayer.PlaySoundEffect(Audio.Enums.SoundEffects.GET);
+            if (this is IPressable)
+                InGameState.audioPlayer.PlaySoundEffect(Audio.Enums.SoundEffects.BUTTON);
+            if (this is IOpenAble)
+                InGameState.audioPlayer.PlaySoundEffect(Audio.Enums.SoundEffects.DOOR);
             return true;
         }
         /// <summary>

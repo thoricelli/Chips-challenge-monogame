@@ -192,6 +192,7 @@ namespace CHIPS_CHALLENGE.Classes.States
         }
         public Object GameOver()
         {
+            audioPlayer.PlaySoundEffect(SoundEffects.BUMMER);
             _game.ChangeState(new GameOverState(_graphics, _spriteBatch, _game));
             return null;
         }

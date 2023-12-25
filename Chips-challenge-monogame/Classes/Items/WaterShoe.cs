@@ -1,4 +1,5 @@
 ﻿using CHIPS_CHALLENGE.Classes.Entities;
+using CHIPS_CHALLENGE.Classes.Interfaces;
 using CHIPS_CHALLENGE.Classes.Items.Enums;
 using System;
 using System.Collections.Generic;
@@ -8,16 +9,21 @@ using System.Threading.Tasks;
 
 namespace CHIPS_CHALLENGE.Classes.Items
 {
-    public class WaterShoe : ChipObject
+    public class WaterShoe : ChipObject, IPickUpAble
     {
         public WaterShoe() : base(Objects.WATER_SHOE)
         {
         }
         public override bool MovingTo(Entity entity)
         {
+            PickUp();
+            return base.MovingTo(entity);
+        }
+
+        public void PickUp()
+        {
             this.ChangeObjectInto(Objects.EMPTY);
             ChipGame.Inventory.WaterShoe = true;
-            return base.MovingTo(entity);
         }
     }
 }

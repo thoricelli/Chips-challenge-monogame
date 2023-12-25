@@ -1,5 +1,6 @@
 ﻿using CHIPS_CHALLENGE.Classes.Entities;
 using CHIPS_CHALLENGE.Classes.Items.Enums;
+using CHIPS_CHALLENGE.Classes.States;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,6 +26,7 @@ namespace CHIPS_CHALLENGE.Classes.Items
             switch (obj)
             {
                 case Objects.WATER:
+                    InGameState.audioPlayer.PlaySoundEffect(Audio.Enums.SoundEffects.SPLASH);
                     return Objects.DIRT;
                 case Objects.TELEPORT_BUTTON:
                     return code;

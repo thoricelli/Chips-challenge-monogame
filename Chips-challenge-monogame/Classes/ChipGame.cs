@@ -354,7 +354,7 @@ namespace CHIPS_CHALLENGE.Classes
 
         public static void PlayerMoved(Player player)
         {
-            //Later
+            
         }
         public static Objects GetObjectFromIndex(int layerIndex, int objectIndex)
         {

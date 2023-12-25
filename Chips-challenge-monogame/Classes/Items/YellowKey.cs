@@ -1,4 +1,5 @@
 ﻿using CHIPS_CHALLENGE.Classes.Entities;
+using CHIPS_CHALLENGE.Classes.Interfaces;
 using CHIPS_CHALLENGE.Classes.Items.Enums;
 using System;
 using System.Collections.Generic;
@@ -8,16 +9,21 @@ using System.Threading.Tasks;
 
 namespace CHIPS_CHALLENGE.Classes.Items
 {
-    public class YellowKey : ChipObject
+    public class YellowKey : ChipObject, IPickUpAble
     {
         public YellowKey() : base(Objects.YELLOW_KEY)
         {
         }
         public override bool MovingTo(Entity entity)
         {
+            PickUp();
+            return base.MovingTo(entity);
+        }
+
+        public void PickUp()
+        {
             this.ChangeObjectInto(Objects.EMPTY);
             ChipGame.Inventory.Yellow++;
-            return base.MovingTo(entity);
         }
     }
 }

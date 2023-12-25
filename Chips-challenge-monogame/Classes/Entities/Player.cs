@@ -36,7 +36,10 @@ namespace CHIPS_CHALLENGE.Classes.Entities
                 velocity = Vector2.Zero;
                 return false;
             }*/
-            return base.Move(velocity);
+            bool move = base.Move(velocity);
+            if (!move)
+                InGameState.audioPlayer.PlaySoundEffect(Audio.Enums.SoundEffects.WALL);
+            return move;
         }
         private int times = 0;
         public void UpdateSmoothMovement()
