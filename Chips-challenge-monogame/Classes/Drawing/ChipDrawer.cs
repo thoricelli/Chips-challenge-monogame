@@ -14,7 +14,6 @@ namespace CHIPS_CHALLENGE.Classes.Drawing
 {
     public class ChipDrawer
     {
-        //Vector2 is giving me a headache...
         public int CameraX { get; set; }
         public int CameraY { get; set; }
         public int CameraXOffset { get; set; }
@@ -78,7 +77,7 @@ namespace CHIPS_CHALLENGE.Classes.Drawing
                     {
                         spriteBatch.Draw(
                                 item.Sprite.SpriteSheet.spriteSheet,
-                                CalculateModifiers(position),
+                                GeneralUtilities.CalculateModifiers(position, CameraX, CameraY, ZoomModifier, CameraXOffset, CameraYOffset),
                                 item.Sprite.SpriteRectangle,
                                 Color.White,
                                 0,
@@ -102,7 +101,7 @@ namespace CHIPS_CHALLENGE.Classes.Drawing
                     case Entities.Enums.State.Alive:
                         spriteBatch.Draw(
                             entity.Sprite.SpriteSheet.spriteSheet,
-                            CalculateModifiers(entity.DisplayPosition),
+                            GeneralUtilities.CalculateModifiers(entity.DisplayPosition, CameraX, CameraY, ZoomModifier, CameraXOffset, CameraYOffset),
                             entity.Sprite.SpriteRectangle,
                             Color.White,
                             0,
@@ -114,15 +113,6 @@ namespace CHIPS_CHALLENGE.Classes.Drawing
                         break;
                 }
             }
-        }
-
-        //TODO, other class??
-        public Vector2 CalculateModifiers(Vector2 vector) //Is this not by reference?
-        {
-            return new Vector2(
-                ((vector.X + CameraX) * ZoomModifier) + CameraXOffset, 
-                ((vector.Y + CameraY) * ZoomModifier) + CameraYOffset
-            );
         }
         #endregion
     }

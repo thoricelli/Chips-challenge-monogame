@@ -95,5 +95,12 @@ namespace CHIPS_CHALLENGE.Classes.Utilities
             double yDifference = Math.Pow((to.Y - from.Y), 2);
             return (int)Math.Sqrt(xDifference + yDifference);
         }
+        public static Vector2 CalculateModifiers(Vector2 vector, int CameraX, int CameraY, float ZoomModifier, int CameraXOffset, int CameraYOffset) //Is this not by reference?
+        {
+            return new Vector2(
+                ((vector.X + CameraX) * ZoomModifier) + CameraXOffset,
+                ((vector.Y + CameraY) * ZoomModifier) + CameraYOffset
+            );
+        }
     }
 }
