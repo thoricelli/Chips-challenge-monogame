@@ -1,5 +1,6 @@
 ﻿using CHIPS_CHALLENGE.Classes.Entities;
 using CHIPS_CHALLENGE.Classes.Game;
+using CHIPS_CHALLENGE.Classes.Interfaces;
 using CHIPS_CHALLENGE.Classes.Items;
 using CHIPS_CHALLENGE.Classes.Items.Enums;
 using CHIPS_CHALLENGE.Classes.Sprites;
@@ -12,7 +13,7 @@ using System.Linq;
 
 namespace CHIPS_CHALLENGE.Classes.Drawing
 {
-    public class ChipDrawer
+    public class ChipDrawer : IDrawer
     {
         public int CameraX { get; set; }
         public int CameraY { get; set; }

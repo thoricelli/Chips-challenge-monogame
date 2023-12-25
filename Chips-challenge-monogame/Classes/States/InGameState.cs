@@ -1,6 +1,7 @@
 ﻿using CHIPS_CHALLENGE.Classes.Drawing;
 using CHIPS_CHALLENGE.Classes.Entities;
 using CHIPS_CHALLENGE.Classes.Input;
+using CHIPS_CHALLENGE.Classes.Interfaces;
 using CHIPS_CHALLENGE.Classes.Loader.ChipFile;
 using CHIPS_CHALLENGE.Classes.Sprites;
 using CHIPS_CHALLENGE.Classes.UI;
@@ -22,7 +23,8 @@ namespace CHIPS_CHALLENGE.Classes.States
     public class InGameState : GameState
     {
         //Chip game related info & drawer
-        private ChipDrawer chipDrawer;
+        private IDrawer chipDrawer;
+        private IInputHandler inputHandler;
 
         public static GameUI gameUI;
 
@@ -31,8 +33,7 @@ namespace CHIPS_CHALLENGE.Classes.States
         public static Spritesheet spritesheet; //Temporarily public, because we're using this as a default
         public static Spritesheet chipAni;
 
-        private Player thisPlayer;
-        private PlayerInputHandler inputHandler;
+        private Player thisPlayer; 
 
         //TEMPORARY!
         bool upnext = true;//TEMP

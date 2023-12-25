@@ -1,4 +1,5 @@
 ﻿using CHIPS_CHALLENGE.Classes.Entities;
+using CHIPS_CHALLENGE.Classes.Interfaces;
 using CHIPS_CHALLENGE.Classes.States;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
@@ -10,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace CHIPS_CHALLENGE.Classes.Input
 {
-    public class PlayerInputHandler
+    public class PlayerInputHandler : IInputHandler
     {
         public Player player;
 

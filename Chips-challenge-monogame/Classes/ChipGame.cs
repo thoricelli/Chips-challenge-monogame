@@ -31,7 +31,7 @@ namespace CHIPS_CHALLENGE.Classes
         private static Vector2 _spawnLocation { get; set; }
         public static ChipFileLoader chipFileLoader = new ChipFileLoader(".\\Content\\CHIPS.DAT");
 
-        public static PlayerInputHandler thisPlayerInput { get; set; }
+        public static IInputHandler thisPlayerInput { get; set; }
 
         public static List<Player> Players { get { return _players; } }
 
