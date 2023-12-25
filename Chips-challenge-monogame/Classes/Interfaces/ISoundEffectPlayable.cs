@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace CHIPS_CHALLENGE.Classes.Interfaces
 {
-    public interface ISoundEffectPlayer
+    public interface ISoundEffectPlayable
     {
         public void PlaySoundEffect(SoundEffects soundEffect);
         public void AddSoundEffect(SoundEffect effect, SoundEffects soundEffect);

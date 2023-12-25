@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace CHIPS_CHALLENGE.Classes.Audio
 {
-    public class AudioPlayer : ISoundEffectPlayer, IMusicPlayer, IUpdatable
+    public class AudioPlayer : ISoundEffectPlayable, IMusicPlayable, IUpdatable
     {
         private bool _playing = false;
         private List<Song> _music = new List<Song>();

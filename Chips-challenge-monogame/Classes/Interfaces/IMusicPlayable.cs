@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace CHIPS_CHALLENGE.Classes.Interfaces
 {
-    internal interface IMusicPlayer
+    internal interface IMusicPlayable
     {
         public void PlayMusic();
         public void StopMusic();
