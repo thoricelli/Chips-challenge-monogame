@@ -30,13 +30,30 @@ namespace CHIPS_CHALLENGE.Classes.Entities
             Enemy enemy = ChipGame.CheckEntityTouched(this.Position + velocity * 32) as Enemy;
             if (enemy != null)
                 this.Kill(enemy.Code);
-            Player player = ChipGame.CheckPlayerTouched(this.Position + velocity * 32);
+            /*Player player = ChipGame.CheckPlayerTouched(this.Position + velocity * 32);
             if (player != null)
             {
                 velocity = Vector2.Zero;
                 return false;
-            }
+            }*/
             return base.Move(velocity);
+        }
+        private int times = 0;
+        public void UpdateSmoothMovement()
+        {
+
+            DisplayPosition += MoveByForSmooth;
+            times++;
+
+            if (times >= 8)
+            {
+                MovementEnabled = true;
+                isSmoothMoving = false;
+                times = 0;
+                HandlePush();
+            }
+
+            //WHEN displayposition == position, done, stop animation, stop at the first frame.
         }
     }
 }

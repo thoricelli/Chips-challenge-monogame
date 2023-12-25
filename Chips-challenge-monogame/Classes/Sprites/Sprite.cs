@@ -76,6 +76,11 @@ namespace CHIPS_CHALLENGE.Classes.Sprites
                 _spriteIndex = _totalSprites + _startSpriteIndex;
             UpdateSprite();
         }
+        public void ResetSprite()
+        {
+            _spriteIndex = _startSpriteIndex;
+            UpdateSprite();
+        }
         #endregion
 
         private void UpdateSprite()

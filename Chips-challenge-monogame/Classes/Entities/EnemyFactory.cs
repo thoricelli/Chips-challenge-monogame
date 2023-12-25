@@ -45,7 +45,7 @@ namespace CHIPS_CHALLENGE.Classes.Entities
                         enemy = new Blob();
                         break;
                     case Enemies.PARAMECIUM:
-                        //TODO!
+                        enemy = new Paramecium();
                         break;
                 }
                 face++;
@@ -55,7 +55,7 @@ namespace CHIPS_CHALLENGE.Classes.Entities
                 enemy = new Enemy(code);
 
             enemy.ChangeDirection((Facing)face-1);
-            enemy.Position = position;
+            enemy.ChangePosition(position);
 
             return enemy;
         }

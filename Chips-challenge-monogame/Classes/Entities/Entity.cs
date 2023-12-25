@@ -17,8 +17,11 @@ namespace CHIPS_CHALLENGE.Classes.Entities
     public abstract class Entity : Animator
     {
         public Objects Code;
-        public Vector2 Position;
+        public Vector2 Position { get { return _position; } }
+        private Vector2 _position;
         public Vector2 Velocity;
+        public Vector2 DisplayPosition;
+        protected Vector2 MoveByForSmooth;
         public State State { get; set; }
         public bool MovementEnabled { get; set; } = true;
         //Will update very PUSH update. (Which is configurable how fast)
@@ -61,7 +64,7 @@ namespace CHIPS_CHALLENGE.Classes.Entities
                 { //Can entity move from current tile?
                     if (CheckMoveToTile())
                     { //Can entity move to the tile it wants?
-                        Position += (Velocity * 32);
+                        _position += (Velocity * 32);
                         ChangeDirection(GeneralUtilities.VelocityToFacing(velocity));
                         move = true;
 
@@ -75,22 +78,25 @@ namespace CHIPS_CHALLENGE.Classes.Entities
 
                 //Well, this is used for the force items, but with no delay, this will look to be instant...
                 FireHasMoved(oldVelocity);
+
+                if (this is Player && move)
+                {
+                    //Entity moves
+                    //Position gets updated
+                    //displayPosition is still the same as previous position.
+                    //Don't allow movement for that entity (this WILL conflict with enemymovement!!!)
+                    MoveByForSmooth = (Position - DisplayPosition) / 8;
+                    MovementEnabled = false;
+                    isSmoothMoving = true;
+                }
+                else
+                {
+                    DisplayPosition = Position;
+                }
             } else if (_queuedPush != null && _queuedPush.Type == PushType.FORCE)
             {
                 _queuedPush.QueuedMove = velocity;
             }
-
-            //Entity moves
-            //Position gets updated
-            //displayPosition is still the same as previous position.
-
-            //Don't allow movement for that entity (this WILL conflict with enemymovement!!!)
-            //IF SmoothMoving = true
-            //Start playing animation every X seconds
-            //Update displayposition every X seconds
-            //(DisplayPosition must be / amount of steps of the animation so it's smooth.
-
-            //WHEN displayposition == position, done, stop animation, stop at the first frame.
 
             return move;
         }
@@ -141,7 +147,7 @@ namespace CHIPS_CHALLENGE.Classes.Entities
         }
         public void HandlePush()
         {
-            if (_queuedPush != null)
+            if (_queuedPush != null && MovementEnabled)
             {
                 if (_queuedPush.Type == PushType.ICE && this is Player)
                     ChipGame.thisPlayerInput.DisableInput();
@@ -166,6 +172,11 @@ namespace CHIPS_CHALLENGE.Classes.Entities
         public void TrapEntity()
         {
             Trapped = true;
+        }
+        public void ChangePosition(Vector2 position)
+        {
+            this._position = position;
+            this.DisplayPosition = position;
         }
     }
 }

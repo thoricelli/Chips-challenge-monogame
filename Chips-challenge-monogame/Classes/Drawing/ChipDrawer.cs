@@ -57,9 +57,9 @@ namespace CHIPS_CHALLENGE.Classes.Drawing
         {
             if (_target != null)
             {
-                CameraX = -(int)_target.Position.X;
+                CameraX = -(int)_target.DisplayPosition.X;
                 CameraXOffset = (graphics.Viewport.Width / 2);
-                CameraY = -(int)_target.Position.Y;
+                CameraY = -(int)_target.DisplayPosition.Y;
                 CameraYOffset = (graphics.Viewport.Height / 2);
             }
         }
@@ -102,7 +102,7 @@ namespace CHIPS_CHALLENGE.Classes.Drawing
                     case Entities.Enums.State.Alive:
                         spriteBatch.Draw(
                             entity.Sprite.SpriteSheet.spriteSheet,
-                            CalculateModifiers(entity.Position),
+                            CalculateModifiers(entity.DisplayPosition),
                             entity.Sprite.SpriteRectangle,
                             Color.White,
                             0,

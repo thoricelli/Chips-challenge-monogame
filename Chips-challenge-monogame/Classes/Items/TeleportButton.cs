@@ -18,7 +18,7 @@ namespace CHIPS_CHALLENGE.Classes.Items
 
         public override void HasMovedTo(Entity entity, Vector2 oldVelocity)
         {
-            entity.Position = GetTeleportPosition(entity.Position);
+            entity.ChangePosition(GetTeleportPosition(entity.Position));
         }
 
         public Vector2 GetTeleportPosition(Vector2 position)

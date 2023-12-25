@@ -10,7 +10,7 @@ namespace CHIPS_CHALLENGE.Classes.Game
     {
         public ushort Blue { get; set; } = 0;
         public ushort Red { get; set; } = 0;
-        public ushort Green { get; set; } = 0;
+        public bool Green { get; set; } = false;
         public ushort Yellow { get; set; } = 0;
         public bool WaterShoe { get; set; } = false;
         public bool FireShoe { get; set; } = false;
@@ -19,7 +19,7 @@ namespace CHIPS_CHALLENGE.Classes.Game
         public void ResetAllItems()
         {
             Red = 0;
-            Green = 0;
+            Green = false;
             Blue = 0;
             Yellow = 0;
 

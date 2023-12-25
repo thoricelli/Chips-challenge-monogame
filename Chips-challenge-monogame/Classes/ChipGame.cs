@@ -56,9 +56,11 @@ namespace CHIPS_CHALLENGE.Classes
         /*
          CONFIG IS TEMPORARILY HERE!
          */
-        private static int UpdateEnemiesMs = 500;
-        private static int UpdatePushMs = 150;
+        public static int UpdateSmoothPosition = 8;
+        private static int UpdateEnemiesMs = 520;
+        private static int UpdatePushMs = 120;
 
+        private static double LastSmoothUpdate = 0;
         private static double LastEnemyUpdate = 0;
         private static double LastPushUpdate = 0;
 
@@ -173,13 +175,13 @@ namespace CHIPS_CHALLENGE.Classes
             _spawnLocation = position;
             foreach (Player player in Players)
             {
-                player.Position = position;
+                player.ChangePosition(position);
             }
         }
 
         public static void AddPlayer(Player player)
         {
-            player.Position = _spawnLocation;
+            player.ChangePosition(_spawnLocation);
             _players.Add(player);
         }
         public static void PlayerDied(Player player)
@@ -224,11 +226,27 @@ namespace CHIPS_CHALLENGE.Classes
                 {
                     foreach (Entity entity in Entities)
                     {
-                        if (entity is Player)
-                            (entity as Player).AnimationRenderStepped();
                         entity.HandlePush();
                     }
                     LastPushUpdate = gameTime.TotalGameTime.TotalMilliseconds;
+                }
+                //Every X seconds update smooth movement.
+                if (totalMiliseconds - LastSmoothUpdate >= UpdateSmoothPosition)
+                {
+                    foreach (Player player in Players)
+                    {
+                        if (player.isSmoothMoving)
+                        {
+                            player.UpdateSmoothMovement();
+                            player.AnimationRenderStepped();
+                        }
+                        else
+                        {
+                            player.Sprite.ResetSprite();
+                        }
+                        
+                    }
+                    LastSmoothUpdate = gameTime.TotalGameTime.TotalMilliseconds;
                 }
             }
         }

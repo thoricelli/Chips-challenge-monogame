@@ -15,7 +15,9 @@ namespace CHIPS_CHALLENGE.Classes.Input
         public Player player;
 
         private bool upkey = true;
+        private bool prevupkey = true;
         private bool disableInput = false;
+        private TimeSpan holdingDown;
 
         public PlayerInputHandler(Player player)
         {
@@ -54,9 +56,18 @@ namespace CHIPS_CHALLENGE.Classes.Input
                     upkey = false;
                 }
             }
-            
+
+            if (prevupkey && !upkey)
+            { //Means we changed from not holding to holding down a key
+              //Set holding down to now.
+            }
+
             if (!upkey)
+            {
                 ChipGame.StartGame();
+                //If holding down is longer than 3 seconds, start auto moving every 1 second.
+
+            }
 
             if (
                 Keyboard.GetState().IsKeyUp(Keys.Up)
