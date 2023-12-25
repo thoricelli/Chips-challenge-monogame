@@ -1,5 +1,6 @@
 ﻿using CHIPS_CHALLENGE.Classes.Entities;
 using CHIPS_CHALLENGE.Classes.Entities.Enums;
+using CHIPS_CHALLENGE.Classes.Interfaces;
 using CHIPS_CHALLENGE.Classes.Items.Enums;
 using CHIPS_CHALLENGE.Classes.Loader.ChipFile;
 using CHIPS_CHALLENGE.Classes.Utilities;
@@ -13,7 +14,7 @@ using System.Threading.Tasks;
 
 namespace CHIPS_CHALLENGE.Classes.Items
 {
-    public class ClonerButton : ChipObject
+    public class ClonerButton : ChipObject, IPressable
     {
         public ClonerButton() : base(Objects.CLONER_BUTTON)
         {
@@ -23,7 +24,14 @@ namespace CHIPS_CHALLENGE.Classes.Items
         {
             //Allow entity to move thats on cloner, clone new entity
             //Get cloner linked to this button
-            CloneMachine? cloner = ChipGame.GetCloneFromButtonPosition(entity.Position);
+            Clone(entity.Position);
+
+            base.HasMovedTo(entity, oldVelocity);
+        }
+
+        private void Clone(Vector2 position)
+        {
+            CloneMachine? cloner = ChipGame.GetCloneFromButtonPosition(position);
             if (cloner.HasValue)
             {
                 //Get entity on the cloner.
@@ -46,8 +54,12 @@ namespace CHIPS_CHALLENGE.Classes.Items
                     enemy.Update();
                 }
             }
+        }
 
-            base.HasMovedTo(entity, oldVelocity);
+        public Object Press(Vector2 position)
+        {
+            Clone(position);
+            return null;
         }
     }
 }

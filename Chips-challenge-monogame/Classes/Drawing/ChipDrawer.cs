@@ -72,7 +72,7 @@ namespace CHIPS_CHALLENGE.Classes.Drawing
                 {
                     ChipObject item = layer.objects[i];
                     Vector2 position = GeneralUtilities.ConvertFromIndexToVector(i);
-                    layer.objects[i] = GameUpdate.Update(item);
+                    layer.objects[i] = GameUpdate.Update(item, layerIndex != ChipGame.chipInfo.layers.Count - 1 ? ChipGame.chipInfo.layers[layerIndex + 1].objects[i] : null, i);
 
                     if (layerIndex == 1 || (layerIndex == 0 && item.code != Objects.EMPTY))
                     {

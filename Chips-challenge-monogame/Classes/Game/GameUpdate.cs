@@ -1,7 +1,9 @@
 ﻿using CHIPS_CHALLENGE.Classes.Entities;
 using CHIPS_CHALLENGE.Classes.Entities.Enums;
+using CHIPS_CHALLENGE.Classes.Interfaces;
 using CHIPS_CHALLENGE.Classes.Items;
 using CHIPS_CHALLENGE.Classes.Items.Enums;
+using CHIPS_CHALLENGE.Classes.Utilities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -47,12 +49,17 @@ namespace CHIPS_CHALLENGE.Classes.Game
                 }
             }
         }
-        public static ChipObject Update(ChipObject obj)
+        public static ChipObject Update(ChipObject obj, ChipObject above, int curIndex)
         {
             int index = replaceTiles.FindIndex(item => item.Find == obj.code);
             if (index > -1)
             {
                 obj = ItemFactory.CreateObjectFromCode(replaceTiles[index].Replace);
+            }
+            if (above != null)
+            {
+                if (above is IPressable && obj is Block)
+                    ((IPressable)above).Press(GeneralUtilities.ConvertFromIndexToVector(curIndex));
             }
             return obj;
         }

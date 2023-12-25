@@ -76,6 +76,8 @@ namespace CHIPS_CHALLENGE.Classes.Items
             {
                 case Objects.EMPTY:
                     return code;
+                case Objects.TRAP_BUTTON:
+                    return code;
                 default:
                     return null;
             }

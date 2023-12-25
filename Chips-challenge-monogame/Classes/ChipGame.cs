@@ -19,6 +19,7 @@ using CHIPS_CHALLENGE.Classes.UI;
 using SharpDX.MediaFoundation;
 using System.Threading;
 using Trap = CHIPS_CHALLENGE.Classes.Loader.ChipFile.Trap;
+using CHIPS_CHALLENGE.Classes.Interfaces;
 
 namespace CHIPS_CHALLENGE.Classes
 {
@@ -110,7 +111,13 @@ namespace CHIPS_CHALLENGE.Classes
                     if (transformInto.HasValue)
                     {
                         ChipObject tileMoveTo = layer.objects[index];
-                        if (tileMoveTo is TeleportButton)
+
+                        if (tileMoveTo is IPressable)
+                        {
+                            (tileMoveTo as IPressable).Press(pos);
+                            ChipGame.chipInfo.layers[1].objects[index] = ChipGame.chipInfo.layers[0].objects[index];
+                            ChipGame.chipInfo.layers[0].objects[index] = ItemFactory.CreateObjectFromCode((Objects)transformInto);
+                        } else if (tileMoveTo is TeleportButton)
                         {
                             TeleportButton teleporter = tileMoveTo as TeleportButton;
                             layer.objects[

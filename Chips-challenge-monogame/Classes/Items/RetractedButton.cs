@@ -1,5 +1,6 @@
 ﻿using CHIPS_CHALLENGE.Classes.Entities;
 using CHIPS_CHALLENGE.Classes.Game;
+using CHIPS_CHALLENGE.Classes.Interfaces;
 using CHIPS_CHALLENGE.Classes.Items.Enums;
 using Microsoft.Xna.Framework;
 using System;
@@ -10,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace CHIPS_CHALLENGE.Classes.Items
 {
-    public class RetractedButton : ChipObject
+    public class RetractedButton : ChipObject, IPressable
     {
         public RetractedButton() : base(Objects.RETRACTED_BUTTON)
         {
@@ -18,8 +19,14 @@ namespace CHIPS_CHALLENGE.Classes.Items
 
         public override bool MovingTo(Entity entity)
         {
-            this.ChangeObjectInto(Objects.WALL);
+            Press(Vector2.Zero);
             return base.MovingTo(entity);
+        }
+
+        public Object Press(Vector2 position)
+        {
+            this.ChangeObjectInto(Objects.WALL);
+            return null;
         }
     }
 }

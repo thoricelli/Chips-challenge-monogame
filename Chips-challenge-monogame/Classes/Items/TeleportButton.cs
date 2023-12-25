@@ -1,4 +1,5 @@
 ﻿using CHIPS_CHALLENGE.Classes.Entities;
+using CHIPS_CHALLENGE.Classes.Interfaces;
 using CHIPS_CHALLENGE.Classes.Items.Enums;
 using Microsoft.Xna.Framework;
 using System;
@@ -9,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace CHIPS_CHALLENGE.Classes.Items
 {
-    public class TeleportButton : ChipObject
+    public class TeleportButton : ChipObject, IPressable
     {
         public TeleportButton() : base(Objects.TELEPORT_BUTTON)
         {
@@ -21,6 +22,11 @@ namespace CHIPS_CHALLENGE.Classes.Items
         }
 
         public Vector2 GetTeleportPosition(Vector2 position)
+        {
+            return (Vector2)Press(position);
+        }
+
+        public Object Press(Vector2 position)
         {
             return ChipGame.PositionOfTileInReverse(Objects.TELEPORT_BUTTON, position);
         }
