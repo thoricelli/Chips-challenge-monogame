@@ -41,7 +41,7 @@ namespace CHIPS_CHALLENGE.Classes.States
         int previousScrollWheelValue = 0;
 
         //ugh...
-        public static ushort Level = 0;
+        public static ushort Level = 1;
 
         private Label label;
         private Label index;

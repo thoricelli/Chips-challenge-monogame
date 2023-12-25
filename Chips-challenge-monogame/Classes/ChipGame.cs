@@ -67,8 +67,14 @@ namespace CHIPS_CHALLENGE.Classes
         public static void LoadNext()
         {
             ResetAll();
-            chipInfo = chipFileLoader.LoadLevelFromFile(chipInfo.LevelNumber+1);
-            LevelHasChanged();
+            if (chipInfo.NumberOfLevels >= chipInfo.LevelNumber + 1)
+            {
+                chipInfo = chipFileLoader.LoadLevelFromFile(chipInfo.LevelNumber + 1);
+                LevelHasChanged();
+            } else
+            {
+                //If all levels done show win screen.
+            }
         }
         public static void RestartLevel()
         {

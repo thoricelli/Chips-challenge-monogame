@@ -44,6 +44,7 @@ namespace CHIPS_CHALLENGE.Classes.Loader
 
             //Base of the file.
             Base chipBase = FromFileStream<Base>(fs);
+            chipInfo.NumberOfLevels = chipBase.NumberOfLevels;
 
             //We can get the bytes for the level from here, and seek the filestream.
             Level loadedLevel;
