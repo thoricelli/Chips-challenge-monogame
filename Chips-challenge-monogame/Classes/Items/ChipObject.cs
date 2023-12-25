@@ -38,7 +38,7 @@ namespace CHIPS_CHALLENGE.Classes.Items
         public ChipObject(Objects code)
         {
             this.code = code;
-            Sprite = new Sprite(InGameState.spritesheet, 1, (int)code); //REPLACE THIS LATER!
+            Sprite = new Sprite(InGameState.spritesheet, 1, (int)code);
         }
         /// <summary>
         /// Fired when the object is touched by a entity

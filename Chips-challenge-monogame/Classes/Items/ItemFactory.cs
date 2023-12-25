@@ -12,7 +12,6 @@ namespace CHIPS_CHALLENGE.Classes.Items
     {
         public static ChipObject CreateObjectFromCode(Objects code)
         {
-            //Replace with an array maybe? Idk.
             switch (code)
             {
                 case Objects.WALL:
@@ -41,7 +40,6 @@ namespace CHIPS_CHALLENGE.Classes.Items
                     return new Ice();
                 case Objects.FORCE_SOUTH:
                     return new ForceSouth();
-                //SKIPPED A FEW OBJECTS :)
                 case Objects.FORCE_NORTH:
                     return new ForceNorth();
                 case Objects.FORCE_EAST:
@@ -105,7 +103,6 @@ namespace CHIPS_CHALLENGE.Classes.Items
                     return new Cloner();
                 case Objects.FORCE_FLOOR_RANDOM:
                     return new ForceFloorRandom();
-                //Skipping objects
                 case Objects.BLUE_KEY:
                     return new BlueKey();
                 case Objects.RED_KEY:
