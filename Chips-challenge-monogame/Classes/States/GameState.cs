@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using CHIPS_CHALLENGE.Classes.Interfaces;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Myra;
 using Myra.Graphics2D.UI;
@@ -10,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace CHIPS_CHALLENGE.Classes.States
 {
-    public abstract class GameState
+    public abstract class GameState : IGameState
     {
         protected GraphicsDevice _graphics;
         protected SpriteBatch _spriteBatch;
