@@ -28,6 +28,8 @@ namespace CHIPS_CHALLENGE.Classes.States
             MyraEnvironment.Game = this._game;
 
             _desktop = new Desktop();
+            _graphics.Clear(Color.Black);
+            _desktop.Render();
         }
         public abstract void LoadContent();
         public abstract void Update(GameTime gameTime);

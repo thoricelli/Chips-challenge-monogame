@@ -20,6 +20,7 @@ using SharpDX.MediaFoundation;
 using System.Threading;
 using Trap = CHIPS_CHALLENGE.Classes.Loader.ChipFile.Trap;
 using CHIPS_CHALLENGE.Classes.Interfaces;
+using System.Drawing;
 
 namespace CHIPS_CHALLENGE.Classes
 {
@@ -38,6 +39,9 @@ namespace CHIPS_CHALLENGE.Classes
 
         public static List<Enemy> Enemies { get { return _enemies; } }
         public static List<Enemy> _enemies = new List<Enemy>();
+
+        public static Func<object> gameOverHandler;
+        public static Func<object> wonHandler;
 
         public static List<Entity> Entities { get {
                 List<Entity> entities = new List<Entity>();
@@ -73,7 +77,7 @@ namespace CHIPS_CHALLENGE.Classes
                 LevelHasChanged();
             } else
             {
-                //If all levels done show win screen.
+                wonHandler();
             }
         }
         public static void RestartLevel()
@@ -182,8 +186,9 @@ namespace CHIPS_CHALLENGE.Classes
         {
             /*InGameState.gameUI.ShowYouDied();
             InGameState.gameUI.HideYouDied();*/
-            RestartLevel();
-            player.Revive();
+            //RestartLevel();
+            //player.Revive();
+            gameOverHandler();
         }
 
         public static void AddEnemy(Enemy enemy)

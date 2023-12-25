@@ -106,7 +106,7 @@ namespace CHIPS_CHALLENGE.Classes.Loader
             {
                 fileInfo.Add(LoadLevelFromFile(level, false));
                 level++;
-            } while (chipBase.NumberOfLevels > level);
+            } while (chipBase.NumberOfLevels >= level);
 
             return fileInfo;
         }

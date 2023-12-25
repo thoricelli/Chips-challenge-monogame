@@ -126,6 +126,8 @@ namespace CHIPS_CHALLENGE.Classes.States
 
             inputHandler = new PlayerInputHandler(thisPlayer);
             ChipGame.thisPlayerInput = inputHandler; //TEMP
+            ChipGame.gameOverHandler = GameOver;
+            ChipGame.wonHandler = Won;
         }
 
         public override void Initialize()
@@ -165,6 +167,16 @@ namespace CHIPS_CHALLENGE.Classes.States
             gameUI.ShowMapTitle(ChipGame.chipInfo.MapTitle);
 
             _desktop.Root = _panel;
+        }
+        public Object GameOver()
+        {
+            _game.ChangeState(new GameOverState(_graphics, _spriteBatch, _game));
+            return null;
+        }
+        public Object Won()
+        {
+            _game.ChangeState(new WonState(_graphics, _spriteBatch, _game));
+            return null;
         }
     }
 }
