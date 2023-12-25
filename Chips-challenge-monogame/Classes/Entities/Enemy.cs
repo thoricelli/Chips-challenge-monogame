@@ -1,4 +1,5 @@
 ﻿using CHIPS_CHALLENGE.Classes.Entities.Enums;
+using CHIPS_CHALLENGE.Classes.Interfaces;
 using CHIPS_CHALLENGE.Classes.Items;
 using CHIPS_CHALLENGE.Classes.Items.Enums;
 using CHIPS_CHALLENGE.Classes.Sprites;
@@ -13,7 +14,7 @@ using System.Threading.Tasks;
 
 namespace CHIPS_CHALLENGE.Classes.Entities
 {
-    public class Enemy : Entity
+    public class Enemy : Entity, IUpdatable
     {
         //AI.
         private List<Objects> allowedObjects = 

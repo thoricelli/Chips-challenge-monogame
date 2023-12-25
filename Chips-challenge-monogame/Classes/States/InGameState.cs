@@ -1,4 +1,6 @@
-﻿using CHIPS_CHALLENGE.Classes.Drawing;
+﻿using CHIPS_CHALLENGE.Classes.Audio;
+using CHIPS_CHALLENGE.Classes.Audio.Enums;
+using CHIPS_CHALLENGE.Classes.Drawing;
 using CHIPS_CHALLENGE.Classes.Entities;
 using CHIPS_CHALLENGE.Classes.Input;
 using CHIPS_CHALLENGE.Classes.Interfaces;
@@ -7,8 +9,10 @@ using CHIPS_CHALLENGE.Classes.Sprites;
 using CHIPS_CHALLENGE.Classes.UI;
 using CHIPS_CHALLENGE.Classes.Utilities;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Microsoft.Xna.Framework.Media;
 using Myra;
 using Myra.Graphics2D.UI;
 using System;
@@ -27,6 +31,7 @@ namespace CHIPS_CHALLENGE.Classes.States
         private IInputHandler inputHandler;
 
         public static GameUI gameUI;
+        public static AudioPlayer audioPlayer;
 
         //Sprite basis
         private Sprite sprite;
@@ -35,7 +40,6 @@ namespace CHIPS_CHALLENGE.Classes.States
 
         private Player thisPlayer; 
 
-        //TEMPORARY!
         bool upnext = true;//TEMP
         bool upprev = true;
         bool upr = true;
@@ -105,6 +109,7 @@ namespace CHIPS_CHALLENGE.Classes.States
             positionString.Text = $"X: {thisPlayer.Position.X} Y: {thisPlayer.Position.Y}";
             chipsNeeded.Text = $"Chips needed: {ChipGame.chipInfo.ChipsToPickUp}";
 
+            audioPlayer.Update();
             ChipGame.Update(gameTime);
         }
 
@@ -129,11 +134,27 @@ namespace CHIPS_CHALLENGE.Classes.States
             ChipGame.thisPlayerInput = inputHandler; //TEMP
             ChipGame.gameOverHandler = GameOver;
             ChipGame.wonHandler = Won;
+
+            MediaPlayer.Volume = 0.5F;
+            audioPlayer = new AudioPlayer();
+            audioPlayer.AddMusic(_game.Content.Load<Song>("./Music/Track_1"));
+            audioPlayer.AddMusic(_game.Content.Load<Song>("./Music/Track_2"));
+
+            audioPlayer.AddSoundEffect(_game.Content.Load<SoundEffect>("./Audio/Bummer"), SoundEffects.BUMMER);
+            audioPlayer.AddSoundEffect(_game.Content.Load<SoundEffect>("./Audio/button"), SoundEffects.BUTTON);
+            audioPlayer.AddSoundEffect(_game.Content.Load<SoundEffect>("./Audio/door"), SoundEffects.DOOR);
+            audioPlayer.AddSoundEffect(_game.Content.Load<SoundEffect>("./Audio/get"), SoundEffects.GET);
+            audioPlayer.AddSoundEffect(_game.Content.Load<SoundEffect>("./Audio/teleport"), SoundEffects.TELEPORT);
+            audioPlayer.AddSoundEffect(_game.Content.Load<SoundEffect>("./Audio/wall"), SoundEffects.WALL);
+            audioPlayer.AddSoundEffect(_game.Content.Load<SoundEffect>("./Audio/splash"), SoundEffects.SPLASH);
+
         }
 
         public override void Initialize()
         {
             base.Initialize();
+            audioPlayer.PlayMusic();
+
             previousScrollWheelValue = Mouse.GetState().ScrollWheelValue;
             Panel _panel = new Panel();
 
