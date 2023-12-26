@@ -135,7 +135,7 @@ namespace CHIPS_CHALLENGE.Classes.States
             ChipGame.gameOverHandler = GameOver;
             ChipGame.wonHandler = Won;
 
-            MediaPlayer.Volume = 0.5F;
+            MediaPlayer.Volume = 0.15F;
             audioPlayer = new AudioPlayer();
             audioPlayer.AddMusic(_game.Content.Load<Song>("./Music/Track_1"));
             audioPlayer.AddMusic(_game.Content.Load<Song>("./Music/Track_2"));

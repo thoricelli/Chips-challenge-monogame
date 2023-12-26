@@ -18,7 +18,7 @@ namespace CHIPS_CHALLENGE.Classes.Input
         private bool upkey = true;
         private bool prevupkey = true;
         private bool disableInput = false;
-        private TimeSpan holdingDown;
+        private long holdingDown;
 
         public PlayerInputHandler(Player player)
         {
@@ -36,38 +36,27 @@ namespace CHIPS_CHALLENGE.Classes.Input
         {
             if (upkey && !disableInput)
             {
-                if (Keyboard.GetState().IsKeyDown(Keys.Up))
-                {
-                    player.Move(new Vector2(0, -1));
-                    upkey = false;
-                }
-                if (Keyboard.GetState().IsKeyDown(Keys.Down))
-                {
-                    player.Move(new Vector2(0, 1));
-                    upkey = false;
-                }
-                if (Keyboard.GetState().IsKeyDown(Keys.Left))
-                {
-                    player.Move(new Vector2(-1, 0));
-                    upkey = false;
-                }
-                if (Keyboard.GetState().IsKeyDown(Keys.Right))
-                {
-                    player.Move(new Vector2(1, 0));
-                    upkey = false;
-                }
+                MovePlayer();
             }
 
             if (prevupkey && !upkey)
             { //Means we changed from not holding to holding down a key
               //Set holding down to now.
+              holdingDown = DateTime.Now.Ticks;
+              prevupkey = upkey;
             }
 
             if (!upkey)
             {
                 ChipGame.StartGame();
-                //If holding down is longer than 3 seconds, start auto moving every 1 second.
-
+                //If holding down is longer than 1 second, start moving automatically.
+                long elapsedTicks = DateTime.Now.Ticks - holdingDown;
+                TimeSpan elapsedSpan = new TimeSpan(elapsedTicks);
+                if (elapsedSpan.TotalMilliseconds > 100 && !disableInput)
+                {
+                    holdingDown = DateTime.Now.Ticks;
+                    MovePlayer();
+                }
             }
 
             if (
@@ -77,6 +66,30 @@ namespace CHIPS_CHALLENGE.Classes.Input
                 && Keyboard.GetState().IsKeyUp(Keys.Right))
             {
                 upkey = true;
+            }
+        }
+
+        private void MovePlayer()
+        {
+            if (Keyboard.GetState().IsKeyDown(Keys.Up))
+            {
+                player.Move(new Vector2(0, -1));
+                upkey = false;
+            }
+            if (Keyboard.GetState().IsKeyDown(Keys.Down))
+            {
+                player.Move(new Vector2(0, 1));
+                upkey = false;
+            }
+            if (Keyboard.GetState().IsKeyDown(Keys.Left))
+            {
+                player.Move(new Vector2(-1, 0));
+                upkey = false;
+            }
+            if (Keyboard.GetState().IsKeyDown(Keys.Right))
+            {
+                player.Move(new Vector2(1, 0));
+                upkey = false;
             }
         }
     }

@@ -37,7 +37,7 @@ namespace CHIPS_CHALLENGE.Classes.Entities
                 return false;
             }*/
             bool move = base.Move(velocity);
-            if (!move)
+            if (!move && MovementEnabled)
                 InGameState.audioPlayer.PlaySoundEffect(Audio.Enums.SoundEffects.WALL);
             return move;
         }

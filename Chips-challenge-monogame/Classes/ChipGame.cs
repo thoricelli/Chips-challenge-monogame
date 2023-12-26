@@ -161,7 +161,8 @@ namespace CHIPS_CHALLENGE.Classes
         }
         public static void ChipPickedUp()
         {
-            chipInfo.ChipsToPickUp--;
+            if (chipInfo.ChipsToPickUp > 0)
+                chipInfo.ChipsToPickUp--;
         }
         public static void ResetAllItems()
         {
