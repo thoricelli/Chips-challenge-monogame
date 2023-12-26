@@ -56,7 +56,7 @@ namespace CHIPS_CHALLENGE.Classes.Audio
         }
         public void NextSong()
         {
-            if (_musicIndex <= _music.Count-1)
+            if (_musicIndex < _music.Count-1)
             {
                 _musicIndex++;
                 PlayMusic();
