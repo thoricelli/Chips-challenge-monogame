@@ -37,13 +37,7 @@ namespace CHIPS_CHALLENGE.Classes.Input
             if (upkey && !disableInput)
             {
                 MovePlayer();
-            }
-
-            if (prevupkey && !upkey)
-            { //Means we changed from not holding to holding down a key
-              //Set holding down to now.
-              holdingDown = DateTime.Now.Ticks;
-              prevupkey = upkey;
+                holdingDown = DateTime.Now.Ticks;
             }
 
             if (!upkey)
@@ -66,6 +60,13 @@ namespace CHIPS_CHALLENGE.Classes.Input
                 && Keyboard.GetState().IsKeyUp(Keys.Right))
             {
                 upkey = true;
+            }
+
+            if (prevupkey && !upkey)
+            { //Means we changed from not holding to holding down a key
+              //Set holding down to now.
+                holdingDown = DateTime.Now.Ticks;
+                prevupkey = upkey;
             }
         }
 
